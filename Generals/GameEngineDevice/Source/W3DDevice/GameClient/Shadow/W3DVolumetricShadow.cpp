@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -2377,7 +2376,7 @@ void W3DVolumetricShadow::buildSilhouette(Int meshIndex, Vector3 *lightPosObject
 				// ignore neighbors that are marked as processed as those
 				// onces have already detected edges if present
 				//
-				if( BitTest( otherNeighbor->status, POLY_PROCESSED ) )
+				if( OH_BitTest( otherNeighbor->status, POLY_PROCESSED ) )
 					continue;  // for j
 
 			}  // end if
@@ -2390,7 +2389,7 @@ void W3DVolumetricShadow::buildSilhouette(Int meshIndex, Vector3 *lightPosObject
 			// if we have no neighbor we just record the fact that we have
 			// real model end edges to add after this inner j loop;
 			//
-			if( BitTest( polyNeighbor->status, POLY_VISIBLE ) )
+			if( OH_BitTest( polyNeighbor->status, POLY_VISIBLE ) )
 			{
 
 				// check for no neighbor edges
@@ -2400,7 +2399,7 @@ void W3DVolumetricShadow::buildSilhouette(Int meshIndex, Vector3 *lightPosObject
 					visibleNeighborless = TRUE;
 
 				}  // end if
-				else if( BitTest( otherNeighbor->status, POLY_VISIBLE ) == FALSE )
+				else if( OH_BitTest( otherNeighbor->status, POLY_VISIBLE ) == FALSE )
 				{
 
 					// "we" are visible and "they" are not
@@ -2410,7 +2409,7 @@ void W3DVolumetricShadow::buildSilhouette(Int meshIndex, Vector3 *lightPosObject
 
 			}  // end if
 			else if( otherNeighbor != NULL &&
-							 BitTest( otherNeighbor->status, POLY_VISIBLE ) )
+							 OH_BitTest( otherNeighbor->status, POLY_VISIBLE ) )
 			{
 
 				// "they" are visible and "we" are not

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -31,7 +30,7 @@
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
-#include "GameSpy/peer/peer.h"
+//#include "GameSpy/peer/peer.h"
 
 #include "Common/GameEngine.h"
 #include "Common/GameSpyMiscPreferences.h"
@@ -54,7 +53,6 @@
 #include "GameClient/GameWindowTransitions.h"
 
 #include "GameNetwork/FirewallHelper.h"
-#include "GameNetwork/GameSpyOverlay.h"
 
 #include "GameNetwork/GameSpy/BuddyDefs.h"
 #include "GameNetwork/GameSpy/BuddyThread.h"
@@ -546,10 +544,6 @@ void WOLWelcomeMenuInit( WindowLayout *layout, void *userData )
 	UpdateLocalPlayerStats();
 
 	GameSpyMiscPreferences cPref;
-	if (cPref.getLocale() < LOC_MIN || cPref.getLocale() > LOC_MAX)
-	{
-		GameSpyOpenOverlay(GSOVERLAY_LOCALESELECT);
-	}
 
 	raiseMessageBoxes = TRUE;
 	TheTransitionHandler->setGroup("WOLWelcomeMenuFade");
@@ -584,7 +578,6 @@ void WOLWelcomeMenuShutdown( WindowLayout *layout, void *userData )
 	TheTransitionHandler->reverse("WOLWelcomeMenuFade");
 
 
-	RaiseGSMessageBox();
 }  // WOLWelcomeMenuShutdown
 
 
@@ -599,7 +592,6 @@ void WOLWelcomeMenuUpdate( WindowLayout * layout, void *userData)
 
 	if (raiseMessageBoxes)
 	{
-		RaiseGSMessageBox();
 		raiseMessageBoxes = FALSE;
 	}
 
@@ -659,13 +651,12 @@ void WOLWelcomeMenuUpdate( WindowLayout * layout, void *userData)
 						//GSMessageBoxOk( TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:GSGroupRoomJoinOK") );
 
 						buttonPushed = TRUE;
-						nextScreen = "Menus/WOLCustomLobby.wnd";
+						//nextScreen = "Menus/WOLCustomLobby.wnd";
 						TheShell->pop();
 						//TheShell->push( "Menus/WOLCustomLobby.wnd" );
 					}
 					else
 					{
-						GSMessageBoxOk( TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:GSGroupRoomJoinFail") );
 					}
 				}
 				break;
@@ -677,8 +668,7 @@ void WOLWelcomeMenuUpdate( WindowLayout * layout, void *userData)
 					disconMunkee.format("GUI:GSDisconReason%d", resp.discon.reason);
 					title = TheGameText->fetch( "GUI:GSErrorTitle" );
 					body = TheGameText->fetch( disconMunkee );
-					GameSpyCloseAllOverlays();
-					GSMessageBoxOk( title, body );
+					//GameSpyCloseAllOverlays();
 					TheShell->pop();
 				}
 				break;
@@ -716,7 +706,7 @@ WindowMsgHandledType WOLWelcomeMenuInput( GameWindow *window, UnsignedInt msg,
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OH_BitTest( state, KEY_STATE_UP ) )
 					{
 						TheWindowManager->winSendSystemMsg( window, GBM_SELECTED, 
 																							(WindowMsgData)buttonBack, buttonBackID );
@@ -790,7 +780,6 @@ WindowMsgHandledType WOLWelcomeMenuSystem( GameWindow *window, UnsignedInt msg,
 					TheGameSpyBuddyMessageQueue->addRequest( breq );
 
 					DEBUG_LOG(("Tearing down GameSpy from WOLWelcomeMenuSystem(GBM_SELECTED)\n"));
-					TearDownGameSpy();
 
 					/*
 					if (TheGameSpyChat->getPeer())
@@ -817,26 +806,24 @@ WindowMsgHandledType WOLWelcomeMenuSystem( GameWindow *window, UnsignedInt msg,
 				} //if ( controlID == buttonBack )
 				else if (controlID == buttonOptionsID)
 				{					
-					GameSpyOpenOverlay( GSOVERLAY_OPTIONS );
 				}
 				else if (controlID == buttonQuickMatchID)
 				{
 					GameSpyMiscPreferences mPref;
 					if ((TheDisplay->getWidth() != 800 || TheDisplay->getHeight() != 600) && mPref.getQuickMatchResLocked())
 					{
-						GSMessageBoxOk(TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:QuickMatch800x600"));
 					}
 					else
 					{
 						buttonPushed = TRUE;
-						nextScreen = "Menus/WOLQuickMatchMenu.wnd";
+						//nextScreen = "Menus/WOLQuickMatchMenu.wnd";
 						TheShell->pop();
 					}
 				}// else if
 				else if (controlID == buttonMyInfoID )
 				{
 					SetLookAtPlayer(TheGameSpyInfo->getLocalProfileID(), TheGameSpyInfo->getLocalName());
-					GameSpyToggleOverlay(GSOVERLAY_PLAYERINFO);
+					//GameSpyToggleOverlay(GSOVERLAY_PLAYERINFO);
 				}
 				else if (controlID == buttonLobbyID)
 				{
@@ -855,7 +842,7 @@ WindowMsgHandledType WOLWelcomeMenuSystem( GameWindow *window, UnsignedInt msg,
 				}// else if
 				else if (controlID == buttonBuddiesID)
 				{
-					GameSpyToggleOverlay( GSOVERLAY_BUDDY );
+					//GameSpyToggleOverlay( GSOVERLAY_BUDDY );
 					/*
 					Bool joinedRoom = FALSE;
 					ClearGroupRoomList();

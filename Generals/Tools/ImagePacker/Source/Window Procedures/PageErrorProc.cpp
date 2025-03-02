@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -98,16 +97,16 @@ BOOL CALLBACK PageErrorProc( HWND hWndDialog, UINT message,
 			{
 
 				// if image can't be processed find out why
-				if( BitTest( page->m_status, TexturePage::PAGE_ERROR ) )
+				if( OH_BitTest( page->m_status, TexturePage::PAGE_ERROR ) )
 				{
 					
-					if( BitTest( page->m_status, TexturePage::CANT_ALLOCATE_PACKED_IMAGE ) )
+					if( OH_BitTest( page->m_status, TexturePage::CANT_ALLOCATE_PACKED_IMAGE ) )
 						sprintf( reason, "Can't allocate image memory" );
-					else if( BitTest( page->m_status, TexturePage::CANT_ADD_IMAGE_DATA ) )
+					else if( OH_BitTest( page->m_status, TexturePage::CANT_ADD_IMAGE_DATA ) )
 						sprintf( reason, "Can't add image(s) data" );
-					else if( BitTest( page->m_status, TexturePage::NO_TEXTURE_DATA ) )
+					else if( OH_BitTest( page->m_status, TexturePage::NO_TEXTURE_DATA ) )
 						sprintf( reason, "No texture data to write" );
-					else if( BitTest( page->m_status, TexturePage::ERROR_DURING_SAVE ) )
+					else if( OH_BitTest( page->m_status, TexturePage::ERROR_DURING_SAVE ) )
 						sprintf( reason, "Error writing texture file" );
 					else
 						sprintf( reason, "Unknown Reason" );

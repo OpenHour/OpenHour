@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -28,6 +27,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
+
+#include <timeapi.h>
 
 #include "Common/Debug.h"
 #include "Common/MessageStream.h"
@@ -1080,7 +1081,7 @@ Int Mouse::getCursorIndex(const AsciiString& name)
 
 	/** @todo This is silly to have to define these names from INI in the code ... 
 		* that should be changed (CBD) */
-	static char *CursorININames[NUM_MOUSE_CURSORS] =
+	static const char *CursorININames[NUM_MOUSE_CURSORS] =
 	{
 		//"InvalidMouseCursor",  // this entry is not actually a mouse cursor, but just a
 														 // reminder that it does exist

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -32,6 +31,7 @@
 #ifndef _GAME_LOGIC_H_
 #define _GAME_LOGIC_H_
 
+#include <unordered_map>
 #include "Common/GameCommon.h"	// ensure we get DUMP_PERF_STATS, or not
 #include "Common/GameType.h"
 #include "Common/Snapshot.h"
@@ -92,7 +92,7 @@ enum
 
 /// Function pointers for use by GameLogic callback functions.
 typedef void (*GameLogicFuncPtr)( Object *obj, void *userData ); 
-typedef std::hash_map<ObjectID, Object *, rts::hash<ObjectID>, rts::equal_to<ObjectID> > ObjectPtrHash;
+typedef std::unordered_map<ObjectID, Object *, rts::hash<ObjectID>, rts::equal_to<ObjectID> > ObjectPtrHash;
 typedef ObjectPtrHash::const_iterator ObjectPtrIter;
 
 
@@ -264,13 +264,13 @@ private:
 		overrides to thing template buildable status. doesn't really belong here,
 		but has to go somewhere. (srj)
 	*/
-	typedef std::hash_map< AsciiString, BuildableStatus, rts::hash<AsciiString>, rts::equal_to<AsciiString> > BuildableMap;
+	typedef std::unordered_map< AsciiString, BuildableStatus, rts::hash<AsciiString>, rts::equal_to<AsciiString> > BuildableMap;
 	BuildableMap m_thingTemplateBuildableOverrides;
 
 	/**
 		overrides to control bars. doesn't really belong here, but has to go somewhere. (srj)
 	*/
-	typedef std::hash_map< AsciiString, ConstCommandButtonPtr, rts::hash<AsciiString>, rts::equal_to<AsciiString> > ControlBarOverrideMap;
+	typedef std::unordered_map< AsciiString, ConstCommandButtonPtr, rts::hash<AsciiString>, rts::equal_to<AsciiString> > ControlBarOverrideMap;
 	ControlBarOverrideMap m_controlBarOverrides;
 
 	Real m_width, m_height;																	///< Dimensions of the world

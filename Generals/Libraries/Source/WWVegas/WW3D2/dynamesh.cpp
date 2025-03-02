@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -685,7 +684,9 @@ int DynamicMeshClass::Set_Vertex_Material(VertexMaterialClass *material, bool do
 	// list.  if we are not supposed to search the list for it then just add
 	// it.
 	if (!dont_search) {
-		for (int lp = 0, found = 0; lp < Peek_Material_Info()->Vertex_Material_Count(); lp ++) {
+        int lp = 0;
+	  	int found = 0;
+		for (lp = 0, found = 0; lp < Peek_Material_Info()->Vertex_Material_Count(); lp ++) {
 			VertexMaterialClass *mat = Peek_Material_Info()->Get_Vertex_Material(lp);
 			if (material == mat) {
 				VertexMaterialIdx[pass] = lp;
@@ -746,7 +747,9 @@ int DynamicMeshClass::Set_Texture(TextureClass *texture, bool dont_search, int p
 	// list.  if we are not supposed to search the list for it then just add
 	// it.
 	if (!dont_search) {
-		for (int lp = 0, found = 0; lp < Peek_Material_Info()->Texture_Count(); lp ++) {
+	  	int lp = 0;
+        int found = 0;
+		for (lp = 0, found = 0; lp < Peek_Material_Info()->Texture_Count(); lp ++) {
 			TextureClass *tex = Peek_Material_Info()->Get_Texture(lp);
 			if (texture == tex) {
 				TextureIdx[pass] = lp;

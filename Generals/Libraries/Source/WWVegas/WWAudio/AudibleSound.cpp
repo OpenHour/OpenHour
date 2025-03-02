@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -598,7 +597,7 @@ AudibleSoundClass::Initialize_Miles_Handle (void)
 		//
 		// Record the total length of the sample in milliseconds...
 		//
-		m_SoundHandle->Get_Sample_MS_Position ((S32 *)&m_Length, NULL);
+		m_SoundHandle->Get_Sample_MS_Position ((int32_t *)&m_Length, NULL);
 
 		//
 		// Pass our cached settings onto miles
@@ -638,7 +637,7 @@ AudibleSoundClass::Initialize_Miles_Handle (void)
 		//
 		// Associate this object instance with the handle
 		//
-		m_SoundHandle->Set_Sample_User_Data (INFO_OBJECT_PTR, (S32)this);
+		m_SoundHandle->Set_Sample_User_Data (INFO_OBJECT_PTR, (int32_t)this);
 	}
 		
 	return ;

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -92,7 +91,6 @@
 #include "GameNetwork/GameSpy/GameResultsThread.h"
 #include "GameNetwork/NetworkDefs.h"
 #include "GameNetwork/LANAPICallbacks.h"
-#include "GameNetwork/GameSpyOverlay.h"
 #include "GameNetwork/GameSpy/BuddyThread.h"
 #include "GameNetwork/GameSpy/GameResultsThread.h"
 #include "GameNetwork/GameSpy/PersistentStorageThread.h"
@@ -393,7 +391,7 @@ WindowMsgHandledType ScoreScreenInput( GameWindow *window, UnsignedInt msg,
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OH_BitTest( state, KEY_STATE_UP ) )
 					{
 
 						TheWindowManager->winSendSystemMsg( window, GBM_SELECTED, 
@@ -478,7 +476,7 @@ WindowMsgHandledType ScoreScreenSystem( GameWindow *window, UnsignedInt msg,
 			}
 			else if ( controlID == buttonBuddiesID )	
 			{
-				GameSpyToggleOverlay( GSOVERLAY_BUDDY );
+				//GameSpyToggleOverlay( GSOVERLAY_BUDDY );
 			}
 			else if ( controlID == buttonSaveReplayID )
 			{
@@ -510,12 +508,12 @@ WindowMsgHandledType ScoreScreenSystem( GameWindow *window, UnsignedInt msg,
 				name.format("ScoreScreen.wnd:ButtonAdd%d", i);
 				if( controlID == TheNameKeyGenerator->nameToKey(name))
 				{
-					Bool notBuddy = TRUE;
-					Int playerID = (Int)GadgetButtonGetData(TheWindowManager->winGetWindowFromId(NULL,controlID));
+					//Bool notBuddy = TRUE;
+					//Int playerID = (Int)GadgetButtonGetData(TheWindowManager->winGetWindowFromId(NULL,controlID));
 											// request to add a buddy
-					BuddyInfoMap *buddies = TheGameSpyInfo->getBuddyMap();
-					BuddyInfoMap::iterator bIt;
-					if( playerID > 0)
+					//BuddyInfoMap *buddies = TheGameSpyInfo->getBuddyMap();
+					//BuddyInfoMap::iterator bIt;
+					/*if( playerID > 0)
 					{
 						bIt = buddies->find(playerID);
 						if (bIt != buddies->end())
@@ -533,7 +531,7 @@ WindowMsgHandledType ScoreScreenSystem( GameWindow *window, UnsignedInt msg,
 						wcsncpy(req.arg.addbuddy.text, buddyAddstr.str(), MAX_BUDDY_CHAT_LEN);
 						req.arg.addbuddy.text[MAX_BUDDY_CHAT_LEN-1] = 0;
 						TheGameSpyBuddyMessageQueue->addRequest(req);
-					}
+					}*/
 					break;
 				}
 			}
@@ -874,10 +872,10 @@ void initInternetMultiPlayer(void)
 		return;
 	BuddyRequest req;
 	req.buddyRequestType = BuddyRequest::BUDDYREQUEST_SETSTATUS;
-	req.arg.status.status = GP_ONLINE;
-	strcpy(req.arg.status.statusString, "Online");
-	strcpy(req.arg.status.locationString, "");
-	TheGameSpyBuddyMessageQueue->addRequest(req);
+	//req.arg.status.status = GP_ONLINE;
+	//strcpy(req.arg.status.statusString, "Online");
+	//strcpy(req.arg.status.locationString, "");
+	//TheGameSpyBuddyMessageQueue->addRequest(req);
 }
 
 /** Special Init path for making this a Multiplayer Score Screen(Replay) */
@@ -1434,7 +1432,7 @@ winName.format("ScoreScreen.wnd:StaticTextScore%d", pos);
 						}
 					}
 					DEBUG_LOG(("Game ended on frame %d - TheGameLogic->getFrame()=%d\n", lastFrameOfGame-1, TheGameLogic->getFrame()-1));
-					for (i=0; i<MAX_SLOTS; ++i)
+					for (Int i=0; i<MAX_SLOTS; ++i)
 					{
 						const GameSlot *slot = TheGameInfo->getConstSlot(i);
 						DEBUG_LOG(("latestHumanInGame=%d, slot->isOccupied()=%d, slot->disconnected()=%d, slot->isAI()=%d, slot->lastFrameInGame()=%d\n",
@@ -1667,7 +1665,7 @@ winName.format("ScoreScreen.wnd:StaticTextScore%d", pos);
 					stats.lastGeneral = ptIdx;
 
 					Int gameSize = 0;
-					for (i=0; i<MAX_SLOTS; ++i)
+					for (Int i=0; i<MAX_SLOTS; ++i)
 					{
 						if (TheGameSpyGame->getConstSlot(i)->isOccupied() && TheGameSpyGame->getConstSlot(i)->getPlayerTemplate() != PLAYERTEMPLATE_OBSERVER)
 							++gameSize;

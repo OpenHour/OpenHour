@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -743,7 +742,7 @@ void AIPlayer::processBaseBuilding( void )
 				}	else {
 					if (bldg->getControllingPlayer() == m_player) {
 						// Check for built or dozer missing.
-						if( BitTest( bldg->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == TRUE) {
+						if( OH_BitTest( bldg->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == TRUE) {
 							// make sure dozer is working on him.
 							ObjectID builder = bldg->getBuilderID();
 							Object* myDozer = TheGameLogic->findObjectByID(builder);
@@ -1042,7 +1041,7 @@ Bool AIPlayer::isLocationSafe(const Coord3D *pos, const ThingTemplate *tthing )
 void AIPlayer::onUnitProduced( Object *factory, Object *unit )
 {
 	Bool found = false;
-	Bool supplyTruck;
+	Bool supplyTruck = false;
 
 	// factory could be NULL at the start of the game.
 	if (factory == NULL) {
@@ -1682,9 +1681,9 @@ void AIPlayer::buildUpgrade(const AsciiString &upgrade)
 		Object *factory = TheGameLogic->findObjectByID( info->getObjectID() );
 		if( factory )
 		{
-			if( BitTest( factory->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == TRUE )
+			if( OH_BitTest( factory->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == TRUE )
 				continue;
-			if( BitTest( factory->getStatusBits(), OBJECT_STATUS_SOLD ) == TRUE )
+			if( OH_BitTest( factory->getStatusBits(), OBJECT_STATUS_SOLD ) == TRUE )
 				continue;
 			Bool canUpgradeHere = false;
 			const CommandSet *commandSet = TheControlBar->findCommandSet( factory->getCommandSetString() );

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -119,7 +118,7 @@ RenderObjClass * DistLODPrototypeClass::Create(void)
 	HLodClass * hlod = NEW_REF(HLodClass , (name,robj,count));
 
 	// Now, release the temporary refs and memory for the name
-	for (i=0; i<count; i++) {
+	for (int i=0; i<count; i++) {
 		robj[i]->Release_Ref();
 	}
 	free(name);

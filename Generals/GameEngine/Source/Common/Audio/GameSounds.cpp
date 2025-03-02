@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -217,7 +216,7 @@ Bool SoundManager::canPlayNow( AudioEventRTS *event )
 	// if so, kill them and start our sound
 	// if not, we're done. Can't play dude.
 	
-	if( event->isPositionalAudio() && !BitTest( event->getAudioEventInfo()->m_type, ST_GLOBAL) && event->getAudioEventInfo()->m_priority != AP_CRITICAL ) 
+	if( event->isPositionalAudio() && !OH_BitTest( event->getAudioEventInfo()->m_type, ST_GLOBAL) && event->getAudioEventInfo()->m_priority != AP_CRITICAL ) 
 	{
 		Coord3D distance = *TheAudio->getListenerPosition();
 		const Coord3D *pos = event->getCurrentPosition();

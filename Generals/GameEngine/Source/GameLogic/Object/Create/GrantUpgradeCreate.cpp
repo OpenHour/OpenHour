@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -86,9 +85,9 @@ void GrantUpgradeCreate::onCreate( void )
 
 	ObjectStatusBits exemptStatus = (ObjectStatusBits)getGrantUpgradeCreateModuleData()->m_exemptStatus;
 	ObjectStatusBits currentStatus = (ObjectStatusBits)getObject()->getStatusBits();
-	if( BitTest( exemptStatus, OBJECT_STATUS_UNDER_CONSTRUCTION ) == TRUE )
+	if( OH_BitTest( exemptStatus, OBJECT_STATUS_UNDER_CONSTRUCTION ) == TRUE )
 	{
-		if(	BitTest( currentStatus, OBJECT_STATUS_UNDER_CONSTRUCTION ) == FALSE ) 
+		if(	OH_BitTest( currentStatus, OBJECT_STATUS_UNDER_CONSTRUCTION ) == FALSE ) 
 		{
 			const UpgradeTemplate *upgradeTemplate = TheUpgradeCenter->findUpgrade( getGrantUpgradeCreateModuleData()->m_upgradeName );
 			if( !upgradeTemplate )

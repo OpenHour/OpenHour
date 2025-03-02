@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -100,11 +99,11 @@ static void drawStaticTextText( GameWindow *window, WinInstanceData *instData,
 	//if(wordWrap == 89)
 	//	wordWrap = 95;
 	text->setWordWrap(wordWrap);	
-	if( BitTest(window->winGetStatus(), WIN_STATUS_WRAP_CENTERED)		)
+	if( OH_BitTest(window->winGetStatus(), WIN_STATUS_WRAP_CENTERED)		)
 		text->setWordWrapCentered(TRUE);
 	else
 		text->setWordWrapCentered(FALSE);
-	if( BitTest( window->winGetStatus(), WIN_STATUS_HOTKEY_TEXT ) && TheGlobalData)
+	if( OH_BitTest( window->winGetStatus(), WIN_STATUS_HOTKEY_TEXT ) && TheGlobalData)
 		text->setUseHotkey(TRUE, TheGlobalData->m_hotKeyTextColor);
 	else
 		text->setUseHotkey(FALSE, 0);
@@ -160,7 +159,7 @@ void W3DGadgetStaticTextDraw( GameWindow *window, WinInstanceData *instData )
 	window->winGetSize( &size.x, &size.y );
 
 	// get the colors we will use
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OH_BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 
 		backColor					= GadgetStaticTextGetDisabledColor( window );
@@ -227,7 +226,7 @@ void W3DGadgetStaticTextImageDraw( GameWindow *window, WinInstanceData *instData
 	window->winGetSize( &size.x, &size.y );
 
 	// get the colors we will use
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OH_BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 
 		image							= GadgetStaticTextGetDisabledImage( window );

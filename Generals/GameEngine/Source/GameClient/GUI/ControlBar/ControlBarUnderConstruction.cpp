@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -108,7 +107,7 @@ void ControlBar::updateContextUnderConstruction( void )
 	Object *obj = m_currentSelectedDrawable->getObject();
 
 	// if the object is no longer under construction switch to a new appropriate context
-	if( BitTest( obj->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == FALSE )
+	if( OH_BitTest( obj->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == FALSE )
 	{
 
 		evaluateContextUI();

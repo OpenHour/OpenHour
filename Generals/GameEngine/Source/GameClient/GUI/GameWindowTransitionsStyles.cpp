@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -2198,7 +2197,7 @@ static void drawTypeText( GameWindow *window, DisplayString *str)
 	wordWrap = size.x - 10;
 	text->setWordWrap(wordWrap);	
 	str->setWordWrap(wordWrap);
-	if( BitTest(window->winGetStatus(), WIN_STATUS_WRAP_CENTERED)		)
+	if( OH_BitTest(window->winGetStatus(), WIN_STATUS_WRAP_CENTERED)		)
 	{
 		str->setWordWrapCentered(TRUE);
 		text->setWordWrapCentered(TRUE);

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -112,7 +111,7 @@ void IMECandidateTextAreaDraw( GameWindow *window, WinInstanceData *instData )
 	textRegion.hi.y = origin.y + size.y;
 
 	// get the right colors for drawing
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OH_BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 
 		textSelectColor		= window->winGetDisabledTextColor();
@@ -121,7 +120,7 @@ void IMECandidateTextAreaDraw( GameWindow *window, WinInstanceData *instData )
 		textBorder	= window->winGetDisabledTextBorderColor();
 
 	}  // end if, disabled
-	else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+	else if( OH_BitTest( instData->getState(), WIN_STATE_HILITED ) )
 	{
 
 		textColor		= window->winGetEnabledTextColor();
@@ -244,14 +243,14 @@ void IMECandidateMainDraw( GameWindow *window, WinInstanceData *instData )
 	window->winGetSize( &size.x, &size.y );
 
 	// get the right colors for drawing
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OH_BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 
 		backColor		= window->winGetDisabledColor( 0 );
 		backBorder	= window->winGetDisabledBorderColor( 0 );
 
 	}  // end if, disabled
-	else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+	else if( OH_BitTest( instData->getState(), WIN_STATE_HILITED ) )
 	{
 
 		backColor		= window->winGetHiliteColor( 0 );

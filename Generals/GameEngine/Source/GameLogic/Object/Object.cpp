@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -356,7 +355,7 @@ Object::Object( const ThingTemplate *tt, ObjectStatusBits statusBits, Team *team
 		BodyModuleInterface* body = newMod->getBody();
 		if (body) 
 		{
-			DEBUG_ASSERTCRASH(m_body == NULL, ("Duplicate bodies"));
+			//DEBUG_ASSERTCRASH(m_body == NULL, ("Duplicate bodies"));
 			m_body = body;
 		}
 
@@ -1673,7 +1672,7 @@ void Object::attemptDamage( DamageInfo *damageInfo )
 	if( damageInfo->out.m_actualDamageDealt > 0.0f &&
 			damageInfo->in.m_damageType != DAMAGE_PENALTY &&
 			damageInfo->in.m_damageType != DAMAGE_HEALING &&
-			!BitTest(damageInfo->in.m_sourcePlayerMask, getControllingPlayer()->getPlayerMask()) && 
+			!OH_BitTest(damageInfo->in.m_sourcePlayerMask, getControllingPlayer()->getPlayerMask()) && 
 			m_radarData != NULL &&
 			getControllingPlayer() == ThePlayerList->getLocalPlayer() )
 		TheRadar->tryUnderAttackEvent( this );
@@ -3888,7 +3887,7 @@ void Object::loadPostProcess()
 //-------------------------------------------------------------------------------------------------
 Bool Object::hasUpgrade( const UpgradeTemplate *upgradeT ) const 
 {
-	return BitTest( m_objectUpgradesCompleted, upgradeT->getUpgradeMask() );
+	return OH_BitTest( m_objectUpgradesCompleted, upgradeT->getUpgradeMask() );
 }  // end hasUpgrade
 
 //-------------------------------------------------------------------------------------------------

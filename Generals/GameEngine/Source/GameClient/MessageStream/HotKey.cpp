@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -171,9 +170,9 @@ Bool HotKeyManager::executeHotKey( const AsciiString& keyIn )
 	GameWindow *win = it->second.m_win;
 	if( !win )
 		return FALSE;
-	if( !BitTest( win->winGetStatus(), WIN_STATUS_HIDDEN ) )
+	if( !OH_BitTest( win->winGetStatus(), WIN_STATUS_HIDDEN ) )
 	{
-		if( BitTest( win->winGetStatus(), WIN_STATUS_ENABLED ) )
+		if( OH_BitTest( win->winGetStatus(), WIN_STATUS_ENABLED ) )
  		{
  			TheWindowManager->winSendSystemMsg( win->winGetParent(), GBM_SELECTED, (WindowMsgData)win, win->winGetWindowId() );
  

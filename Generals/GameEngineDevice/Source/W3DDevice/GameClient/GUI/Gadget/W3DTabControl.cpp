@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -83,8 +82,8 @@ void W3DGadgetTabControlDraw( GameWindow *tabControl, WinInstanceData *instData 
 
 	W3DGameWinDefaultDraw(tabControl, instData);//draw the background
 
-	if( BitTest( tabControl->winGetStatus(), WIN_STATUS_BORDER ) == TRUE &&
-			!BitTest( tabControl->winGetStatus(), WIN_STATUS_SEE_THRU ) )
+	if( OH_BitTest( tabControl->winGetStatus(), WIN_STATUS_BORDER ) == TRUE &&
+			!OH_BitTest( tabControl->winGetStatus(), WIN_STATUS_SEE_THRU ) )
 	{//draw border if desired
 		tabControl->winDrawBorder();
 	}
@@ -394,8 +393,8 @@ void W3DGadgetTabControlImageDraw( GameWindow *tabControl,
 
 	W3DGameWinDefaultDraw(tabControl, instData);//draw the background
 
-	if( BitTest( tabControl->winGetStatus(), WIN_STATUS_BORDER ) == TRUE &&
-			!BitTest( tabControl->winGetStatus(), WIN_STATUS_SEE_THRU ) )
+	if( OH_BitTest( tabControl->winGetStatus(), WIN_STATUS_BORDER ) == TRUE &&
+			!OH_BitTest( tabControl->winGetStatus(), WIN_STATUS_SEE_THRU ) )
 	{//draw border if desired
 		tabControl->winDrawBorder();
 	}

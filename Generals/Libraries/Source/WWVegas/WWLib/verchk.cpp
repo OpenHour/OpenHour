@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -109,7 +108,7 @@ bool GetVersionInfo(char* filename, VS_FIXEDFILEINFO* fileInfo)
 
 bool GetFileCreationTime(char* filename, FILETIME* createTime)
 	{
-	if (filename && createTime)
+	/*if (filename && createTime)
 		{
 		createTime->dwLowDateTime = 0;
 		createTime->dwHighDateTime = 0;
@@ -127,7 +126,7 @@ bool GetFileCreationTime(char* filename, FILETIME* createTime)
 					}
 				}
 			}
-		}
+		}*/
 
 	return false;
 	}

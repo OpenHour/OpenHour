@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -54,12 +53,16 @@
 class STLSpecialAlloc;
 
 //-----------------------------------------------------------------------------
+
+#include <cstdint>
 #include "Common/AsciiString.h"
 #include "Common/UnicodeString.h"
 #include "Common/GameCommon.h"
 #include "Common/GameMemory.h"
 
 //-----------------------------------------------------------------------------
+
+extern uint32_t CityHash32(const char *buf, size_t len);
 
 
 // FORWARD DECLARATIONS
@@ -70,7 +73,6 @@ enum DrawableID;
 
 #include <algorithm>
 #include <bitset>
-#include <hash_map>
 #include <list>
 #include <map>
 #include <queue>
@@ -191,9 +193,8 @@ namespace rts
 	template<> struct hash<AsciiString>
 	{
 		size_t operator()(AsciiString ast) const
-		{ 
-			std::hash<const char *> tmp;
-			return tmp((const char *) ast.str());
+		{
+			return CityHash32(ast.str(), ast.getLength());
 		}
 	};
 

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -309,7 +308,7 @@ public:
 		// texcoords must match for all passes and stages
 		// Note: I'm checking them separately and last so that I can keep track
 		// of how many splits are caused solely by u-v discontinuities...
-		for (pass=0; pass<MeshBuilderClass::MAX_PASSES; pass++) {
+		for (int pass=0; pass<MeshBuilderClass::MAX_PASSES; pass++) {
 			for (int stage=0; stage < MeshBuilderClass::MAX_STAGES; stage++) {
 				if (v0.TexCoord[pass][stage] != v1.TexCoord[pass][stage]) {
 					UVSplits++;

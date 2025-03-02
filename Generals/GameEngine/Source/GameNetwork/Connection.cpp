@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -24,6 +23,8 @@
 
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
+
+#include <timeapi.h>
 
 #include "GameNetwork/Connection.h"
 #include "GameNetwork/NetworkUtil.h"

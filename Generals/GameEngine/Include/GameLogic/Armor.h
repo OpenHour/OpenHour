@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -33,6 +32,8 @@
 #define _Armor_H_
 
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
+#include <unordered_map>
+
 #include "Common/NameKeyGenerator.h"
 #include "Common/STLTypedefs.h"
 #include "GameLogic/Damage.h"
@@ -122,7 +123,7 @@ public:
 
 private:
 
-	typedef std::hash_map< NameKeyType, ArmorTemplate, rts::hash<NameKeyType>, rts::equal_to<NameKeyType> > ArmorTemplateMap;
+	typedef std::unordered_map< NameKeyType, ArmorTemplate, rts::hash<NameKeyType>, rts::equal_to<NameKeyType> > ArmorTemplateMap;
 	ArmorTemplateMap m_armorTemplates;
 
 };

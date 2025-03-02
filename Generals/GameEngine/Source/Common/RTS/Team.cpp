@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1623,7 +1622,7 @@ void Team::countObjectsByThingTemplate(Int numTmplates, const ThingTemplate* con
 			if (ignoreDead && iter.cur()->isEffectivelyDead())
 				continue;
 
-			if( ignoreUnderConstruction && (BitTest(iter.cur()->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION) == TRUE) )
+			if( ignoreUnderConstruction && (OH_BitTest(iter.cur()->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION) == TRUE) )
 				continue;
 
 			counts[i] += 1;

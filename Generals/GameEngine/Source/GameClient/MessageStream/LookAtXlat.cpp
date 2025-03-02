@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -174,7 +173,7 @@ GameMessageDisposition LookAtTranslator::translateGameMessage(const GameMessage 
 			// get key and state from args
 			UnsignedByte key		= msg->getArgument( 0 )->integer;
 			UnsignedByte state	= msg->getArgument( 1 )->integer;
-			Bool isPressed = !(BitTest( state, KEY_STATE_UP ));
+			Bool isPressed = !(OH_BitTest( state, KEY_STATE_UP ));
 			
 			if (TheShell && TheShell->isShellActive())
 				break;

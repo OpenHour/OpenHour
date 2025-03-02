@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -103,7 +102,7 @@ DDSFileClass::DDSFileClass(const char* name,unsigned reduction_factor)
 			level_size/=4;
 		}
 	}
-	for (level=0;level<MipLevels;++level) {
+	for (unsigned level=0;level<MipLevels;++level) {
 		LevelSizes[level]=level_size;
 		LevelOffsets[level]=level_offset;
 		level_offset+=level_size;

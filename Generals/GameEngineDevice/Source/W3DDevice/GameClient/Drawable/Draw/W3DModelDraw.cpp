@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1064,7 +1063,7 @@ void W3DModelDrawModuleData::validateStuffForTimeAndWeather(const Drawable* draw
 
 		Bool a = false;
 		Bool b = false;
-		for (c_it = m_conditionStates.begin(); c_it != m_conditionStates.end(); ++c_it)
+		for (ModelConditionVector::iterator c_it = m_conditionStates.begin(); c_it != m_conditionStates.end(); ++c_it)
 		{
 
 			if (!a && c_it->m_transitionKey == src && c_it->matchesMode(night, snowy))
@@ -3428,7 +3427,7 @@ Int W3DModelDraw::getPristineBonePositionsForConditionState(
 	
 	if (positions && transforms)
 	{
-		for (i = 0; i < posCount; ++i)
+		for (int i = 0; i < posCount; ++i)
 		{
 			Vector3 pos = transforms[i].Get_Translation();
 			positions[i].x = pos.X;
@@ -3526,7 +3525,7 @@ Int W3DModelDraw::getCurrentBonePositions(
 	
 	if (positions && transforms)
 	{
-		for (i = 0; i < posCount; ++i)
+		for (int i = 0; i < posCount; ++i)
 		{
 			Vector3 pos = transforms[i].Get_Translation();
 			positions[i].x = pos.X;
@@ -4194,7 +4193,7 @@ void W3DModelDrawModuleData::xfer( Xfer *x )
 				x->xferInt(&(info->m_turrets[i].m_turretAngleBone));
 				x->xferInt(&(info->m_turrets[i].m_turretPitchBone));
 			}
-			for (i=0; i<WEAPONSLOT_COUNT; ++i)
+			for (int i=0; i<WEAPONSLOT_COUNT; ++i)
 			{
 				for (ModelConditionInfo::WeaponBarrelInfoVec::iterator wit = info->m_weaponBarrelInfoVec[i].begin(); wit != info->m_weaponBarrelInfoVec[i].end(); ++wit)
 				{

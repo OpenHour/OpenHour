@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -163,7 +162,7 @@ Bool CanSelectDrawable( const Drawable *draw, Bool dragSelecting )
 	while (window)
 	{
 		// check to see if it or any of its parents are opaque.  If so, we can't select anything.
-		if (!BitTest( window->winGetStatus(), WIN_STATUS_SEE_THRU ))
+		if (!OH_BitTest( window->winGetStatus(), WIN_STATUS_SEE_THRU ))
 		{
 			return FALSE;
 		}
@@ -188,7 +187,7 @@ Bool CanSelectDrawable( const Drawable *draw, Bool dragSelecting )
 	}
 
 	// You cannot select something that has a logic override of unselectability or masked
-	if( BitTest( obj->getStatusBits(), OBJECT_STATUS_UNSELECTABLE | OBJECT_STATUS_MASKED ) )
+	if( OH_BitTest( obj->getStatusBits(), OBJECT_STATUS_UNSELECTABLE | OBJECT_STATUS_MASKED ) )
 	{
 		return FALSE;
 	}
@@ -478,7 +477,7 @@ GameMessageDisposition SelectionTranslator::translateGameMessage(const GameMessa
 			// Single point. If there's a unit in there, double click will select all of them.
 			if (region.height() == 0 && region.width() == 0) 
 			{
-				Bool selectAcrossMap = (BitTest(modifiers, KEY_STATE_ALT) ? TRUE : FALSE);
+				Bool selectAcrossMap = (OH_BitTest(modifiers, KEY_STATE_ALT) ? TRUE : FALSE);
 
 				// only allow things that are selectable. Also, we aren't allowed to 
 				Drawable *picked = TheTacticalView->pickDrawable( &region.lo, FALSE, PICK_TYPE_SELECTABLE);

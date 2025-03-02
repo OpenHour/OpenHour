@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -28,6 +27,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
+
+#include <timeapi.h>
 
 #include "Common/AudioAffect.h"
 #include "Common/AudioHandleSpecialValues.h"
@@ -423,7 +424,7 @@ void GameLogic::reset( void )
 
 	// set the hash to be rather large. We need to optimize this value later.
 	m_objHash.clear();
-	m_objHash.resize(OBJ_HASH_SIZE);
+	//m_objHash.resize(OBJ_HASH_SIZE);
 	m_gamePaused = FALSE;
 	m_inputEnabledMemory = TRUE;
 	m_mouseVisibleMemory = TRUE;
@@ -2023,7 +2024,7 @@ void GameLogic::startNewGame( Bool saveGame )
 	TheWritableGlobalData->m_loadScreenRender = FALSE;	///< mark to resume rendering as normal
 	
 	// if we're in a gamespy game, mark us as playing
-	if (TheGameSpyBuddyMessageQueue && TheGameSpyGame && isInInternetGame())
+	/*if (TheGameSpyBuddyMessageQueue && TheGameSpyGame && isInInternetGame())
 	{
 		BuddyRequest req;
 		req.buddyRequestType = BuddyRequest::BUDDYREQUEST_SETSTATUS;
@@ -2031,7 +2032,7 @@ void GameLogic::startNewGame( Bool saveGame )
 		strcpy(req.arg.status.statusString, "Playing");
 		sprintf(req.arg.status.locationString, "%s", WideCharStringToMultiByte(TheGameSpyGame->getGameName().str()).c_str());
 		TheGameSpyBuddyMessageQueue->addRequest(req);
-	}	
+	}*/
 	
 	//Added By Sadullah Nader
 	//Added to fix the quit menu 
@@ -2507,8 +2508,8 @@ Int GameLogic::rebalanceChildSleepyUpdate(Int i)
 
 	// our children are i*2 and i*2+1
   Int child = ((i+1)<<1)-1;
-	UpdateModulePtr* pChild = &m_sleepyUpdates[child];
-	UpdateModulePtr* pSZ = &m_sleepyUpdates[m_sleepyUpdates.size()];	// yes, this is off the end.
+	UpdateModulePtr* pChild = &m_sleepyUpdates.data()[child];
+	UpdateModulePtr* pSZ = &m_sleepyUpdates.data()[m_sleepyUpdates.size()];	// yes, this is off the end.
 
   while (pChild < pSZ) 
 	{
@@ -2539,7 +2540,7 @@ Int GameLogic::rebalanceChildSleepyUpdate(Int i)
 		pI = pChild;
 
 		child = ((i+1)<<1)-1;
-		pChild = &m_sleepyUpdates[child];
+		pChild = &m_sleepyUpdates.data()[child];
   }
 #else
 	// our children are i*2 and i*2+1

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -24,8 +23,6 @@
 
 #ifndef __COMPRESSION_H__
 #define __COMPRESSION_H__
-
-#include "Lib/BaseType.h"
 
 enum CompressionType
 {
@@ -51,14 +48,14 @@ class CompressionManager
 {
 public:
 
-	static Bool isDataCompressed( const void *mem, Int len );
-	static CompressionType getCompressionType( const void *mem, Int len );
+	static bool isDataCompressed( const void *mem, int len );
+	static CompressionType getCompressionType( const void *mem, int len );
 
-	static Int getMaxCompressedSize( Int uncompressedLen, CompressionType compType );
-	static Int getUncompressedSize( const void *mem, Int len );
+	static int getMaxCompressedSize( int uncompressedLen, CompressionType compType );
+	static int getUncompressedSize( const void *mem, int len );
 
-	static Int compressData( CompressionType compType, void *src, Int srcLen, void *dest, Int destLen ); // 0 on error
-	static Int decompressData( void *src, Int srcLen, void *dest, Int destLen ); // 0 on error
+	static int compressData( CompressionType compType, void *src, int srcLen, void *dest, int destLen ); // 0 on error
+	static int decompressData( void *src, int srcLen, void *dest, int destLen ); // 0 on error
 
 	static const char *getCompressionNameByType( CompressionType compType );
 

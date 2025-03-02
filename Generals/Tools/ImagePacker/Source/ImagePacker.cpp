@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -225,7 +224,7 @@ Bool ImagePacker::packImages( void )
 		image = m_imageList[ i ];
 
 		// ignore images that we cannot process
-		if( BitTest( image->m_status, ImageInfo::CANTPROCESS) )
+		if( OH_BitTest( image->m_status, ImageInfo::CANTPROCESS) )
 			continue;
 
 		// try to put image on each page
@@ -899,7 +898,7 @@ Bool ImagePacker::generateINIFile( void )
 	{
 
 		// ignore texture pages that generated errors
-		if( BitTest( page->m_status, TexturePage::PAGE_ERROR ) )
+		if( OH_BitTest( page->m_status, TexturePage::PAGE_ERROR ) )
 			continue;
 
 		// go through each image on this page
@@ -922,7 +921,7 @@ Bool ImagePacker::generateINIFile( void )
 							 image->m_pagePos.lo.x, image->m_pagePos.lo.y,
 							 image->m_pagePos.hi.x + 1, image->m_pagePos.hi.y + 1 );
 			fprintf( fp, "  Status = %s\n", 
-							 BitTest( image->m_status, ImageInfo::ROTATED90C ) ? 
+							 OH_BitTest( image->m_status, ImageInfo::ROTATED90C ) ? 
 												"ROTATED_90_CLOCKWISE" : "NONE" );
 			fprintf( fp, "End\n\n" );
 
@@ -961,7 +960,7 @@ Bool ImagePacker::getSettingsFromDialog( HWND dialog )
 
 		size = GetDlgItemInt( dialog, EDIT_WIDTH, NULL, FALSE );
 		for( val = size; val; val >>= 1 )
-			if( BitTest( val, 0x1 ) )
+			if( OH_BitTest( val, 0x1 ) )
 				bitCount++;
 
 		//

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -15,14 +14,9 @@
 **	You should have received a copy of the GNU General Public License
 **	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#pragma once
 
-////////////////////////////////////////////////////////////////////////////////
-//																																						//
-//  (c) 2001-2003 Electronic Arts Inc.																				//
-//																																						//
-////////////////////////////////////////////////////////////////////////////////
+#include "GameClient/VideoPlayer.h"
 
-// PreRTS.cpp /////////////////////////////////////////////////////////////////////////////////////
-// Generates PreRTS.obj, which contains all precompiled header info.
-
-#include "PreRTS.h"
+class DummyVideoPlayer final: public VideoPlayer {
+};

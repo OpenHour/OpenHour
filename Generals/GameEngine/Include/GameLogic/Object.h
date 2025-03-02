@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -243,12 +242,12 @@ public:
 	Bool isLocallyControlled() const;
 	Bool isNeutralControlled() const;
 	
-	Bool getIsUndetectedDefector(void) const { return BitTest(m_privateStatus, UNDETECTED_DEFECTOR); }
+	Bool getIsUndetectedDefector(void) const { return OH_BitTest(m_privateStatus, UNDETECTED_DEFECTOR); }
 	void friend_setUndetectedDefector(Bool status);
 
-	inline Bool isOffMap() const { return BitTest(m_privateStatus, OFF_MAP); }
+	inline Bool isOffMap() const { return OH_BitTest(m_privateStatus, OFF_MAP); }
 
-	inline Bool isCaptured() const { return BitTest(m_privateStatus, CAPTURED); }
+	inline Bool isCaptured() const { return OH_BitTest(m_privateStatus, CAPTURED); }
 	void setCaptured(Bool isCaptured);
 
 	inline const GeometryInfo& getGeometryInfo() const { return m_geometryInfo; }
@@ -322,7 +321,7 @@ public:
 	void forceRefreshSubObjectUpgradeStatus();
 
 	// Useful for status bits that can be set by the scripting system
-	inline Bool testScriptStatusBit(ObjectScriptStatusBit b) const { return BitTest(m_scriptStatus, b); }
+	inline Bool testScriptStatusBit(ObjectScriptStatusBit b) const { return OH_BitTest(m_scriptStatus, b); }
 	void setScriptStatus( ObjectScriptStatusBit bit, Bool set = true );
 	inline void clearScriptStatus( ObjectScriptStatusBit bit ) { setScriptStatus(bit, false); }
 

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -83,14 +82,14 @@ void W3DGadgetVerticalSliderDraw( GameWindow *window,
 	window->winGetSize( &size.x, &size.y );
 
 	// get the right colors
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OH_BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 
 		backBorder		= GadgetSliderGetDisabledBorderColor( window );
 		backColor			= GadgetSliderGetDisabledColor( window );
 
 	}  // end if, disabled
-	else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+	else if( OH_BitTest( instData->getState(), WIN_STATE_HILITED ) )
 	{
 
 		backBorder		= GadgetSliderGetHiliteBorderColor( window );
@@ -153,7 +152,7 @@ void W3DGadgetVerticalSliderImageDraw( GameWindow *window,
 	yOffset = instData->m_imageOffset.y;
 
 	// get the right images
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OH_BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 
 		topImage					= GadgetSliderGetDisabledImageTop( window );
@@ -162,7 +161,7 @@ void W3DGadgetVerticalSliderImageDraw( GameWindow *window,
 		smallCenterImage	= GadgetSliderGetDisabledImageSmallCenter( window );
 
 	}  // end if, disabled
-	else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+	else if( OH_BitTest( instData->getState(), WIN_STATE_HILITED ) )
 	{
 
 		topImage					= GadgetSliderGetHiliteImageTop( window );

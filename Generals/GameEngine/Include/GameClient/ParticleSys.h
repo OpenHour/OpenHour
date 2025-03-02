@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -33,6 +32,7 @@
 #define _PARTICLE_SYS_H_
 
 #include <stdio.h>
+#include <unordered_map>
 #include "Common/AsciiString.h"
 #include "Common/GameMemory.h"
 #include "Common/GameType.h"
@@ -725,7 +725,7 @@ public:
 
 	typedef std::list<ParticleSystem*> ParticleSystemList;
 	typedef std::list<ParticleSystem*>::iterator ParticleSystemListIt;
-	typedef std::hash_map<AsciiString, ParticleSystemTemplate *, rts::hash<AsciiString>, rts::equal_to<AsciiString> > TemplateMap;
+	typedef std::unordered_map<AsciiString, ParticleSystemTemplate *, rts::hash<AsciiString>, rts::equal_to<AsciiString> > TemplateMap;
 
 	ParticleSystemManager( void );
 	virtual ~ParticleSystemManager();

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -27,7 +26,6 @@
 #define __EXPANDER_H__
 
 #include <map>
-#include <hash_map>
 #include <string>
 
 typedef std::map<std::string, std::string> ExpansionMap;

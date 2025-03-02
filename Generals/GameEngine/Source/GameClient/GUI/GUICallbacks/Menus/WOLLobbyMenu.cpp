@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -54,7 +53,6 @@
 #include "GameClient/MessageBox.h"
 #include "GameClient/Mouse.h"
 #include "GameClient/Display.h"
-#include "GameNetwork/GameSpyOverlay.h"
 #include "GameClient/GameWindowTransitions.h"
 
 #include "GameLogic/GameLogic.h"
@@ -96,7 +94,7 @@ static const time_t gameListRefreshInterval = 10000;
 static time_t playerListRefreshTime = 0;
 static const time_t playerListRefreshInterval = 5000;
 
-void setUnignoreText( WindowLayout *layout, AsciiString nick, GPProfile id);
+//void setUnignoreText( WindowLayout *layout, AsciiString nick, GPProfile id);
 static void doSliderTrack(GameWindow *control, Int val);
 Bool DontShowMainMenu = FALSE;
 enum { COLUMN_PLAYERNAME = 2 };
@@ -281,12 +279,12 @@ static void playerTooltip(GameWindow *window,
 	else
 	{
 		// not us
-		if (TheGameSpyInfo->getBuddyMap()->find(info->m_profileID) != TheGameSpyInfo->getBuddyMap()->end())
+		/*if (TheGameSpyInfo->getBuddyMap()->find(info->m_profileID) != TheGameSpyInfo->getBuddyMap()->end())
 		{
 			// buddy
 			tooltip.format(TheGameText->fetch("TOOLTIP:BuddyPlayer"), uName.str());
 		}
-		else
+		else*/
 		{
 			if (info->m_profileID)
 			{
@@ -477,10 +475,10 @@ void PopulateLobbyPlayerListbox(void)
 		return;
 
 	// Display players
-	PlayerInfoMap *players = TheGameSpyInfo->getPlayerInfoMap();
-	PlayerInfoMap::iterator it;
-	BuddyInfoMap *buddies = TheGameSpyInfo->getBuddyMap();
-	BuddyInfoMap::iterator bIt;
+	//PlayerInfoMap *players = TheGameSpyInfo->getPlayerInfoMap();
+	//PlayerInfoMap::iterator it;
+	//BuddyInfoMap *buddies = TheGameSpyInfo->getBuddyMap();
+	//BuddyInfoMap::iterator bIt;
 	if (listboxLobbyPlayers)
 	{
 		// save off old selection
@@ -512,7 +510,7 @@ void PopulateLobbyPlayerListbox(void)
 		GadgetListBoxReset(listboxLobbyPlayers);
 
 		// Ops
-		for (it = players->begin(); it != players->end(); ++it)
+		/*for (it = players->begin(); it != players->end(); ++it)
 		{
 			PlayerInfo info = it->second;
 			if (info.m_flags & PEER_FLAG_OP || TheGameSpyConfig->isPlayerVIP(info.m_profileID))
@@ -526,10 +524,10 @@ void PopulateLobbyPlayerListbox(void)
 					indicesToSelect.insert(index);
 				}
 			}
-		}
+		}*/
 
 		// Buddies
-		for (it = players->begin(); it != players->end(); ++it)
+		/*for (it = players->begin(); it != players->end(); ++it)
 		{
 			PlayerInfo info = it->second;
 			bIt = buddies->find(info.m_profileID);
@@ -544,10 +542,10 @@ void PopulateLobbyPlayerListbox(void)
 					indicesToSelect.insert(index);
 				}
 			}
-		}
+		}*/
 
 		// Everyone else
-		for (it = players->begin(); it != players->end(); ++it)
+		/*for (it = players->begin(); it != players->end(); ++it)
 		{
 			PlayerInfo info = it->second;
 			bIt = buddies->find(info.m_profileID);
@@ -562,13 +560,14 @@ void PopulateLobbyPlayerListbox(void)
 					indicesToSelect.insert(index);
 				}
 			}
-		}
+		}*/
 
 		// restore selection
 		if (indicesToSelect.size())
 		{
 			std::set<Int>::const_iterator indexIt;
 			Int *newIndices = NEW Int[indicesToSelect.size()];
+			Int i = 0;
 			for (i=0, indexIt = indicesToSelect.begin(); indexIt != indicesToSelect.end(); ++i, ++indexIt)
 			{
 				newIndices[i] = *indexIt;
@@ -639,7 +638,7 @@ void WOLLobbyMenuInit( WindowLayout *layout, void *userData )
 	comboLobbyGroupRoomsID = TheNameKeyGenerator->nameToKey(AsciiString("WOLCustomLobby.wnd:ComboBoxGroupRooms"));
 	comboLobbyGroupRooms = TheWindowManager->winGetWindowFromId(parent, comboLobbyGroupRoomsID);
 
-	GadgetTextEntrySetText(textEntryChat, UnicodeString.TheEmptyString);
+	GadgetTextEntrySetText(textEntryChat, UnicodeString::TheEmptyString);
 
 	populateGroupRoomListbox(comboLobbyGroupRooms);
 
@@ -776,7 +775,6 @@ void WOLLobbyMenuShutdown( WindowLayout *layout, void *userData )
 	TheShell->reverseAnimatewindow();
 	DontShowMainMenu = FALSE;
 
-	RaiseGSMessageBox();
 	TheTransitionHandler->reverse("WOLCustomLobbyFade");
 
 }  // WOLLobbyMenuShutdown
@@ -848,7 +846,7 @@ static const char* getMessageString(Int t)
 //-------------------------------------------------------------------------------------------------
 static void refreshGameList( Bool forceRefresh )
 {
-	Int refreshInterval = gameListRefreshInterval;
+	/*Int refreshInterval = gameListRefreshInterval;
 
 	if (forceRefresh || ((gameListRefreshTime == 0) || ((gameListRefreshTime + refreshInterval) <= timeGetTime())))
 	{
@@ -863,7 +861,7 @@ static void refreshGameList( Bool forceRefresh )
 		}
 	} else {
 		//DEBUG_LOG(("gameListRefreshTime: %d refreshInterval: %d\n"));
-	}
+	}*/
 }
 //-------------------------------------------------------------------------------------------------
 /** refreshPlayerList 
@@ -871,20 +869,20 @@ static void refreshGameList( Bool forceRefresh )
 //-------------------------------------------------------------------------------------------------
 static void refreshPlayerList( Bool forceRefresh )
 {
-		Int refreshInterval = playerListRefreshInterval;
+		/*Int refreshInterval = playerListRefreshInterval;
 
 		if (forceRefresh ||((playerListRefreshTime == 0) || ((playerListRefreshTime + refreshInterval) <= timeGetTime())))
 		{
 				PopulateLobbyPlayerListbox();
 				playerListRefreshTime = timeGetTime();
-		}
+		}*/
 }
 //-------------------------------------------------------------------------------------------------
 /** WOL Lobby Menu update method */
 //-------------------------------------------------------------------------------------------------
 void WOLLobbyMenuUpdate( WindowLayout * layout, void *userData)
 {
-		if(justEntered)
+/*		if(justEntered)
 	{
 		if(initialGadgetDelay == 1)
 		{
@@ -1305,7 +1303,7 @@ void WOLLobbyMenuUpdate( WindowLayout * layout, void *userData)
 #else
 	refreshGameList();
 #endif
-	}
+	}*/
 }// WOLLobbyMenuUpdate
 
 //-------------------------------------------------------------------------------------------------
@@ -1314,7 +1312,7 @@ void WOLLobbyMenuUpdate( WindowLayout * layout, void *userData)
 WindowMsgHandledType WOLLobbyMenuInput( GameWindow *window, UnsignedInt msg,
 																			 WindowMsgData mData1, WindowMsgData mData2 )
 {
-	switch( msg ) 
+/*	switch( msg )
 	{
 
 		// --------------------------------------------------------------------------------------------
@@ -1353,7 +1351,7 @@ WindowMsgHandledType WOLLobbyMenuInput( GameWindow *window, UnsignedInt msg,
 		}  // end char
 
 	}  // end switch( msg )
-
+*/
 	return MSG_IGNORED;
 }// WOLLobbyMenuInput
 
@@ -1412,7 +1410,7 @@ WindowMsgHandledType WOLLobbyMenuInput( GameWindow *window, UnsignedInt msg,
 WindowMsgHandledType WOLLobbyMenuSystem( GameWindow *window, UnsignedInt msg, 
 														 WindowMsgData mData1, WindowMsgData mData2 )
 {
-	UnicodeString txtInput;
+/*	UnicodeString txtInput;
 	static NameKeyType buttonGameListTypeToggleID = NAMEKEY_INVALID;
 
 	switch( msg )
@@ -1852,6 +1850,6 @@ WindowMsgHandledType WOLLobbyMenuSystem( GameWindow *window, UnsignedInt msg,
 			return MSG_IGNORED;
 
 	}//Switch
-
+*/
 	return MSG_HANDLED;
 }// WOLLobbyMenuSystem

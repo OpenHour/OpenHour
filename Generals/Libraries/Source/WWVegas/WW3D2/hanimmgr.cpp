@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -383,7 +382,7 @@ void HAnimManagerClass::Create_Asset_List(DynamicVectorClass<StringClass> & excl
 		// File that this anim came from should be the name after the '.'
 		// Anims are named in the format: <skeleton>.<animname>
 		const char * anim_name = anim->Get_Name();
-		char * filename = strchr(anim_name,'.');
+		const char * filename = strchr(anim_name,'.');
 		if (filename != NULL) {	
 			exclusion_list.Add(StringClass(filename+1));
 		}

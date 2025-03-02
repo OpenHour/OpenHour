@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -722,8 +721,9 @@ void positionStartSpots( AsciiString mapName, GameWindow *buttonMapStartPosition
 
 		positionAdditionalImages(&mmd, mapWindow, TRUE);
 
-		AsciiString waypointName;				
-		for(Int i = 0; i < mmd.m_numPlayers && mmd.m_isMultiplayer; ++i )
+		AsciiString waypointName;
+		Int i = 0;
+		for(i = 0; i < mmd.m_numPlayers && mmd.m_isMultiplayer; ++i )
 		{
 			waypointName.format("Player_%d_Start", i+1); // start pos waypoints are 1-based
 			WaypointMap::iterator wmIt = mmd.m_waypoints.find(waypointName);
@@ -792,7 +792,7 @@ void updateMapStartSpots( GameInfo *myGame, GameWindow *buttonMapStartPositions[
 			buttonMapStartPositions[i]->winSetTooltip(TheGameText->fetch("TOOLTIP:StartPosition"));
 		}
 	}
-	for( i = 0; i < MAX_SLOTS; ++i)
+	for(Int i = 0; i < MAX_SLOTS; ++i)
 	{
 		GameSlot *gs =myGame->getSlot(i);
 		if(onLoadScreen)
@@ -1061,7 +1061,7 @@ void InitSkirmishGameGadgets( void )
 		DEBUG_ASSERTCRASH(buttonMapStartPosition[i], ("Could not find the ButtonMapStartPosition[%d]",i ));
 	}
    
-	for (i = 0; i < MAX_SLOTS; ++i)
+	for (Int i = 0; i < MAX_SLOTS; ++i)
 	{
 		PopulateColorComboBox(i, comboBoxColor, TheSkirmishGameInfo );
 		GadgetComboBoxSetSelectedPos(comboBoxColor[i], 0);
@@ -1396,7 +1396,7 @@ WindowMsgHandledType SkirmishGameOptionsMenuInput( GameWindow *window, UnsignedI
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OH_BitTest( state, KEY_STATE_UP ) )
 					{
 						TheWindowManager->winSendSystemMsg( window, GBM_SELECTED, 
 																							(WindowMsgData)buttonExit, buttonExitID );
@@ -1792,37 +1792,37 @@ void populateSkirmishBattleHonors(void)
 	*/
 
 	/*
-	if(BitTest(challenge, BH_CHALLENGE_MASK_7))
+	if(OH_BitTest(challenge, BH_CHALLENGE_MASK_7))
 	{
 		InsertBattleHonor(list, TheMappedImageCollection->findImageByName("HonorChallenge7"), TRUE,
 			BATTLE_HONOR_CHALLENGE, row, column);
 	}
-	else if (BitTest(challenge, BH_CHALLENGE_MASK_6))
+	else if (OH_BitTest(challenge, BH_CHALLENGE_MASK_6))
 	{
 		InsertBattleHonor(list, TheMappedImageCollection->findImageByName("HonorChallenge6"), TRUE,
 			BATTLE_HONOR_CHALLENGE, row, column);
 	}
-	else if (BitTest(challenge, BH_CHALLENGE_MASK_5))
+	else if (OH_BitTest(challenge, BH_CHALLENGE_MASK_5))
 	{
 		InsertBattleHonor(list, TheMappedImageCollection->findImageByName("HonorChallenge5"), TRUE,
 			BATTLE_HONOR_CHALLENGE, row, column);
 	}
-	else if (BitTest(challenge, BH_CHALLENGE_MASK_4))
+	else if (OH_BitTest(challenge, BH_CHALLENGE_MASK_4))
 	{
 		InsertBattleHonor(list, TheMappedImageCollection->findImageByName("HonorChallenge4"), TRUE,
 			BATTLE_HONOR_CHALLENGE, row, column);
 	}
-	else if (BitTest(challenge, BH_CHALLENGE_MASK_3))
+	else if (OH_BitTest(challenge, BH_CHALLENGE_MASK_3))
 	{
 		InsertBattleHonor(list, TheMappedImageCollection->findImageByName("HonorChallenge3"), TRUE,
 			BATTLE_HONOR_CHALLENGE, row, column);
 	}
-	else if (BitTest(challenge, BH_CHALLENGE_MASK_2))
+	else if (OH_BitTest(challenge, BH_CHALLENGE_MASK_2))
 	{
 		InsertBattleHonor(list, TheMappedImageCollection->findImageByName("HonorChallenge2"), TRUE,
 			BATTLE_HONOR_CHALLENGE, row, column);
 	}
-	else if (BitTest(challenge, BH_CHALLENGE_MASK_1))
+	else if (OH_BitTest(challenge, BH_CHALLENGE_MASK_1))
 	{
 		InsertBattleHonor(list, TheMappedImageCollection->findImageByName("HonorChallenge1"), TRUE,
 			BATTLE_HONOR_CHALLENGE, row, column);

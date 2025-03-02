@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -42,7 +41,6 @@
 #include "GameClient/GameWindowManager.h"
 #include "GameClient/GadgetListBox.h"
 #include "Common/GlobalData.h"
-#include "GameNetwork/GameSpyOverlay.h"
 #include "GameNetwork/GameSpy/PeerDefs.h"
 #include "GameNetwork/GameSpy/PeerThread.h"
 #include "GameNetwork/GameSpy/PersistentStorageDefs.h"
@@ -192,7 +190,6 @@ WindowMsgHandledType WOLLocaleSelectSystem( GameWindow *window, UnsignedInt msg,
 					psReq.player.id = TheGameSpyInfo->getLocalProfileID();
 
 					TheGameSpyPSMessageQueue->addRequest(psReq);
-					GameSpyCloseOverlay(GSOVERLAY_LOCALESELECT);
 
 					GameSpyMiscPreferences cPref;
 					cPref.setLocale(psReq.player.locale);
@@ -217,7 +214,6 @@ WindowMsgHandledType WOLLocaleSelectSystem( GameWindow *window, UnsignedInt msg,
 						newResp.player = TheGameSpyPSMessageQueue->findPlayerStatsByID(TheGameSpyInfo->getLocalProfileID());
 						TheGameSpyPSMessageQueue->addResponse(newResp);
 					}
-					CheckReOpenPlayerInfo();
 				} //if ( controlID == buttonDisconnect )
 				break;
 			}// case GBM_SELECTED:

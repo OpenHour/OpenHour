@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -304,8 +303,17 @@ class Waypoint;
 class Team;
 class Weapon;
 
-// Note - written out in save/load xfer and .map files, don't change these numbers.  
-enum AttitudeType { AI_SLEEP = -2, AI_PASSIVE=-1, AI_NORMAL=0, AI_ALERT=1, AI_AGGRESSIVE=2, AI_INVALID=3 };		///< AI "attitude" behavior modifiers
+// Note - written out in save/load xfer and .map files, don't change these numbers.
+
+#undef AI_PASSIVE // AI_PASSIVE causes conflict!
+enum AttitudeType {
+	AI_SLEEP = -2,
+  	AI_PASSIVE = -1,
+  	AI_NORMAL = 0,
+  	AI_ALERT = 1,
+  	AI_AGGRESSIVE = 2,
+  	AI_INVALID = 3
+};
 
 enum CommandSourceType;
 

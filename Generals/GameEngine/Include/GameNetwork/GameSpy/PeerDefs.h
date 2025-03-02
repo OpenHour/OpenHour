@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -31,8 +30,6 @@
 #ifndef __PEERDEFS_H__
 #define __PEERDEFS_H__
 
-#include "GameSpy/Peer/Peer.h"
-#include "GameSpy/GP/GP.h"
 
 #include "GameClient/Color.h"
 #include "Common/STLTypedefs.h"
@@ -56,30 +53,30 @@ class GameSpyRCMenuData
 {
 public:
 	AsciiString m_nick;
-	GPProfile m_id;
+	//GPProfile m_id;
 	RCItemType m_itemType;
 };
 
 class BuddyInfo
 {
 public:
-	GPProfile m_id;
+	//GPProfile m_id;
 	AsciiString m_name;
 	AsciiString m_email;
 	AsciiString m_countryCode;
-	GPEnum m_status;
+	//GPEnum m_status;
 	UnicodeString m_statusString;
 	UnicodeString m_locationString;
 };
-typedef std::map<GPProfile, BuddyInfo> BuddyInfoMap;
+//typedef std::map<GPProfile, BuddyInfo> BuddyInfoMap;
 
 class BuddyMessage
 {
 public:
 	UnsignedInt m_timestamp;
-	GPProfile m_senderID;
+	//GPProfile m_senderID;
 	AsciiString m_senderNick;
-	GPProfile m_recipientID;
+	//GPProfile m_recipientID;
 	AsciiString m_recipientNick;
 	UnicodeString m_message;
 };
@@ -191,8 +188,8 @@ public:
 	virtual void playerLeftGroupRoom( AsciiString nick ) = 0;
 	virtual PlayerInfoMap* getPlayerInfoMap( void ) = 0;
 
-	virtual BuddyInfoMap* getBuddyMap( void ) = 0;
-	virtual BuddyInfoMap* getBuddyRequestMap( void ) = 0;
+	//virtual BuddyInfoMap* getBuddyMap( void ) = 0;
+	//virtual BuddyInfoMap* getBuddyRequestMap( void ) = 0;
 	virtual BuddyMessageList* getBuddyMessages( void ) = 0;
 	virtual Bool isBuddy( Int id ) = 0;
 
@@ -296,8 +293,5 @@ extern Int GetAdditionalDisconnectsFromUserFile(Int playerID);
 
 //-------------------------------------------------------------------------
 // These functions set up the globals and threads neccessary for our GameSpy impl.
-
-void SetUpGameSpy( const char *motdBuffer, const char *configBuffer );
-void TearDownGameSpy( void );
 
 #endif // __PEERDEFS_H__

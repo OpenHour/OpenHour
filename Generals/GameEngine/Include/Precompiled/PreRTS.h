@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -41,44 +40,6 @@ class STLSpecialAlloc;
 // PLEASE DO NOT ABUSE WINDOWS OR IT WILL BE REMOVED ENTIRELY. :-)
 //--------------------------------------------------------------------------------- System Includes 
 #define WIN32_LEAN_AND_MEAN
-#include <atlbase.h>
-#include <windows.h>
-
-#include <assert.h>
-#include <ctype.h>
-#include <direct.h>
-#include <EXCPT.H>
-#include <float.h>
-#include <fstream.h>
-#include <imagehlp.h>
-#include <io.h>
-#include <limits.h>
-#include <lmcons.h>
-#include <mapicode.h>
-#include <math.h>
-#include <memory.h>
-#include <mmsystem.h>
-#include <objbase.h>
-#include <ocidl.h>
-#include <process.h>
-#include <shellapi.h>
-#include <shlobj.h>
-#include <shlguid.h>
-#include <snmp.h>
-#include <stdarg.h>
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/stat.h>
-#include <sys/timeb.h>
-#include <sys/types.h>
-#include <TCHAR.H>
-#include <time.h>
-#include <vfw.h>
-#include <winerror.h>
-#include <wininet.h>
-#include <winreg.h>
 
 #ifndef DIRECTINPUT_VERSION
 #	define DIRECTINPUT_VERSION	0x800
@@ -90,7 +51,6 @@ class STLSpecialAlloc;
 // srj sez: no, include STLTypesdefs below, instead, thanks
 //#include <algorithm>
 //#include <bitset>
-//#include <hash_map>
 //#include <list>
 //#include <map>
 //#include <queue>

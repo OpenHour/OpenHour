@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -272,7 +271,7 @@ void DX8FVFCategoryContainer::Remove_Texture_Category(DX8TextureCategoryClass* t
 	for (unsigned pass=0;pass<passes;++pass) {
 		texture_category_list[pass].Remove(tex_category);
 	}
-	for (pass=0; pass<passes; pass++) {
+	for (unsigned pass=0; pass<passes; pass++) {
 		// If any of the texture category lists has anything in it, no need to delete this container
 		if (texture_category_list[pass].Peek_Head() != NULL) return;
 	}
@@ -2032,7 +2031,8 @@ void DX8MeshRendererClass::Register_Mesh_Type(MeshModelClass* mmc)
 			/*
 			** Search for an existing FVF Category Container that matches this mesh
 			*/
-			for (int i=0;i<texture_category_container_lists_rigid.Count();++i) {
+            int i = 0;
+			for (i=0;i<texture_category_container_lists_rigid.Count();++i) {
 				FVFCategoryList * list=texture_category_container_lists_rigid[i];
 				WWASSERT(list);
 				DX8FVFCategoryContainer * container=list->Peek_Head();

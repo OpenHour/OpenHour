@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -72,7 +71,6 @@
 #include "d3dx8tex.h"
 #include "dx8caps.h"
 #include "common/gamelod.h"
-#include "Benchmark.h"
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -2444,7 +2442,7 @@ void W3DShaderManager::shutdown(void)
 		}
 	}
 
- 	for ( i=0; i < FT_MAX; i++)
+ 	for (Int i=0; i < FT_MAX; i++)
  	{	
  		if (W3DFilters[i])
  		{
@@ -2840,11 +2838,6 @@ Bool W3DShaderManager::testMinimumRequirements(ChipsetType *videoChipType, CpuTy
 
 	if (numRAM)
 		*numRAM=CPUDetectClass::Get_Total_Physical_Memory();
-
-	if (intBenchIndex && floatBenchIndex && memBenchIndex)
-	{
-		RunBenchmark(0, NULL, floatBenchIndex, intBenchIndex, memBenchIndex);
-	}
 
 	return TRUE;
 }

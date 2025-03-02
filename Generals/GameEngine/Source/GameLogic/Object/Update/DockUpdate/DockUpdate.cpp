@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -146,7 +145,8 @@ Bool DockUpdate::reserveApproachPosition( Object* docker, Coord3D *position, Int
 
 	ObjectID dockerID = docker->getID();
 
-	for( Int positionIndex = 0; positionIndex < m_approachPositionOwners.size(); ++positionIndex )
+	Int positionIndex = 0;
+	for( positionIndex = 0; positionIndex < m_approachPositionOwners.size(); ++positionIndex )
 	{
 		if( m_approachPositionOwners[positionIndex] == dockerID )
 		{
@@ -566,9 +566,10 @@ void DockUpdate::xfer( Xfer *xfer )
 
 	// approach positions
 	Int vectorSize = m_approachPositions.size();
+	Int vectorIndex = 0;
 	xfer->xferInt( &vectorSize );
 	m_approachPositions.resize(vectorSize);
-	for( Int vectorIndex = 0; vectorIndex < vectorSize; ++vectorIndex )
+	for( vectorIndex = 0; vectorIndex < vectorSize; ++vectorIndex )
 	{
 		// Okay, this is cool.  On save, the size and a bunch of coords will be written.
 		// on load, vectorSize will be at 0 from the .size, but will then get set

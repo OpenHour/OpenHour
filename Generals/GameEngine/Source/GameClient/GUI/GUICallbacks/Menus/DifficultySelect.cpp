@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -182,7 +181,7 @@ WindowMsgHandledType DifficultySelectInput( GameWindow *window, UnsignedInt msg,
 //					// send a simulated selected event to the parent window of the
 //					// back/exit button
 //					//
-//					if( BitTest( state, KEY_STATE_UP ) )
+//					if( OH_BitTest( state, KEY_STATE_UP ) )
 //					{
 //						AsciiString buttonName( "SkirmishMapSelectMenu.wnd:ButtonBack" );
 //						NameKeyType buttonID = TheNameKeyGenerator->nameToKey( buttonName );

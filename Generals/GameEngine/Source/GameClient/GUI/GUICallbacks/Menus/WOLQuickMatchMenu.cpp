@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -31,6 +30,8 @@
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
+#include <ctime>
+
 #include "Common/GameEngine.h"
 #include "Common/QuickmatchPreferences.h"
 #include "Common/LadderPreferences.h"
@@ -56,7 +57,6 @@
 #include "GameLogic/GameLogic.h"
 
 #include "GameNetwork/NAT.h"
-#include "GameNetwork/GameSpyOverlay.h"
 #include "GameNetwork/GameSpy/BuddyDefs.h"
 #include "GameNetwork/GameSpy/GSConfig.h"
 #include "GameNetwork/GameSpy/PeerDefs.h"
@@ -732,8 +732,7 @@ void WOLQuickMatchMenuInit( WindowLayout *layout, void *userData )
 			UnicodeString title, body;
 			title = TheGameText->fetch( "GUI:GSErrorTitle" );
 			body = TheGameText->fetch( disconMunkee );
-			GameSpyCloseAllOverlays();
-			GSMessageBoxOk( title, body );
+			//GameSpyCloseAllOverlays();
 			TheGameSpyInfo->reset();
 			DEBUG_LOG(("WOLQuickMatchMenuInit() - game was in progress, and we were disconnected, so pop immediate back to main menu\n"));
 			TheShell->popImmediate();
@@ -976,7 +975,6 @@ void WOLQuickMatchMenuShutdown( WindowLayout *layout, void *userData )
 	TheShell->reverseAnimatewindow();
 	TheTransitionHandler->reverse("WOLQuickMatchMenuFade");
 
-	RaiseGSMessageBox();
 }  // WOLQuickMatchMenuShutdown
 
 
@@ -1044,7 +1042,6 @@ void WOLQuickMatchMenuUpdate( WindowLayout * layout, void *userData)
 
 	if (raiseMessageBoxes)
 	{
-		RaiseGSMessageBox();
 		raiseMessageBoxes = false;
 	}
 	
@@ -1113,7 +1110,6 @@ void WOLQuickMatchMenuUpdate( WindowLayout * layout, void *userData)
 
 				// Just back out.  This cleans up some slot list problems
 				buttonPushed = true;
-				GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:NATNegotiationFailed"));
 				nextScreen = "Menus/WOLWelcomeMenu.wnd";
 				TheShell->pop();
 				return; // don't do any more processing this frame, in case the screen goes away
@@ -1203,8 +1199,7 @@ void WOLQuickMatchMenuUpdate( WindowLayout * layout, void *userData)
 					disconMunkee.format("GUI:GSDisconReason%d", resp.discon.reason);
 					title = TheGameText->fetch( "GUI:GSErrorTitle" );
 					body = TheGameText->fetch( disconMunkee );
-					GameSpyCloseAllOverlays();
-					GSMessageBoxOk( title, body );
+					//GameSpyCloseAllOverlays();
 					TheGameSpyInfo->reset();
 					TheShell->pop();
 				}
@@ -1335,7 +1330,6 @@ void WOLQuickMatchMenuUpdate( WindowLayout * layout, void *userData)
 							GameWindow *buttonBuddies = TheWindowManager->winGetWindowFromId(NULL, buttonBuddiesID);
 							if (buttonBuddies)
 								buttonBuddies->winEnable(FALSE);
-							GameSpyCloseOverlay(GSOVERLAY_BUDDY);
 						}
 						break;
 					case QM_INCHANNEL:
@@ -1429,7 +1423,7 @@ WindowMsgHandledType WOLQuickMatchMenuInput( GameWindow *window, UnsignedInt msg
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OH_BitTest( state, KEY_STATE_UP ) )
 					{
 						if(!buttonBack->winIsHidden())
 							TheWindowManager->winSendSystemMsg( window, GBM_SELECTED, 
@@ -1522,7 +1516,6 @@ WindowMsgHandledType WOLQuickMatchMenuSystem( GameWindow *window, UnsignedInt ms
 						{
 							// "Choose a ladder" selected - open overlay
 							PopulateQMLadderComboBox(); // this restores the non-"Choose a ladder" selection
-							GameSpyOpenOverlay( GSOVERLAY_LADDERSELECT );
 						}
 					}
 				}
@@ -1756,7 +1749,7 @@ WindowMsgHandledType WOLQuickMatchMenuSystem( GameWindow *window, UnsignedInt ms
 				}
 				else if ( controlID == buttonBuddiesID )
 				{
-					GameSpyToggleOverlay( GSOVERLAY_BUDDY );
+					//GameSpyToggleOverlay( GSOVERLAY_BUDDY );
 				}
 				else if ( controlID == buttonBackID )
 				{

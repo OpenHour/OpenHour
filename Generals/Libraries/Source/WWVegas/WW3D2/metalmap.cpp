@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -89,7 +88,8 @@ MetalMapManagerClass::MetalMapManagerClass(INIClass &ini) :
 	// Determine how many metals are in this file
 	char section[255];
 
-	for (int lp = 0; ; lp++) {
+    int lp = 0;
+	for (lp = 0; ; lp++) {
 		sprintf(section, "Metal%02d", lp);
 		if (!ini.Find_Section(section)) {
 			break;			// NAK - Mar 8, 2000: changed to a break to fix off by one error in lp

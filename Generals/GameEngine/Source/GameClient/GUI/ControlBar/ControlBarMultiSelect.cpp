@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -123,7 +122,7 @@ void ControlBar::addCommonCommands( Drawable *draw, Bool firstDrawable )
 			command = commandSet->getCommandButton(i);
 
 			// add if present and can be used in a multi select
-			if( command && BitTest( command->getOptions(), OK_FOR_MULTI_SELECT ) == TRUE )
+			if( command && OH_BitTest( command->getOptions(), OK_FOR_MULTI_SELECT ) == TRUE )
 			{
 
 				// put it in the common command set
@@ -248,7 +247,7 @@ void ControlBar::populateMultiSelect( void )
 		// being sold as those objects can't be issued anymore commands
 		//
 		if( draw && draw->getObject() && 
-				BitTest( draw->getObject()->getStatusBits(), OBJECT_STATUS_SOLD ) == FALSE )
+				OH_BitTest( draw->getObject()->getStatusBits(), OBJECT_STATUS_SOLD ) == FALSE )
 		{
 
 			// add the common commands of this drawable to the common command set
@@ -371,7 +370,7 @@ void ControlBar::updateContextMultiSelect( void )
 			}
 
 			//If button is a CHECK_LIKE, then update it's status now.
-			if( BitTest( command->getOptions(), CHECK_LIKE ) )
+			if( OH_BitTest( command->getOptions(), CHECK_LIKE ) )
 			{
 				GadgetCheckLikeButtonSetVisualCheck( win, availability == COMMAND_ACTIVE );
 			}

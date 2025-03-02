@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -31,6 +30,7 @@
 #ifndef _GAME_INTERFACE_H_
 #define _GAME_INTERFACE_H_
 
+#include <unordered_map>
 #include "common/GameType.h"
 #include "Common/MessageStream.h"		// for GameMessageTranslator
 #include "Common/Snapshot.h"
@@ -57,7 +57,7 @@ struct RayEffectData;
 
 /// Function pointers for use by GameClient callback functions.
 typedef void (*GameClientFuncPtr)( Drawable *draw, void *userData ); 
-typedef std::hash_map<DrawableID, Drawable *, rts::hash<DrawableID>, rts::equal_to<DrawableID> > DrawablePtrHash;
+typedef std::unordered_map<DrawableID, Drawable * > DrawablePtrHash;
 typedef DrawablePtrHash::iterator DrawablePtrHashIt;
 
 //-----------------------------------------------------------------------------

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1028,7 +1027,7 @@ void Player::becomingTeamMember(Object *obj, Bool yes)
 		return;	
 
 	// energy production/consumption hooks, note we ignore things that are UNDER_CONSTRUCTION
-	if( BitTest( obj->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == FALSE )
+	if( OH_BitTest( obj->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == FALSE )
 	{
 		obj->friend_adjustPowerForPlayer(yes);
 	}  // end if
@@ -1710,7 +1709,7 @@ void Player::killPlayer(void)
 
 	m_isPlayerDead = TRUE; // this is so OCLs don't ever again spawn useful units for us.
 
-	for (it = m_playerTeamPrototypes.begin(); it != m_playerTeamPrototypes.end(); ++it) {
+	for (PlayerTeamList::iterator it = m_playerTeamPrototypes.begin(); it != m_playerTeamPrototypes.end(); ++it) {
 		for (DLINK_ITERATOR<Team> iter = (*it)->iterate_TeamInstanceList(); !iter.done(); iter.advance()) {
 			Team *team = iter.cur();
 			if (!team) {
@@ -2574,7 +2573,7 @@ Bool Player::hasUpgradeComplete( const UpgradeTemplate *upgradeTemplate )
 //=================================================================================================
 Bool Player::hasUpgradeComplete( Int64 testMask )
 {
-	return BitTest( m_upgradesCompleted, testMask );
+	return OH_BitTest( m_upgradesCompleted, testMask );
 }
 
 //=================================================================================================
@@ -2583,7 +2582,7 @@ Bool Player::hasUpgradeComplete( Int64 testMask )
 Bool Player::hasUpgradeInProduction( const UpgradeTemplate *upgradeTemplate )
 {
 	Int64 testMask = upgradeTemplate->getUpgradeMask();
-	return BitTest( m_upgradesInProgress, testMask );
+	return OH_BitTest( m_upgradesInProgress, testMask );
 }
 
 //=================================================================================================

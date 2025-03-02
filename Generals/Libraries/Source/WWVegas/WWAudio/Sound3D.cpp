@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -307,7 +306,7 @@ Sound3DClass::Update_Miles_Transform (void)
 		// Pass the sound's position onto miles
 		//
 		Vector3 position = listener_space_tm.Get_Translation ();
-		::AIL_set_3D_position (m_SoundHandle->Get_H3DSAMPLE (), -position.Y, position.Z, position.X);
+		//::AIL_set_3D_position (m_SoundHandle->Get_H3DSAMPLE (), -position.Y, position.Z, position.X);
 
 		//
 		// Pass the sound's orientation (facing) onto miles
@@ -315,13 +314,13 @@ Sound3DClass::Update_Miles_Transform (void)
 		Vector3 facing	= listener_space_tm.Get_X_Vector ();
 		Vector3 up		= listener_space_tm.Get_Z_Vector ();
 		
-		::AIL_set_3D_orientation (m_SoundHandle->Get_H3DSAMPLE (),
-										  -facing.Y,
-										  facing.Z,
-										  facing.X,
-										  -up.Y,
-										  up.Z,
-										  up.X);
+		//::AIL_set_3D_orientation (m_SoundHandle->Get_H3DSAMPLE (),
+		//								  -facing.Y,
+		//								  facing.Z,
+		//								  facing.X,
+		//								  -up.Y,
+		//								  up.Z,
+		//								  up.X);
 	}
 
 	return ;
@@ -368,8 +367,8 @@ Sound3DClass::Set_Position (const Vector3 &position)
 			//
 			//	Update the object's position inside of Miles
 			//
-			::AIL_set_3D_position (m_SoundHandle->Get_H3DSAMPLE (), -listener_space_pos.Y,
-					listener_space_pos.Z, listener_space_pos.X);
+			//::AIL_set_3D_position (m_SoundHandle->Get_H3DSAMPLE (), -listener_space_pos.Y,
+			//		listener_space_pos.Z, listener_space_pos.X);
 		}
 	}
 	
@@ -396,10 +395,10 @@ Sound3DClass::Set_Velocity (const Vector3 &velocity)
 	if (m_SoundHandle != NULL) {		
 		
 		//WWDEBUG_SAY (("Current Velocity: %.2f %.2f %.2f\n", m_CurrentVelocity.X, m_CurrentVelocity.Y, m_CurrentVelocity.Z));
-		::AIL_set_3D_velocity_vector (m_SoundHandle->Get_H3DSAMPLE (),
-												-m_CurrentVelocity.Y,
-												m_CurrentVelocity.Z,
-												m_CurrentVelocity.X);
+		//::AIL_set_3D_velocity_vector (m_SoundHandle->Get_H3DSAMPLE (),
+		//										-m_CurrentVelocity.Y,
+		//										m_CurrentVelocity.Z,
+		//										m_CurrentVelocity.X);
 	}
 
 	return ;
@@ -421,9 +420,9 @@ Sound3DClass::Set_DropOff_Radius (float radius)
 
 	// Pass attenuation settings onto miles
 	if (m_SoundHandle != NULL) {
-		::AIL_set_3D_sample_distances (	m_SoundHandle->Get_H3DSAMPLE (),
-													m_DropOffRadius,
-													(m_MaxVolRadius > 1.0F) ? m_MaxVolRadius : 1.0F);
+		//::AIL_set_3D_sample_distances (	m_SoundHandle->Get_H3DSAMPLE (),
+		//											m_DropOffRadius,
+		//											(m_MaxVolRadius > 1.0F) ? m_MaxVolRadius : 1.0F);
 	}
 
 	return ;
@@ -443,9 +442,9 @@ Sound3DClass::Set_Max_Vol_Radius (float radius)
 
 	// Pass attenuation settings onto miles
 	if (m_SoundHandle != NULL) {
-		::AIL_set_3D_sample_distances (	m_SoundHandle->Get_H3DSAMPLE (),
-													m_DropOffRadius,
-													(m_MaxVolRadius > 1.0F) ? m_MaxVolRadius : 1.0F);
+		//::AIL_set_3D_sample_distances (	m_SoundHandle->Get_H3DSAMPLE (),
+		//											m_DropOffRadius,
+		//											(m_MaxVolRadius > 1.0F) ? m_MaxVolRadius : 1.0F);
 	}
 
 	return ;
@@ -480,7 +479,7 @@ Sound3DClass::Initialize_Miles_Handle (void)
 		//
 		// Record the total length of the sample in milliseconds...
 		//
-		m_SoundHandle->Get_Sample_MS_Position ((S32 *)&m_Length, NULL);
+		m_SoundHandle->Get_Sample_MS_Position ((int32_t *)&m_Length, NULL);
 
 		//
 		// Pass our cached settings onto miles
@@ -493,16 +492,16 @@ Sound3DClass::Initialize_Miles_Handle (void)
 		//
 		// Pass attenuation settings onto miles
 		//
-		::AIL_set_3D_sample_distances (	m_SoundHandle->Get_H3DSAMPLE (),
-													m_DropOffRadius,
-													(m_MaxVolRadius > 1.0F) ? m_MaxVolRadius : 1.0F);
+		//::AIL_set_3D_sample_distances (	m_SoundHandle->Get_H3DSAMPLE (),
+		//											m_DropOffRadius,
+		//											(m_MaxVolRadius > 1.0F) ? m_MaxVolRadius : 1.0F);
 
 		
 		//
 		//	Assign the 3D effects level accordingly (for reverb, etc)
 		//
-		::AIL_set_3D_sample_effects_level (m_SoundHandle->Get_H3DSAMPLE (),
-				WWAudioClass::Get_Instance ()->Get_Effects_Level ());
+		//::AIL_set_3D_sample_effects_level (m_SoundHandle->Get_H3DSAMPLE (),
+		//		WWAudioClass::Get_Instance ()->Get_Effects_Level ());
 
 		//
 		//	Pass the sound's position and orientation onto Miles
@@ -532,7 +531,7 @@ Sound3DClass::Initialize_Miles_Handle (void)
 		Seek (m_CurrentPosition);
 
 		// Associate this object instance with the handle
-		m_SoundHandle->Set_Sample_User_Data (INFO_OBJECT_PTR, (S32)this);
+		m_SoundHandle->Set_Sample_User_Data (INFO_OBJECT_PTR, (int32_t)this);
 	}
 		
 	return ;

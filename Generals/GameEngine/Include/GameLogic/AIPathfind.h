@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -909,11 +908,11 @@ inline void Pathfinder::removeObjectFromPathfindMap( class Object *obj )
 }
 
 inline PathfindCell *Pathfinder::getCell( PathfindLayerEnum layer, Int x, Int y ) 
-{ 
+{
 	if (x >= m_extent.lo.x && x <= m_extent.hi.x &&
 		y >= m_extent.lo.y && y <= m_extent.hi.y)	
 	{
-		PathfindCell *cell = NULL;
+		PathfindCell* cell = nullptr;
 		if (layer > LAYER_GROUND && layer <= LAYER_LAST) 
 		{
 			cell = m_layers[layer].getCell(x, y);
@@ -922,10 +921,8 @@ inline PathfindCell *Pathfinder::getCell( PathfindLayerEnum layer, Int x, Int y 
 		}
 		return &m_map[x][y]; 
 	}
-	else
-	{
-		return NULL;
-	}
+
+	return nullptr;
 }
 
 inline PathfindCell *Pathfinder::getCell( PathfindLayerEnum layer, const Coord3D *pos ) 

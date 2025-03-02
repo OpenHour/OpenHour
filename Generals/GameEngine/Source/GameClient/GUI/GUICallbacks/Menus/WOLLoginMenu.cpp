@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -30,6 +29,8 @@
 
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
+
+#include <timeapi.h>
 
 #include "Common/STLTypedefs.h"
 
@@ -63,8 +64,6 @@
 #include "GameNetwork/GameSpy/BuddyThread.h"
 #include "GameNetwork/GameSpy/ThreadUtils.h"
 #include "GameNetwork/GameSpy/PersistentStorageThread.h"
-
-#include "GameNetwork/GameSpyOverlay.h"
 
 #include "GameNetwork/WOLBrowser/WebBrowser.h"
 
@@ -589,7 +588,7 @@ void WOLLoginMenuInit( WindowLayout *layout, void *userData )
 #endif // ALLOW_NON_PROFILED_LOGIN
 		// Read login names from registry...
 		GadgetComboBoxReset(comboBoxEmail);
-		GadgetTextEntrySetText(textEntryPassword, UnicodeString.TheEmptyString);
+		GadgetTextEntrySetText(textEntryPassword, UnicodeString::TheEmptyString);
 
 		// look for cached nicks to add
 		AsciiString lastName;
@@ -698,8 +697,6 @@ void WOLLoginMenuInit( WindowLayout *layout, void *userData )
 
 	// Set Keyboard to Main Parent
 	
-	RaiseGSMessageBox();
-
 	OptionPreferences optionPref;
 	if (!optionPref.getBool("SawTOS", TRUE))
 	{
@@ -765,7 +762,7 @@ static void checkLogin( void )
 		TheGameSpyInfo->clearGroupRoomList();
 
 		SignalUIInteraction(SHELL_SCRIPT_HOOK_GENERALS_ONLINE_LOGIN);
-		nextScreen = "Menus/WOLWelcomeMenu.wnd";
+		//nextScreen = "Menus/WOLWelcomeMenu.wnd";
 		TheShell->pop();
 		
 		// read in some cached data
@@ -844,15 +841,12 @@ void WOLLoginMenuUpdate( WindowLayout * layout, void *userData)
 					disconMunkee.format("GUI:GSDisconReason%d", resp.discon.reason);
 					title = TheGameText->fetch( "GUI:GSErrorTitle" );
 					body = TheGameText->fetch( disconMunkee );
-					GSMessageBoxOk( title, body );
 					EnableLoginControls( TRUE );
 
 					// kill & restart the threads
 					AsciiString motd = TheGameSpyInfo->getMOTD();
 					AsciiString config = TheGameSpyInfo->getConfig();
 					DEBUG_LOG(("Tearing down GameSpy from WOLLoginMenuUpdate(PEERRESPONSE_DISCONNECT)\n"));
-					TearDownGameSpy();
-					SetUpGameSpy( motd.str(), config.str() );
 				}
 				break;
 			}
@@ -870,15 +864,12 @@ void WOLLoginMenuUpdate( WindowLayout * layout, void *userData)
 		disconMunkee.format("GUI:GSDisconReason4");	// ("could not connect to server")
 		title = TheGameText->fetch( "GUI:GSErrorTitle" );
 		body = TheGameText->fetch( disconMunkee );
-		GSMessageBoxOk( title, body );
 		EnableLoginControls( TRUE );
 
 		// kill & restart the threads
 		AsciiString motd = TheGameSpyInfo->getMOTD();
 		AsciiString config = TheGameSpyInfo->getConfig();
 		DEBUG_LOG(("Tearing down GameSpy from WOLLoginMenuUpdate(login timeout)\n"));
-		TearDownGameSpy();
-		SetUpGameSpy( motd.str(), config.str() );
 	}
 
 }// WOLLoginMenuUpdate
@@ -911,7 +902,7 @@ WindowMsgHandledType WOLLoginMenuInput( GameWindow *window, UnsignedInt msg,
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OH_BitTest( state, KEY_STATE_UP ) )
 					{
 						TheWindowManager->winSendSystemMsg( window, GBM_SELECTED, 
 																							(WindowMsgData)buttonBack, buttonBackID );
@@ -1199,7 +1190,6 @@ WindowMsgHandledType WOLLoginMenuSystem( GameWindow *window, UnsignedInt msg,
 				if ( controlID == buttonBackID )
 				{
 					buttonPushed = true;
-					TearDownGameSpy();
 					TheShell->pop();
 				} //if ( controlID == buttonBack )
 #ifdef ALLOW_NON_PROFILED_LOGIN
@@ -1232,7 +1222,6 @@ WindowMsgHandledType WOLLoginMenuSystem( GameWindow *window, UnsignedInt msg,
 						
 						if(!isAgeOkay(month, day, year))
 						{
-							GSMessageBoxOk(TheGameText->fetch("GUI:AgeFailedTitle"), TheGameText->fetch("GUI:AgeFailed"));
 							break;
 						}
 						
@@ -1246,9 +1235,9 @@ WindowMsgHandledType WOLLoginMenuSystem( GameWindow *window, UnsignedInt msg,
 							loginAttemptTime = timeGetTime();
 							BuddyRequest req;
 							req.buddyRequestType = BuddyRequest::BUDDYREQUEST_LOGINNEW;
-							strcpy(req.arg.login.nick, login.str());
-							strcpy(req.arg.login.email, email.str());
-							strcpy(req.arg.login.password, password.str());
+							//strcpy(req.arg.login.nick, login.str());
+							//strcpy(req.arg.login.email, email.str());
+							//strcpy(req.arg.login.password, password.str());
 							req.arg.login.hasFirewall = TRUE;
 							
 							TheGameSpyInfo->setLocalBaseName( login );
@@ -1279,22 +1268,6 @@ WindowMsgHandledType WOLLoginMenuSystem( GameWindow *window, UnsignedInt msg,
 						else
 						{
 							// user didn't fill in all info.  prompt him.
-							if(email.isEmpty() && login.isEmpty() && password.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSNoLoginInfoAll"));
-							else if( email.isEmpty() && login.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSNoLoginInfoEmailNickname"));
-							else if( email.isEmpty() && password.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSNoLoginInfoEmailPassword"));
-							else if( login.isEmpty() && password.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSNoLoginInfoNicknamePassword"));
-							else if( email.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSNoLoginInfoEmail"));
-							else if( password.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSNoLoginInfoPassword"));
-							else if( login.isEmpty() )
-								GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSNoLoginInfoNickname"));
-							else
-								GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSNoLoginInfoAll"));
 						}
 #ifdef ALLOW_NON_PROFILED_LOGIN
 					}
@@ -1322,7 +1295,6 @@ WindowMsgHandledType WOLLoginMenuSystem( GameWindow *window, UnsignedInt msg,
 						
 						if(!isAgeOkay(month, day, year))
 						{
-							GSMessageBoxOk(TheGameText->fetch("GUI:AgeFailedTitle"), TheGameText->fetch("GUI:AgeFailed"));
 							break;
 						}
 
@@ -1335,9 +1307,9 @@ WindowMsgHandledType WOLLoginMenuSystem( GameWindow *window, UnsignedInt msg,
 							loginAttemptTime = timeGetTime();
 							BuddyRequest req;
 							req.buddyRequestType = BuddyRequest::BUDDYREQUEST_LOGIN;
-							strcpy(req.arg.login.nick, login.str());
-							strcpy(req.arg.login.email, email.str());
-							strcpy(req.arg.login.password, password.str());
+							//strcpy(req.arg.login.nick, login.str());
+							//strcpy(req.arg.login.email, email.str());
+							//strcpy(req.arg.login.password, password.str());
 							req.arg.login.hasFirewall = true;
 							
 							TheGameSpyInfo->setLocalBaseName( login );
@@ -1371,22 +1343,6 @@ WindowMsgHandledType WOLLoginMenuSystem( GameWindow *window, UnsignedInt msg,
 						else
 						{
 							// user didn't fill in all info.  prompt him.
-							if(email.isEmpty() && login.isEmpty() && password.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:GSNoLoginInfoAll"));
-							else if( email.isEmpty() && login.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:GSNoLoginInfoEmailNickname"));
-							else if( email.isEmpty() && password.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:GSNoLoginInfoEmailPassword"));
-							else if( login.isEmpty() && password.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:GSNoLoginInfoNicknamePassword"));
-							else if( email.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:GSNoLoginInfoEmail"));
-							else if( password.isEmpty())
-								GSMessageBoxOk(TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:GSNoLoginInfoPassword"));
-							else if( login.isEmpty() )
-								GSMessageBoxOk(TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:GSNoLoginInfoNickname"));
-							else
-								GSMessageBoxOk(TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:GSNoLoginInfoAll"));
 						}
 #ifdef ALLOW_NON_PROFILED_LOGIN
 					}
@@ -1421,7 +1377,7 @@ WindowMsgHandledType WOLLoginMenuSystem( GameWindow *window, UnsignedInt msg,
 					useWebBrowserForTOS = FALSE;//loginPref->getBool("UseTOSBrowser", TRUE);
 					if (useWebBrowserForTOS && (TheWebBrowser != NULL))
 					{
-						TheWebBrowser->createBrowserWindow("TermsOfService", listboxTOS);
+						//TheWebBrowser->createBrowserWindow("TermsOfService", listboxTOS);
 						webBrowserActive = TRUE;
 					}
 					else

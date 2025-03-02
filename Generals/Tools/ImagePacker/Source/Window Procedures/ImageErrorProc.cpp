@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -105,12 +104,12 @@ BOOL CALLBACK ImageErrorProc( HWND hWndDialog, UINT message,
 					continue;
 
 				// if image can't be processed find out why
-				if( BitTest( image->m_status, ImageInfo::CANTPROCESS ) )
+				if( OH_BitTest( image->m_status, ImageInfo::CANTPROCESS ) )
 				{
 					
-					if( BitTest( image->m_status, ImageInfo::TOOBIG ) )
+					if( OH_BitTest( image->m_status, ImageInfo::TOOBIG ) )
 						sprintf( reason, "Too Big" );
-					else if( BitTest( image->m_status, ImageInfo::INVALIDCOLORDEPTH ) )
+					else if( OH_BitTest( image->m_status, ImageInfo::INVALIDCOLORDEPTH ) )
 						sprintf( reason, "Unsupported Color Depth" );
 					else
 						sprintf( reason, "Unknown Reason" );

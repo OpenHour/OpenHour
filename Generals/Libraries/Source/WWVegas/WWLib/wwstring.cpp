@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -45,7 +44,7 @@
 //	Static member initialzation
 ///////////////////////////////////////////////////////////////////
 
-CriticalSectionClass StringClass::m_Mutex;
+CriticalSectionClass StringClass::m_Mutex = CriticalSectionClass();
 
 TCHAR		StringClass::m_NullChar					= 0;
 TCHAR *	StringClass::m_EmptyString				= &m_NullChar;

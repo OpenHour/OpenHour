@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -114,7 +113,7 @@ AsciiString AsciiStringToQuotedPrintable(AsciiString original)
 // Convert ascii quoted-printable strings into unicode strings
 UnicodeString QuotedPrintableToUnicodeString(AsciiString original)
 {
-	static unsigned short dest[1024];
+	static WideChar dest[1024];
 	int i=0;
 
 	unsigned char *c = (unsigned char *)dest;

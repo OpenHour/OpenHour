@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -21,6 +20,9 @@
 #define SIMPLEPLAYER_H
 
 #include "wmsdk.h"
+
+#include <tchar.h>
+#include "Debug.h"
 
 //
 // we preserve a list of "ready-to-free" list of wave headers for the

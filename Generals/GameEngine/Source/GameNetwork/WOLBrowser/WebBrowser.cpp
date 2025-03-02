@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -72,7 +71,7 @@ public:
 OLEInitializer g_OLEInitializer;
 CComModule _Module;
 
-CComObject<WebBrowser> * TheWebBrowser = NULL;
+WebBrowser* TheWebBrowser = NULL;
 
 
 /******************************************************************************
@@ -240,19 +239,7 @@ WebBrowserURL * WebBrowser::makeNewURL(AsciiString tag)
 STDMETHODIMP WebBrowser::QueryInterface(REFIID iid, void** ppv)
 {
 	*ppv = NULL;
-
-	if ((iid == IID_IUnknown) || (iid == IID_IBrowserDispatch))
-	{
-		*ppv = static_cast<IBrowserDispatch*>(this);
-	}
-	else
-	{
-		return E_NOINTERFACE;
-	}
-
-	static_cast<IUnknown*>(*ppv)->AddRef();
-
-	return S_OK;
+	return E_NOINTERFACE;
 }
 
 

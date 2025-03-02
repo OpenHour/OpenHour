@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -2470,7 +2469,7 @@ void HeightMapRenderObjClass::updateShorelineTiles(Int minX, Int minY, Int maxX,
 	Real transparentDepth=TheWaterTransparency->m_transparentWaterDepth*TheWaterTransparency->m_minWaterOpacity;
 	Real depthScaleFactor = 1.0f/transparentDepth;
 
-	for (j=minY; j<maxY; j++)
+	for (Int j=minY; j<maxY; j++)
 		for (Int i=minX; i<maxX; i++)
 		{
 				waterSide=(waterZ0=TheWaterRenderObj->getWaterHeight((i-border)*MAP_XY_FACTOR,(j-border)*MAP_XY_FACTOR)) > ((terrainZ0=MAP_HEIGHT_SCALE*pMap->getHeight(i,j)));

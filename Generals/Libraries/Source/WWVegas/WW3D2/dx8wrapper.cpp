@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -72,7 +71,6 @@
 #include "formconv.h"
 #include "dx8texman.h"
 #include "bound.h"
-#include "dx8webbrowser.h"
 
 #define WW3D_DEVTYPE D3DDEVTYPE_HAL
 
@@ -621,7 +619,7 @@ bool DX8Wrapper::Set_Any_Render_Device(void)
 	}
 
 	// Then fullscreen
-	for (dev_number = 0; dev_number < _RenderDeviceNameTable.Count(); dev_number++) {
+	for (int dev_number = 0; dev_number < _RenderDeviceNameTable.Count(); dev_number++) {
 		if (Set_Render_Device(dev_number,-1,-1,-1,0,false)) {
 			return true;
 		}
@@ -1098,7 +1096,7 @@ bool DX8Wrapper::Registry_Save_Render_Device( const char * sub_key )
 
 bool DX8Wrapper::Registry_Save_Render_Device( const char *sub_key, int device, int width, int height, int depth, bool windowed, int texture_depth)
 {
-	RegistryClass * registry = W3DNEW RegistryClass( sub_key );
+	/*RegistryClass * registry = W3DNEW RegistryClass( sub_key );
 	WWASSERT( registry );
 
 	if ( !registry->Is_Valid() ) {
@@ -1115,8 +1113,8 @@ bool DX8Wrapper::Registry_Save_Render_Device( const char *sub_key, int device, i
 	registry->Set_Int( VALUE_NAME_RENDER_DEVICE_WINDOWED, windowed );
 	registry->Set_Int( VALUE_NAME_RENDER_DEVICE_TEXTURE_DEPTH, texture_depth );
 
-	delete registry;
-	return true;
+	delete registry;*/
+	return false;
 }
 
 bool DX8Wrapper::Registry_Load_Render_Device( const char * sub_key, bool resize_window )
@@ -1157,7 +1155,7 @@ bool DX8Wrapper::Registry_Load_Render_Device( const char * sub_key, bool resize_
 
 bool DX8Wrapper::Registry_Load_Render_Device( const char * sub_key, char *device, int device_len, int &width, int &height, int &depth, int &windowed, int &texture_depth)
 {
-	RegistryClass registry( sub_key );
+	/*RegistryClass registry( sub_key );
 
 	if ( registry.Is_Valid() ) {
 		registry.Get_String( VALUE_NAME_RENDER_DEVICE_NAME,
@@ -1169,7 +1167,7 @@ bool DX8Wrapper::Registry_Load_Render_Device( const char * sub_key, char *device
 		windowed =	registry.Get_Int( VALUE_NAME_RENDER_DEVICE_WINDOWED, -1 );
 		texture_depth = registry.Get_Int( VALUE_NAME_RENDER_DEVICE_TEXTURE_DEPTH, -1 );
 		return true;
-	}
+	}*/
 	return false;
 }
 
@@ -1210,7 +1208,8 @@ bool DX8Wrapper::Find_Color_And_Z_Mode(int resx,int resy,int bitdepth,D3DFORMAT 
 	bool found = false;
 	unsigned int mode = 0;
 
-	for (int format_index=0; format_index < format_count; format_index++) {
+	int format_index = 0;
+	for (format_index =0; format_index < format_count; format_index++) {
 		found |= Find_Color_Mode(format_table[format_index],resx,resy,&mode);
 		if (found) break;
 	}
@@ -1425,15 +1424,12 @@ void DX8Wrapper::Begin_Scene(void)
 	DX8_THREAD_ASSERT();
 	DX8CALL(BeginScene());
 
-	DX8WebBrowser::Update();
 }
 
 void DX8Wrapper::End_Scene(bool flip_frames)
 {
 	DX8_THREAD_ASSERT();
 	DX8CALL(EndScene());
-
-	DX8WebBrowser::Render(0);
 
 	if (flip_frames) {
 		DX8_Assert();
@@ -2309,7 +2305,7 @@ void DX8Wrapper::Set_Light_Environment(LightEnvironmentClass* light_env)
 			Set_Light(l,&light);
 		}
 
-		for (;l<4;++l) {
+		for (int l = 0;l<4;++l) {
 			Set_Light(l,NULL);
 		}
 	}

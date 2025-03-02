@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -114,7 +113,7 @@ DECLARE_PERF_TIMER(MemoryPoolInitFilling)
 
 	// in debug mode (but not internal), save stacktraces too
 	#if !defined(MEMORYPOOL_CHECKPOINTING) && defined(MEMORYPOOL_STACKTRACE) && defined(_DEBUG)
-		#define MEMORYPOOL_SINGLEBLOCK_GETS_STACKTRACE
+		//#define MEMORYPOOL_SINGLEBLOCK_GETS_STACKTRACE
 	#endif
 
 	#define USE_FILLER_VALUE
@@ -1655,7 +1654,9 @@ void* MemoryPool::allocateBlockDoNotZeroImplementation(DECLARE_LITERALSTRING_ARG
 	{
 		// hmm... the current 'free' blob has nothing available. look and see if there
 		// are any other existing blobs with freespace.
-		for (MemoryPoolBlob *blob = m_firstBlob; blob != NULL; blob = blob->getNextInList()) 
+		MemoryPoolBlob *blob = nullptr;
+
+		for (blob = m_firstBlob; blob != NULL; blob = blob->getNextInList())
 		{
 			if (blob->hasAnyFreeBlocks())
 			 	break;
@@ -3162,7 +3163,7 @@ void MemoryPoolFactory::debugMemoryReport(Int flags, Int startCheckpoint, Int en
 		DEBUG_LOG(("------------------------------------------\n"));
 		DEBUG_LOG(("Begin Pool Underflow Report\n"));
 		DEBUG_LOG(("------------------------------------------\n"));
-		for (pool = m_firstPoolInFactory; pool; pool = pool->getNextPoolInList())
+		for (MemoryPool* pool = m_firstPoolInFactory; pool; pool = pool->getNextPoolInList())
 		{
 			Int peak = pool->getPeakBlockCount()*pool->getAllocationSize();
 			Int initial = pool->getInitialBlockCount()*pool->getAllocationSize();
@@ -3238,23 +3239,6 @@ void MemoryPoolFactory::debugMemoryReport(Int flags, Int startCheckpoint, Int en
 //-----------------------------------------------------------------------------
 // GLOBAL FUNCTIONS
 //-----------------------------------------------------------------------------
-
-/*
-	This is a trick that is intended to force MSVC to link this file (and thus,
-	these definitions of new/delete) ahead of all others. (We do debug checking
-	to ensure that's the case)
-*/
-#if defined(_DEBUG)
-	#pragma comment(lib, "GameEngineDebug")
-#elif defined(_INTERNAL)
-	#pragma comment(lib, "GameEngineInternal")
-#else
-	#pragma comment(lib, "GameEngine")
-#endif
-
-#ifdef MEMORYPOOL_OVERRIDE_MALLOC
-	#pragma comment(linker, "/force:multiple")
-#endif
 
 static int theLinkTester = 0;
 
@@ -3461,7 +3445,7 @@ void initMemoryManager()
 	linktest = new char[8];
 	delete [] linktest;
 
-	linktest = new char("",1);
+	linktest = new char[1];
 	delete linktest;
 
 #ifdef MEMORYPOOL_OVERRIDE_MALLOC

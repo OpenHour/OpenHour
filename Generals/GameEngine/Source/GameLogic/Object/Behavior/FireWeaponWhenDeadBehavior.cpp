@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -88,7 +87,7 @@ void FireWeaponWhenDeadBehavior::onDie( const DamageInfo *damageInfo )
 	
 	// This will never apply until built.  Otherwise canceling construction sets it off, and killing
 	// a one hitpoint one percent building will too.
-	if( BitTest( getObject()->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == TRUE )
+	if( OH_BitTest( getObject()->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == TRUE )
 		return;
 
 	

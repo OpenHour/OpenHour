@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -106,7 +105,7 @@ void RebuildHoleExposeDie::onDie( const DamageInfo *damageInfo )
 	// we do not "spawn" a hole object
 	//
 	if( us->getControllingPlayer() != ThePlayerList->getNeutralPlayer() && (us->getControllingPlayer()->isPlayerActive()) && 
-		(BitTest( us->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == FALSE ))
+		(OH_BitTest( us->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == FALSE ))
 	{
 		Object *hole;
 

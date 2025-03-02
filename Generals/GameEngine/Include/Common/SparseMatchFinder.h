@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -33,6 +32,8 @@
 #define __SparseMatchFinder_H_
 
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
+#include <unordered_map>
+
 #include "Common/BitFlags.h"
 #include "Common/STLTypedefs.h"
 
@@ -73,7 +74,7 @@ private:
 	};
 
 	//-------------------------------------------------------------------------------------------------
-	typedef std::hash_map< BITSET, const MATCHABLE*, HashMapHelper, HashMapHelper > MatchMap;
+	typedef std::unordered_map< BITSET, const MATCHABLE*, HashMapHelper, HashMapHelper > MatchMap;
 
 	//-------------------------------------------------------------------------------------------------
 	// MEMBER VARS

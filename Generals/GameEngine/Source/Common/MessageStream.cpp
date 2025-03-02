@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -104,7 +103,9 @@ GameMessageArgumentDataType GameMessage::getArgumentDataType( Int argIndex )
 		return ARGUMENTDATATYPE_UNKNOWN;
 	}
 	int i=0;
-	for (GameMessageArgument *a = m_argList; a && (i < argIndex); a=a->m_next, ++i );
+
+	GameMessageArgument* a = nullptr;
+	for (a = m_argList; a && (i < argIndex); a=a->m_next, ++i );
 
 	if (a != NULL)
 	{

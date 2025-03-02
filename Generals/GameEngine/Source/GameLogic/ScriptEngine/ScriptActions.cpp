@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1974,7 +1973,7 @@ void ScriptActions::doTeamHuntWithCommandButton(const AsciiString& teamName, con
 			case GUI_COMMAND_SPECIAL_POWER:
 				if( commandButton->getSpecialPowerTemplate() )
 				{
-					if (BitTest( commandButton->getOptions(), COMMAND_OPTION_NEED_OBJECT_TARGET )) 
+					if (OH_BitTest( commandButton->getOptions(), COMMAND_OPTION_NEED_OBJECT_TARGET )) 
 					{
 						// OK, we can hunt with a power that targets an object.
 						break;

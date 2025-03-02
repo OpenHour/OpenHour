@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -34,7 +33,6 @@
 #include "vector2i.h"
 #include <d3dx8.h>
 #include "WW3D2/dx8wrapper.h"
-#include "WW3D2/dx8WebBrowser.h"
 
 W3DWebBrowser::W3DWebBrowser() : WebBrowser() {
 }
@@ -42,7 +40,7 @@ W3DWebBrowser::W3DWebBrowser() : WebBrowser() {
 Bool W3DWebBrowser::createBrowserWindow(char *tag, GameWindow *win) 
 {
 
-	WinInstanceData *winData = win->winGetInstanceData();
+	/*WinInstanceData *winData = win->winGetInstanceData();
 	AsciiString windowName = winData->m_decoratedNameString;
 
 	Int x, y, w, h;
@@ -65,10 +63,10 @@ Bool W3DWebBrowser::createBrowserWindow(char *tag, GameWindow *win)
 
 	DX8WebBrowser::CreateBrowser(windowName.str(), url->m_url.str(), x, y, w, h, 0, BROWSEROPTION_SCROLLBARS | BROWSEROPTION_3DBORDER, (LPDISPATCH)this);
 
-	return TRUE;
+	return TRUE;*/
+	return false;
 }
 
 void W3DWebBrowser::closeBrowserWindow(GameWindow *win) 
 {
-	DX8WebBrowser::DestroyBrowser(win->winGetInstanceData()->m_decoratedNameString.str());
 }

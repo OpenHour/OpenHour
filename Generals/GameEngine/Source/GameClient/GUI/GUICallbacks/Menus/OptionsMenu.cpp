@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -30,7 +29,7 @@
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
-#include "GameSpy/ghttp/ghttp.h"
+//#include "GameSpy/ghttp/ghttp.h"
 
 #include "Common/AudioAffect.h"
 #include "Common/AudioSettings.h"
@@ -63,7 +62,6 @@
 #include "GameClient/GUICallbacks.h"
 #include "GameNetwork/FirewallHelper.h"
 #include "GameNetwork/IPEnumeration.h"
-#include "GameNetwork/GameSpyOverlay.h"
 #include "GameNetwork/GameSpy/PeerDefs.h"
 #include "GameLogic/GameLogic.h"
 #include "GameLogic/ScriptEngine.h"
@@ -1089,7 +1087,7 @@ static void saveOptions( void )
 		AsciiString aStr;
 		aStr.translate(uStr);
 		SetStringInRegistry("", "Proxy", aStr.str());
-		ghttpSetProxy(aStr.str());
+		//ghttpSetProxy(aStr.str());
 	}
 
    	//-------------------------------------------------------------------------------------------------
@@ -1549,7 +1547,7 @@ void OptionsMenuInit( WindowLayout *layout, void *userData )
 	// populate resolution modes
 	GadgetComboBoxReset(comboBoxResolution);
 	Int numResolutions = TheDisplay->getDisplayModeCount();
-	for( i = 0; i < numResolutions; ++i )
+	for(Int i = 0; i < numResolutions; ++i )
 	{	Int xres,yres,bitDepth;
 		TheDisplay->getDisplayModeDescription(i,&xres,&yres,&bitDepth);
 		str.format(L"%d x %d",xres,yres);
@@ -1815,7 +1813,7 @@ WindowMsgHandledType OptionsMenuInput( GameWindow *window, UnsignedInt msg,
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OH_BitTest( state, KEY_STATE_UP ) )
 					{
 						AsciiString buttonName( "OptionsMenu.wnd:ButtonBack" );
 						NameKeyType buttonID = TheNameKeyGenerator->nameToKey( buttonName );
@@ -1931,9 +1929,6 @@ WindowMsgHandledType OptionsMenuSystem( GameWindow *window, UnsignedInt msg,
 				comboBoxLANIP = NULL;
 				comboBoxOnlineIP = NULL;
 
-				if(GameSpyIsOverlayOpen(GSOVERLAY_OPTIONS))
-					GameSpyCloseOverlay(GSOVERLAY_OPTIONS);
-				else
 				{
 					DestroyOptionsLayout();
 				}
@@ -1957,9 +1952,6 @@ WindowMsgHandledType OptionsMenuSystem( GameWindow *window, UnsignedInt msg,
 					destroyQuitMenu(); // if we're in a game, the change res then enter the same kind of game, we nee the quit menu to be gone.
 
 
-				if(GameSpyIsOverlayOpen(GSOVERLAY_OPTIONS))
-					GameSpyCloseOverlay(GSOVERLAY_OPTIONS);
-				else
 				{
 					DestroyOptionsLayout();
 					if (dispChanged)

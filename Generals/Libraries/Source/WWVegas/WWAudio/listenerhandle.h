@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -76,16 +75,16 @@ public:
 	void							Stop_Sample (void)									{ }
 	void							Resume_Sample (void)									{ }
 	void							End_Sample (void)										{ }
-	void							Set_Sample_Volume (S32 volume)					{ }
-	S32							Get_Sample_Volume (void)							{ return 0; }
-	void							Set_Sample_Pan (S32 pan)							{ }
-	S32							Get_Sample_Pan (void)								{ return 64; }
-	void							Set_Sample_Loop_Count (U32 count)				{ }
-	U32							Get_Sample_Loop_Count (void)						{ return 0; }
-	void							Set_Sample_MS_Position (U32 ms)					{ }
-	void							Get_Sample_MS_Position (S32 *len, S32 *pos)	{ }
-	S32							Get_Sample_Playback_Rate (void)					{ return 0; }
-	void							Set_Sample_Playback_Rate (S32 rate)				{ }
+	void							Set_Sample_Volume (int32_t volume)					{ }
+	int32_t							Get_Sample_Volume (void)							{ return 0; }
+	void							Set_Sample_Pan (int32_t pan)							{ }
+	int32_t							Get_Sample_Pan (void)								{ return 64; }
+	void							Set_Sample_Loop_Count (uint32_t count)				{ }
+	uint32_t							Get_Sample_Loop_Count (void)						{ return 0; }
+	void							Set_Sample_MS_Position (uint32_t ms)					{ }
+	void							Get_Sample_MS_Position (int32_t *len, int32_t *pos)	{ }
+	int32_t							Get_Sample_Playback_Rate (void)					{ return 0; }
+	void							Set_Sample_Playback_Rate (int32_t rate)				{ }
 	
 protected:
 	

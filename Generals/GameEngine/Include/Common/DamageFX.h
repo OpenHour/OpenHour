@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -33,6 +32,8 @@
 #define _DamageFX_H_
 
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
+#include <unordered_map>
+
 #include "Common/GameCommon.h"
 #include "Common/NameKeyGenerator.h"
 #include "Common/STLTypedefs.h"
@@ -157,7 +158,7 @@ public:
 
 private:
 
-	typedef std::hash_map< NameKeyType, DamageFX, rts::hash<NameKeyType>, rts::equal_to<NameKeyType> > DamageFXMap;
+	typedef std::unordered_map< NameKeyType, DamageFX, rts::hash<NameKeyType>, rts::equal_to<NameKeyType> > DamageFXMap;
 	DamageFXMap m_dfxmap;
 
 };

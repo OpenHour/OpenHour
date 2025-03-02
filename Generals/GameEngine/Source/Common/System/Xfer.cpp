@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -678,7 +677,7 @@ void Xfer::xferUpgradeMask( Int64 *upgradeMaskData )
 		{
 
 			// if the mask of this upgrade is set, it counts
-			if( BitTest( *upgradeMaskData, upgradeTemplate->getUpgradeMask() ) )
+			if( OH_BitTest( *upgradeMaskData, upgradeTemplate->getUpgradeMask() ) )
 				count++;
 
 		}  // end for, upgradeTemplate
@@ -693,7 +692,7 @@ void Xfer::xferUpgradeMask( Int64 *upgradeMaskData )
 		{
 
 			// if the mask of this upgrade is set, it counts
-			if( BitTest( *upgradeMaskData, upgradeTemplate->getUpgradeMask() ) )
+			if( OH_BitTest( *upgradeMaskData, upgradeTemplate->getUpgradeMask() ) )
 			{
 
 				upgradeName = upgradeTemplate->getUpgradeName();

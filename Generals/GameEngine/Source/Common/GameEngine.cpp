@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -27,6 +26,8 @@
 // Author: Michael S. Booth, April 2001
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file in the GameEngine
+
+#include <timeapi.h>
 
 #include "Common/ActionManager.h"
 #include "Common/AudioAffect.h"
@@ -104,7 +105,6 @@
 #include "GameNetwork/LANAPI.h"
 #include "GameNetwork/GameSpy/GameResultsThread.h"
 #include "GameNetwork/GameSpy/PeerDefs.h"
-#include "GameNetwork/GameSpy/PersistentStorageThread.h"
 #include "Common/Player.h"
 
 
@@ -207,7 +207,7 @@ GameEngine::~GameEngine()
 //	delete TheShell;
 //	TheShell = NULL;
 
-	TheGameResultsQueue->endThreads();
+	//TheGameResultsQueue->endThreads();
 
 	TheSubsystemList->shutdownAll();
 	delete TheSubsystemList;
@@ -384,7 +384,7 @@ void GameEngine::init( int argc, char *argv[] )
 		initSubsystem(TheGameState,"TheGameState", MSGNEW("GameEngineSubsystem") GameState, NULL, NULL, NULL );
 
 		// Create the interface for sending game results
-		initSubsystem(TheGameResultsQueue,"TheGameResultsQueue", GameResultsInterface::createNewGameResultsInterface(), NULL, NULL, NULL, NULL);
+		//initSubsystem(TheGameResultsQueue,"TheGameResultsQueue", GameResultsInterface::createNewGameResultsInterface(), NULL, NULL, NULL, NULL);
 
 		xferCRC.close();
 		TheWritableGlobalData->m_iniCRC = xferCRC.getCRC();
@@ -651,7 +651,7 @@ void GameEngine::execute( void )
 #endif
 			
 			{
-				try 
+				try
 				{
 					// compute a frame
 					update();
@@ -753,7 +753,7 @@ exit the app.
 */
 void GameEngine::checkAbnormalQuitting(void)
 {
-	if (TheRecorder->isMultiplayer() && TheGameLogic->isInInternetGame())
+	/*if (TheRecorder->isMultiplayer() && TheGameLogic->isInInternetGame())
 	{	//Should not be quitting at this time, record it as a cheat.
 
 		Int localID = TheGameSpyInfo->getLocalProfileID();
@@ -852,7 +852,7 @@ void GameEngine::checkAbnormalQuitting(void)
 			}
 			pref.write();
 		}
-	}
+	}*/
 }
 
 //-------------------------------------------------------------------------------------------------

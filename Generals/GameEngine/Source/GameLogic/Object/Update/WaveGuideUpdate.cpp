@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -617,7 +616,7 @@ void WaveGuideUpdate::doDamage( void )
 			{
 
 				// if object was not wet before we kill it and play effects
-				if( BitTest( obj->getStatusBits(), OBJECT_STATUS_WET ) == FALSE )
+				if( OH_BitTest( obj->getStatusBits(), OBJECT_STATUS_WET ) == FALSE )
 				{
 					static const ParticleSystemTemplate *splash = TheParticleSystemManager->findTemplate( "WaveHit01" );
 					ParticleSystem *particleSystem;

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -41,10 +40,11 @@
 #ifndef __WWAUDIO_H
 #define __WWAUDIO_H
 
+#define WIN32_LEAN_AND_MEAN 1
+#include <Windows.h>
+#include <mmeapi.h>
+
 #include "always.h"
-#pragma warning (push, 3)
-#include "Mss.H"
-#pragma warning (pop)
 
 #include "Vector.H"
 #include "SoundBuffer.H"
@@ -151,7 +151,7 @@ public:
 
 	typedef struct _DRIVER_INFO_STRUCT
 	{
-		HPROVIDER	driver;
+		void*	driver;
 		char *		name;
 	} DRIVER_INFO_STRUCT;
 
@@ -193,9 +193,9 @@ public:
 	//////////////////////////////////////////////////////////////////////
 	//	Driver methods
 	//////////////////////////////////////////////////////////////////////
-	HDIGDRIVER			Get_2D_Driver (void) const	{ return m_Driver2D; }
-	HPROVIDER			Get_3D_Driver (void) const	{ return m_Driver3D; }
-	HPROVIDER			Get_Reverb_Filter (void) const { return m_ReverbFilter; }
+	void*			Get_2D_Driver (void) const	{ return m_Driver2D; }
+	void*			Get_3D_Driver (void) const	{ return m_Driver3D; }
+	void*			Get_Reverb_Filter (void) const { return m_ReverbFilter; }
 
 	//////////////////////////////////////////////////////////////////////
 	//	2D Hardware/driver selection methods
@@ -219,7 +219,7 @@ public:
 
 	// Device selection
 	bool					Select_3D_Device (int index);
-	bool					Select_3D_Device (const char *device_name, HPROVIDER provider);
+	bool					Select_3D_Device (const char *device_name, void* provider);
 	bool					Select_3D_Device (DRIVER_TYPE_3D type);
 
 	bool					Select_3D_Device (const char *device_name);
@@ -461,9 +461,9 @@ protected:
 	void						Release_2D_Handles (void);
 	void						Allocate_3D_Handles (void);
 	void						Release_3D_Handles (void);
-	HSAMPLE					Get_2D_Sample (const AudibleSoundClass &sound_obj);
-	H3DSAMPLE				Get_3D_Sample (const Sound3DClass &sound_obj);
-	H3DPOBJECT				Get_Listener_Handle (void);
+	void*						Get_2D_Sample (const AudibleSoundClass &sound_obj);
+	void*						Get_3D_Sample (const Sound3DClass &sound_obj);
+	void*						Get_Listener_Handle (void);
 	void						ReAssign_2D_Handles (void);
 	void						ReAssign_3D_Handles (void);
 	void						Remove_2D_Sound_Handles (void);
@@ -485,10 +485,6 @@ protected:
 	//////////////////////////////////////////////////////////////////////
 	//	Miles File Callbacks
 	//////////////////////////////////////////////////////////////////////
-	static U32 AILCALLBACK	File_Open_Callback (char const *filename, U32 *file_handle);
-	static void AILCALLBACK	File_Close_Callback (U32 file_handle);
-	static S32 AILCALLBACK	File_Seek_Callback (U32 file_handle, S32 offset, U32 type);
-	static U32 AILCALLBACK	File_Read_Callback (U32 file_handle, void *buffer, U32 bytes);
 
 private:
 
@@ -510,8 +506,8 @@ private:
 			: string_id (0), buffer (NULL) {}
 
 		_CACHE_ENTRY_STRUCT &operator= (const _CACHE_ENTRY_STRUCT &src) { string_id = ::strdup (src.string_id); REF_PTR_SET (buffer, src.buffer); return *this; }
-		operator== (const _CACHE_ENTRY_STRUCT &src) { return false; }
-		operator!= (const _CACHE_ENTRY_STRUCT &src) { return true; }
+		bool operator== (const _CACHE_ENTRY_STRUCT &src) { return false; }
+		bool operator!= (const _CACHE_ENTRY_STRUCT &src) { return true; }
 	} CACHE_ENTRY_STRUCT;
 
 
@@ -526,8 +522,8 @@ private:
 		_LOGICAL_TYPE_STRUCT (int _id, LPCTSTR name)
 			:	display_name (name), id (_id) {}
 
-		operator== (const _LOGICAL_TYPE_STRUCT &src) { return false; }
-		operator!= (const _LOGICAL_TYPE_STRUCT &src) { return true; }
+		bool operator== (const _LOGICAL_TYPE_STRUCT &src) { return false; }
+		bool operator!= (const _LOGICAL_TYPE_STRUCT &src) { return true; }
 	} LOGICAL_TYPE_STRUCT;
 
 	//////////////////////////////////////////////////////////////////////
@@ -542,7 +538,7 @@ private:
 	int													m_Max3DSamples;
 	int													m_Max2DBufferSize;
 	int													m_Max3DBufferSize;
-	HTIMER												m_UpdateTimer;
+	int64_t												m_UpdateTimer;
 	bool													m_IsMusicEnabled;
 	bool													m_AreSoundEffectsEnabled;
 	FileFactoryClass *								m_FileFactory;
@@ -555,15 +551,15 @@ private:
 	SoundSceneClass *									m_SoundScene;
 
 	//	Driver information
-	HDIGDRIVER											m_Driver2D;
-	HPROVIDER											m_Driver3D;
-	HPROVIDER											m_Driver3DPseudo;
-	HPROVIDER											m_ReverbFilter;
+	void*											m_Driver2D;
+	void*											m_Driver3D;
+	void*											m_Driver3DPseudo;
+	void*											m_ReverbFilter;
 	DynamicVectorClass<DRIVER_INFO_STRUCT *>	m_Driver3DList;
 
 	// Available sample handles
-	DynamicVectorClass<HSAMPLE>					m_2DSampleHandles;
-	DynamicVectorClass<H3DSAMPLE>					m_3DSampleHandles;
+	DynamicVectorClass<void*>					m_2DSampleHandles;
+	DynamicVectorClass<void*>					m_3DSampleHandles;
 
 	// Playlist managment
 	DynamicVectorClass<AudibleSoundClass *>	m_Playlist;

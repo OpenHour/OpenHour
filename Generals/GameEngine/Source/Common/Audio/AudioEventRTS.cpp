@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -340,7 +339,7 @@ void AudioEventRTS::generateFilename( void )
 
 
 		
-		if (BitTest(m_eventInfo->m_control, AC_RANDOM)) 
+		if (OH_BitTest(m_eventInfo->m_control, AC_RANDOM))
 		{ 
 			if (m_isLogicalAudio) 
 			{
@@ -474,7 +473,7 @@ void AudioEventRTS::advanceNextPlayPortion( void )
 			m_portionToPlayNext = PP_Sound;
 			break;
 		case PP_Sound:
-			if (m_eventInfo && BitTest(m_eventInfo->m_control, AC_ALL)) 
+			if (m_eventInfo && OH_BitTest(m_eventInfo->m_control, AC_ALL))
 			{
 				if (m_allCount == m_eventInfo->m_sounds.size()) {
 					m_portionToPlayNext = PP_Decay;
@@ -671,7 +670,7 @@ Bool AudioEventRTS::isPositionalAudio( void ) const
 {
 	if( m_eventInfo ) 
 	{
-		if( !BitTest( m_eventInfo->m_type, ST_WORLD ) ) 
+		if( !OH_BitTest( m_eventInfo->m_type, ST_WORLD ) ) 
 		{
 			return FALSE;
 		}

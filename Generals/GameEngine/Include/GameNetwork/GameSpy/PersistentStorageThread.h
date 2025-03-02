@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -30,8 +29,6 @@
 
 #ifndef __PERSISTENTSTORAGETHREAD_H__
 #define __PERSISTENTSTORAGETHREAD_H__
-
-#include "GameSpy/gstats/gpersist.h"
 
 #define MAX_BUDDY_CHAT_LEN 128
 

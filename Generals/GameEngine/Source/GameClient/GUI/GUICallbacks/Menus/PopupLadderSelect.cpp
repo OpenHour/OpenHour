@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -66,7 +65,6 @@
 #include "GameNetwork/GameSpy/LadderDefs.h"
 #include "GameNetwork/GameSpy/PeerDefs.h"
 //#include "GameNetwork/GameSpy/PeerThread.h"
-#include "GameNetwork/GameSpyOverlay.h"
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -291,14 +289,13 @@ WindowMsgHandledType PopupLadderSelectInput( GameWindow *window, UnsignedInt msg
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OH_BitTest( state, KEY_STATE_UP ) )
 					{
 						switch (s_currentMode)
 						{
 						case PASS_NONE:
 							// re-select whatever was chosen before
 							populateLadderComboBox();
-							GameSpyCloseOverlay(GSOVERLAY_LADDERSELECT);
 							break;
 						case PASS_ENTRY:
 						case PASS_ERROR:
@@ -332,7 +329,6 @@ void ladderSelectedCallback(void)
 	populateLadderComboBox();
 
 	// tear down overlay
-	GameSpyCloseOverlay( GSOVERLAY_LADDERSELECT );
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -396,7 +392,6 @@ WindowMsgHandledType PopupLadderSelectSystem( GameWindow *window, UnsignedInt ms
 				populateLadderComboBox();
 
 				// tear down overlay
-				GameSpyCloseOverlay( GSOVERLAY_LADDERSELECT );
 			}
 			else if (controlID == buttonPasswordOkID)
 			{
@@ -576,7 +571,7 @@ static void updateLadderDetails( Int selID, GameWindow *staticTextLadderName, Ga
 
 	// maps
 	AsciiStringList validMaps = info->validMaps;
-	for (it = validMaps.begin(); it != validMaps.end(); ++it)
+	for (AsciiStringListIterator it = validMaps.begin(); it != validMaps.end(); ++it)
 	{
 		const MapMetaData *md = TheMapCache->findMap(*it);
 		if (md)

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -31,7 +30,7 @@
 #ifndef __PEERTHREAD_H__
 #define __PEERTHREAD_H__
 
-#include "GameSpy/Peer/Peer.h"
+//#include "GameSpy/Peer/Peer.h"
 #include "GameNetwork/NetworkDefs.h"
 
 enum SerialAuthResult
@@ -315,7 +314,7 @@ public:
 			Int profileID;
 			Int wins;
 			Int losses;
-			RoomType roomType;
+			//RoomType roomType;
 			Int flags;
 			UnsignedInt IP;
 			Int rankPoints;

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -44,8 +43,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 SoundStreamHandleClass::SoundStreamHandleClass (void)	:
-	SampleHandle ((HSAMPLE)INVALID_MILES_HANDLE),
-	StreamHandle ((HSTREAM)INVALID_MILES_HANDLE)
+	SampleHandle (nullptr),
+	StreamHandle (nullptr)
 {
 	return ;
 }
@@ -77,8 +76,9 @@ SoundStreamHandleClass::Initialize (SoundBufferClass *buffer)
 		//
 		//	Create a stream from the sample handle
 		//
-		StreamHandle = ::AIL_open_stream_by_sample (WWAudioClass::Get_Instance ()->Get_2D_Driver (),
-								SampleHandle, buffer->Get_Filename (), 0);
+		StreamHandle = nullptr;
+		//StreamHandle = ::AIL_open_stream_by_sample (WWAudioClass::Get_Instance ()->Get_2D_Driver (),
+		//						SampleHandle, buffer->Get_Filename (), 0);
 
 		/*StreamHandle = ::AIL_open_stream (WWAudioClass::Get_Instance ()->Get_2D_Driver (),
 								buffer->Get_Filename (), 0);*/
@@ -96,10 +96,9 @@ SoundStreamHandleClass::Initialize (SoundBufferClass *buffer)
 void
 SoundStreamHandleClass::Start_Sample (void)
 {
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		::AIL_start_stream (StreamHandle);
-	}
-	return ;
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	::AIL_start_stream (StreamHandle);
+	//}
 }
 
 
@@ -111,10 +110,9 @@ SoundStreamHandleClass::Start_Sample (void)
 void
 SoundStreamHandleClass::Stop_Sample (void)
 {
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		::AIL_pause_stream (StreamHandle, 1);
-	}
-	return ;
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	::AIL_pause_stream (StreamHandle, 1);
+	//}
 }
 
 
@@ -126,10 +124,9 @@ SoundStreamHandleClass::Stop_Sample (void)
 void
 SoundStreamHandleClass::Resume_Sample (void)
 {
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		::AIL_pause_stream (StreamHandle, 0);
-	}
-	return ;
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	::AIL_pause_stream (StreamHandle, 0);
+	//}
 }
 
 
@@ -146,11 +143,10 @@ SoundStreamHandleClass::End_Sample (void)
 	//
 	Stop_Sample ();
 
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		::AIL_close_stream (StreamHandle);
-		StreamHandle = (HSTREAM)INVALID_MILES_HANDLE;
-	}
-	return ;
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	::AIL_close_stream (StreamHandle);
+	//	StreamHandle = (HSTREAM)INVALID_MILES_HANDLE;
+	//}
 }
 
 
@@ -160,12 +156,11 @@ SoundStreamHandleClass::End_Sample (void)
 //
 //////////////////////////////////////////////////////////////////////
 void
-SoundStreamHandleClass::Set_Sample_Pan (S32 pan)
+SoundStreamHandleClass::Set_Sample_Pan (int32_t pan)
 {
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		::AIL_set_stream_pan (StreamHandle, pan);
-	}
-	return ;
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	::AIL_set_stream_pan (StreamHandle, pan);
+	//}
 }
 
 
@@ -174,14 +169,14 @@ SoundStreamHandleClass::Set_Sample_Pan (S32 pan)
 //	Get_Sample_Pan
 //
 //////////////////////////////////////////////////////////////////////
-S32
+int32_t
 SoundStreamHandleClass::Get_Sample_Pan (void)
 {
-	S32 retval = 0;
+	int32_t retval = 0;
 
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		retval = ::AIL_stream_pan (StreamHandle);
-	}
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	retval = ::AIL_stream_pan (StreamHandle);
+	//}
 
 	return retval;
 }
@@ -193,12 +188,11 @@ SoundStreamHandleClass::Get_Sample_Pan (void)
 //
 //////////////////////////////////////////////////////////////////////
 void
-SoundStreamHandleClass::Set_Sample_Volume (S32 volume)
+SoundStreamHandleClass::Set_Sample_Volume (int32_t volume)
 {
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		::AIL_set_stream_volume (StreamHandle, volume);
-	}
-	return ;
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	::AIL_set_stream_volume (StreamHandle, volume);
+	//}
 }
 
 
@@ -207,14 +201,14 @@ SoundStreamHandleClass::Set_Sample_Volume (S32 volume)
 //	Get_Sample_Volume
 //
 //////////////////////////////////////////////////////////////////////
-S32
+int32_t
 SoundStreamHandleClass::Get_Sample_Volume (void)
 {
-	S32 retval = 0;
+	int32_t retval = 0;
 
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		retval = ::AIL_stream_volume (StreamHandle);
-	}
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	retval = ::AIL_stream_volume (StreamHandle);
+	//}
 
 	return retval;
 }
@@ -226,13 +220,12 @@ SoundStreamHandleClass::Get_Sample_Volume (void)
 //
 //////////////////////////////////////////////////////////////////////
 void
-SoundStreamHandleClass::Set_Sample_Loop_Count (U32 count)
+SoundStreamHandleClass::Set_Sample_Loop_Count (uint32_t count)
 {
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		::AIL_set_stream_loop_block (StreamHandle, 0, -1);
-		::AIL_set_stream_loop_count (StreamHandle, count);
-	}
-	return ;
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	::AIL_set_stream_loop_block (StreamHandle, 0, -1);
+	//	::AIL_set_stream_loop_count (StreamHandle, count);
+	//}
 }
 
 
@@ -241,14 +234,14 @@ SoundStreamHandleClass::Set_Sample_Loop_Count (U32 count)
 //	Get_Sample_Loop_Count
 //
 //////////////////////////////////////////////////////////////////////
-U32
+uint32_t
 SoundStreamHandleClass::Get_Sample_Loop_Count (void)
 {
-	U32 retval = 0;
+	uint32_t retval = 0;
 
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		::AIL_stream_loop_count (StreamHandle);
-	}
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	::AIL_stream_loop_count (StreamHandle);
+	//}
 
 	return retval;
 }
@@ -260,12 +253,11 @@ SoundStreamHandleClass::Get_Sample_Loop_Count (void)
 //
 //////////////////////////////////////////////////////////////////////
 void
-SoundStreamHandleClass::Set_Sample_MS_Position (U32 ms)
+SoundStreamHandleClass::Set_Sample_MS_Position (uint32_t ms)
 {
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		::AIL_set_stream_ms_position (StreamHandle, ms);
-	}
-	return ;
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	::AIL_set_stream_ms_position (StreamHandle, ms);
+	//}
 }
 
 
@@ -275,13 +267,11 @@ SoundStreamHandleClass::Set_Sample_MS_Position (U32 ms)
 //
 //////////////////////////////////////////////////////////////////////
 void
-SoundStreamHandleClass::Get_Sample_MS_Position (S32 *len, S32 *pos)
+SoundStreamHandleClass::Get_Sample_MS_Position (int32_t *len, int32_t *pos)
 {
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		::AIL_stream_ms_position (StreamHandle, len, pos);
-	}
-
-	return ;
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	::AIL_stream_ms_position (StreamHandle, len, pos);
+	//}
 }
 
 
@@ -291,13 +281,11 @@ SoundStreamHandleClass::Get_Sample_MS_Position (S32 *len, S32 *pos)
 //
 //////////////////////////////////////////////////////////////////////
 void
-SoundStreamHandleClass::Set_Sample_User_Data (S32 i, U32 val)
+SoundStreamHandleClass::Set_Sample_User_Data (int32_t i, uint32_t val)
 {
-	if (SampleHandle != (HSAMPLE)INVALID_MILES_HANDLE) {
-		::AIL_set_sample_user_data (SampleHandle, i, val);
-	}
-
-	return ;
+	//if (SampleHandle != (HSAMPLE)INVALID_MILES_HANDLE) {
+	//	::AIL_set_sample_user_data (SampleHandle, i, val);
+	//}
 }
 
 
@@ -306,14 +294,14 @@ SoundStreamHandleClass::Set_Sample_User_Data (S32 i, U32 val)
 //	Get_Sample_User_Data
 //
 //////////////////////////////////////////////////////////////////////
-U32
-SoundStreamHandleClass::Get_Sample_User_Data (S32 i)
+uint32_t
+SoundStreamHandleClass::Get_Sample_User_Data (int32_t i)
 {
-	U32 retval = 0;
+	uint32_t retval = 0;
 
-	if (SampleHandle != (HSAMPLE)INVALID_MILES_HANDLE) {
-		retval = ::AIL_sample_user_data (SampleHandle, i);
-	}
+	//if (SampleHandle != (HSAMPLE)INVALID_MILES_HANDLE) {
+	//	retval = ::AIL_sample_user_data (SampleHandle, i);
+	//}
 
 	return retval;
 }
@@ -324,14 +312,14 @@ SoundStreamHandleClass::Get_Sample_User_Data (S32 i)
 //	Get_Sample_Playback_Rate
 //
 //////////////////////////////////////////////////////////////////////
-S32
+int32_t
 SoundStreamHandleClass::Get_Sample_Playback_Rate (void)
 {	
-	S32 retval = 0;
+	int32_t retval = 0;
 	
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		retval = ::AIL_stream_playback_rate (StreamHandle);
-	}
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	retval = ::AIL_stream_playback_rate (StreamHandle);
+	//}
 
 	return retval;
 }
@@ -343,13 +331,11 @@ SoundStreamHandleClass::Get_Sample_Playback_Rate (void)
 //
 //////////////////////////////////////////////////////////////////////
 void
-SoundStreamHandleClass::Set_Sample_Playback_Rate (S32 rate)
+SoundStreamHandleClass::Set_Sample_Playback_Rate (int32_t rate)
 {
-	if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
-		::AIL_set_stream_playback_rate (StreamHandle, rate);
-	}
-
-	return ;
+	//if (StreamHandle != (HSTREAM)INVALID_MILES_HANDLE) {
+	//	::AIL_set_stream_playback_rate (StreamHandle, rate);
+	//}
 }
 
 
@@ -361,6 +347,5 @@ SoundStreamHandleClass::Set_Sample_Playback_Rate (S32 rate)
 void
 SoundStreamHandleClass::Set_Miles_Handle (uint32 handle)
 {
-	SampleHandle = (HSAMPLE)handle;
-	return ;
+	SampleHandle = (void*)handle;
 }

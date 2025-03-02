@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -468,7 +467,7 @@ Bool SpecialAbilityUpdate::isPowerCurrentlyInUse( const CommandButton *command )
 	{
 		if( command->getSpecialPowerTemplate() && command->getSpecialPowerTemplate()->getSpecialPowerType() == SPECIAL_REMOTE_CHARGES )
 		{
-			if( !BitTest( command->getOptions(), CONTEXTMODE_COMMAND ) )
+			if( !OH_BitTest( command->getOptions(), CONTEXTMODE_COMMAND ) )
 			{
 				//This is the detonate charge button. Treat it backwards saying it's in use when we don't have any special objects (charges).
 				//That way, the button will be grayed out.

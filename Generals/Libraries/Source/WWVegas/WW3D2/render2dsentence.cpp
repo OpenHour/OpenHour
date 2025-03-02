@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -33,6 +32,8 @@
  *---------------------------------------------------------------------------------------------*
  * Functions:                                                                                  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+#include <algorithm>
 
 #include "render2dsentence.h"
 #include "surfaceclass.h"
@@ -1720,8 +1721,8 @@ FontCharsClass::Grow_Unicode_Array (WCHAR ch)
 		return ;
 	} 
 
-	uint16 first_index	= min( FirstUnicodeChar, ch );
-	uint16 last_index		= max( LastUnicodeChar, ch );
+	uint16 first_index	= std::min( FirstUnicodeChar, ch );
+	uint16 last_index		= std::max( LastUnicodeChar, ch );
 	uint16 count			= (last_index - first_index) + 1;
 
 	//

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -40,7 +39,6 @@
 #include "GameClient/GameWindowManager.h"
 #include "GameClient/GadgetListBox.h"
 #include "GameNetwork/GameSpy/PeerDefs.h"
-#include "GameNetwork/GameSpyOverlay.h"
 #include "GameClient/MapUtil.h"
 #include "GameNetwork/GUIUtil.h"
 
@@ -209,7 +207,6 @@ void WOLMapSelectMenuUpdate( WindowLayout *layout, void *userData )
 
 	if (raiseMessageBoxes)
 	{
-		RaiseGSMessageBox();
 		raiseMessageBoxes = false;
 	}
 
@@ -244,7 +241,7 @@ WindowMsgHandledType WOLMapSelectMenuInput( GameWindow *window, UnsignedInt msg,
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OH_BitTest( state, KEY_STATE_UP ) )
 					{
 						AsciiString buttonName( "WOLMapSelectMenu.wnd:ButtonBack" );
 						NameKeyType buttonID = TheNameKeyGenerator->nameToKey( buttonName );

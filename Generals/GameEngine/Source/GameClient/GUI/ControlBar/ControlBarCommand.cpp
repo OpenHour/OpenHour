@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -310,7 +309,7 @@ void ControlBar::populateCommand( Object *obj )
 		{
 
 			//Script only command -- don't show it in the UI.
-			if( BitTest( commandButton->getOptions(), SCRIPT_ONLY ) )
+			if( OH_BitTest( commandButton->getOptions(), SCRIPT_ONLY ) )
 			{
 				m_commandWindows[ i ]->winHide( TRUE );
 				continue;
@@ -336,7 +335,7 @@ void ControlBar::populateCommand( Object *obj )
 				// commands that require sciences we don't have are hidden so they never show up
 				// cause we can never pick "another" general technology throughout the game
 				//
-				if( BitTest( commandButton->getOptions(), NEED_SPECIAL_POWER_SCIENCE ) )
+				if( OH_BitTest( commandButton->getOptions(), NEED_SPECIAL_POWER_SCIENCE ) )
 				{
 					const SpecialPowerTemplate *power = commandButton->getSpecialPowerTemplate();
 
@@ -793,11 +792,11 @@ void ControlBar::updateContextCommand( void )
 		// for check-like commands we will keep the push button "pushed" or "unpushed" depending
 		// on the current running status of the command
 		//
-		if( BitTest( command->getOptions(), CHECK_LIKE ))
+		if( OH_BitTest( command->getOptions(), CHECK_LIKE ))
 		{
 
 			// sanity, check like commands should have windows that are check like as well
-			DEBUG_ASSERTCRASH( BitTest( win->winGetStatus(), WIN_STATUS_CHECK_LIKE ),	
+			DEBUG_ASSERTCRASH( OH_BitTest( win->winGetStatus(), WIN_STATUS_CHECK_LIKE ),	
 												 ("updateContextCommand: Error, gadget window for command '%s' is not check-like!\n",
 												 command->getName().str()) );
 
@@ -955,7 +954,7 @@ CommandAvailability ControlBar::getCommandAvailability( const CommandButton *com
 	
 	// if we are only disabled by being underpowered, and this button doesn't care, well, fix it
 	if (disabled
-			&& BitTest(command->getOptions(), IGNORES_UNDERPOWERED) 
+			&& OH_BitTest(command->getOptions(), IGNORES_UNDERPOWERED) 
 			&& obj->getDisabledFlags().test(DISABLED_UNDERPOWERED)
 			&& obj->getDisabledFlags().count() == 1)
 	{
@@ -982,7 +981,7 @@ CommandAvailability ControlBar::getCommandAvailability( const CommandButton *com
  	}
 
 	// if the command requires an upgrade and we don't have it we can't do it
-	if( BitTest( command->getOptions(), NEED_UPGRADE ) )
+	if( OH_BitTest( command->getOptions(), NEED_UPGRADE ) )
 	{
 		const UpgradeTemplate *upgradeT = command->getUpgradeTemplate();
 		if (upgradeT)
@@ -1002,7 +1001,7 @@ CommandAvailability ControlBar::getCommandAvailability( const CommandButton *com
 	}
 
 	ProductionUpdateInterface *pu = obj->getProductionUpdateInterface();
-	if( pu && pu->firstProduction() && BitTest( command->getOptions(), NOT_QUEUEABLE ) )
+	if( pu && pu->firstProduction() && OH_BitTest( command->getOptions(), NOT_QUEUEABLE ) )
 	{
 		//This button is designated so that it is incapable of building this upgrade/object
 		//when anything is in the production queue.
@@ -1355,7 +1354,7 @@ CommandAvailability ControlBar::getCommandAvailability( const CommandButton *com
 		
 		case GUI_COMMAND_STOP:
 		{
-			if( !BitTest( command->getOptions(), OPTION_ONE ) )
+			if( !OH_BitTest( command->getOptions(), OPTION_ONE ) )
 			{
 				return COMMAND_AVAILABLE;
 			}

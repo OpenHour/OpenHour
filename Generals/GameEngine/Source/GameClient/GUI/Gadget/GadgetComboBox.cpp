@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -106,7 +105,7 @@ WindowMsgHandledType GadgetComboBoxInput( GameWindow *window, UnsignedInt msg,
 				case KEY_RIGHT:
 				case KEY_TAB:
 
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OH_BitTest( mData2, KEY_STATE_DOWN ) )
 						TheWindowManager->winNextTab(window);
 					break;
 
@@ -114,7 +113,7 @@ WindowMsgHandledType GadgetComboBoxInput( GameWindow *window, UnsignedInt msg,
 				case KEY_UP:
 				case KEY_LEFT:
 
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OH_BitTest( mData2, KEY_STATE_DOWN ) )
 						TheWindowManager->winPrevTab(window);
 					break;
 
@@ -226,7 +225,7 @@ WindowMsgHandledType GadgetComboBoxInput( GameWindow *window, UnsignedInt msg,
 		case GWM_MOUSE_ENTERING:
 		{
 
-			if( BitTest( instData->getStyle(), GWS_MOUSE_TRACK ) ) 
+			if( OH_BitTest( instData->getStyle(), GWS_MOUSE_TRACK ) ) 
 			{
 
 				BitSet( instData->m_state, WIN_STATE_HILITED );
@@ -246,7 +245,7 @@ WindowMsgHandledType GadgetComboBoxInput( GameWindow *window, UnsignedInt msg,
 		case GWM_MOUSE_LEAVING:
 		{
 
-			if( BitTest( instData->getStyle(), GWS_MOUSE_TRACK )) 
+			if( OH_BitTest( instData->getStyle(), GWS_MOUSE_TRACK )) 
 			{
 
 				BitClear( instData->m_state, WIN_STATE_HILITED );
@@ -264,7 +263,7 @@ WindowMsgHandledType GadgetComboBoxInput( GameWindow *window, UnsignedInt msg,
 		// ------------------------------------------------------------------------
 		case GWM_LEFT_DRAG:
 
-			if (BitTest( instData->getStyle(), GWS_MOUSE_TRACK ) )
+			if (OH_BitTest( instData->getStyle(), GWS_MOUSE_TRACK ) )
 				TheWindowManager->winSendSystemMsg( window->winGetOwner(), 
 																						GGM_LEFT_DRAG,
 																						(WindowMsgData)window, 
@@ -471,7 +470,7 @@ WindowMsgHandledType GadgetComboBoxSystem( GameWindow *window, UnsignedInt msg,
 			if ( comboData->listBox )
 				GadgetListBoxReset(comboData->listBox);
 			if ( comboData->editBox )
-				GadgetTextEntrySetText(comboData->editBox, UnicodeString.TheEmptyString );
+				GadgetTextEntrySetText(comboData->editBox, UnicodeString::TheEmptyString );
 			comboData->entryCount = 0;
 			//HideListBox(window);	
 			break;
@@ -902,7 +901,7 @@ UnicodeString GadgetComboBoxGetText( GameWindow *comboBox )
 		return UnicodeString::TheEmptyString;
 
 	// verify that this is a combo box
-	if( BitTest( comboBox->winGetStyle(), GWS_COMBO_BOX ) == FALSE )
+	if( OH_BitTest( comboBox->winGetStyle(), GWS_COMBO_BOX ) == FALSE )
 		return UnicodeString::TheEmptyString;
 	
 	return GadgetTextEntryGetText( GadgetComboBoxGetEditBox(comboBox) );

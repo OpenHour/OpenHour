@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -667,7 +666,7 @@ UpdateSleepTime ProductionUpdate::update( void )
 	// Actually, there will be nothing in the queue since everything gets cancel/refunded
 	// at the start of sell, but we still don't want to do anything here.
 	//
-	if( BitTest( us->getStatusBits(), OBJECT_STATUS_SOLD ) )
+	if( OH_BitTest( us->getStatusBits(), OBJECT_STATUS_SOLD ) )
 		return UPDATE_SLEEP_NONE;
 
 	// get the player that is building this thing

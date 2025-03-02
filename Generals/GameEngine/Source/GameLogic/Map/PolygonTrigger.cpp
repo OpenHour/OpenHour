@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -292,9 +291,10 @@ void PolygonTrigger::addPolygonTrigger(PolygonTrigger *pTrigger)
 	triggers.  note - does NOT delete pTrigger.
 */
 void PolygonTrigger::removePolygonTrigger(PolygonTrigger *pTrigger)
-{	
+{
+	PolygonTrigger *pTrig = nullptr;
 	PolygonTrigger *pPrev = NULL;
-	for (PolygonTrigger *pTrig=getFirstPolygonTrigger(); pTrig; pTrig = pTrig->getNext()) {
+	for (pTrig=getFirstPolygonTrigger(); pTrig; pTrig = pTrig->getNext()) {
 		if (pTrig==pTrigger) break;
 		pPrev = pTrig;
 	}

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -30,6 +29,8 @@
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
+#include <timeapi.h>
+
 #include "Common/GameEngine.h"
 #include "Common/GameState.h"
 #include "GameClient/GameText.h"
@@ -58,7 +59,6 @@
 #include "GameNetwork/GameSpy/PeerThread.h"
 #include "GameNetwork/GameSpy/PersistentStorageDefs.h"
 #include "GameNetwork/GameSpy/PersistentStorageThread.h"
-#include "GameNetwork/GameSpyOverlay.h"
 #include "GameNetwork/NAT.h"
 #include "GameNetwork/GUIUtil.h"
 #include "GameNetwork/GameSpy/GSConfig.h"
@@ -252,7 +252,7 @@ void PopBackToLobby( void )
 	DEBUG_LOG(("PopBackToLobby() - parentWOLGameSetup is %X\n", parentWOLGameSetup));
 	if (parentWOLGameSetup)
 	{
-		nextScreen = "Menus/WOLCustomLobby.wnd";
+		//nextScreen = "Menus/WOLCustomLobby.wnd";
 		TheShell->pop();
 	}
 }
@@ -456,12 +456,12 @@ static void playerTooltip(GameWindow *window,
 	else
 	{
 		// not us
-		if (TheGameSpyInfo->getBuddyMap()->find(profileID) != TheGameSpyInfo->getBuddyMap()->end())
+		/*if (TheGameSpyInfo->getBuddyMap()->find(profileID) != TheGameSpyInfo->getBuddyMap()->end())
 		{
 			// buddy
 			tooltip.format(TheGameText->fetch("TOOLTIP:BuddyPlayer"), uName.str());
 		}
-		else
+		else*/
 		{
 			if (profileID)
 			{
@@ -836,7 +836,7 @@ static void StartPressed(void)
 	// Check for too few teams
 	int numRandom = 0;
 	std::set<Int> teams; 
-	for (i=0; i<MAX_SLOTS; ++i)
+	for (Int i=0; i<MAX_SLOTS; ++i)
 	{
 		GameSlot *slot = myGame->getSlot(i);
 		if (slot && slot->isOccupied() && slot->getPlayerTemplate() != PLAYERTEMPLATE_OBSERVER)
@@ -883,7 +883,6 @@ static void StartPressed(void)
 		GameWindow *buttonBuddy = TheWindowManager->winGetWindowFromId(NULL, NAMEKEY("GameSpyGameOptionsMenu.wnd:ButtonCommunicator"));
 		if (buttonBuddy)
 			buttonBuddy->winEnable(FALSE);
-		GameSpyCloseOverlay(GSOVERLAY_BUDDY);
 
 		*TheGameSpyGame = *myGame;
 		TheGameSpyGame->startGame(0);
@@ -1185,8 +1184,7 @@ void WOLGameSetupMenuInit( WindowLayout *layout, void *userData )
 			UnicodeString title, body;
 			title = TheGameText->fetch( "GUI:GSErrorTitle" );
 			body = TheGameText->fetch( disconMunkee );
-			GameSpyCloseAllOverlays();
-			GSMessageBoxOk( title, body );
+			//GameSpyCloseAllOverlays();
 			TheGameSpyInfo->reset();
 			DEBUG_LOG(("WOLGameSetupMenuInit() - game was in progress, and we were disconnected, so pop immediate back to main menu\n"));
 			TheShell->popImmediate();
@@ -1401,7 +1399,6 @@ void WOLGameSetupMenuShutdown( WindowLayout *layout, void *userData )
 
 	TheShell->reverseAnimatewindow();
 
-	RaiseGSMessageBox();
 	TheTransitionHandler->reverse("GameSpyGameOptionsMenuFade");
 }  // void WOLGameSetupMenuShutdown( WindowLayout *layout, void *userData )
 
@@ -1432,7 +1429,6 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 
 	if (raiseMessageBoxes)
 	{
-		RaiseGSMessageBox();
 		raiseMessageBoxes = false;
 	}
 
@@ -1496,8 +1492,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 					TheGameSpyGame->reset();
 				TheGameSpyInfo->leaveStagingRoom();
 				//TheGameSpyInfo->joinBestGroupRoom();
-				GSMessageBoxOk(TheGameText->fetch("GUI:HostLeftTitle"), TheGameText->fetch("GUI:HostLeft"));
-				nextScreen = "Menus/WOLCustomLobby.wnd";
+				//nextScreen = "Menus/WOLCustomLobby.wnd";
 				TheShell->pop();
 			}
 			return;
@@ -1526,7 +1521,6 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 				TheGameSpyInfo->getCurrentStagingRoom()->reset();
 				TheGameSpyInfo->leaveStagingRoom();
 				//TheGameSpyInfo->joinBestGroupRoom();
-				GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:NATNegotiationFailed"));
 				nextScreen = "Menus/WOLCustomLobby.wnd";
 				TheShell->pop();
 				return;
@@ -1581,7 +1575,6 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 					GameWindow *buttonBuddy = TheWindowManager->winGetWindowFromId(NULL, NAMEKEY("GameSpyGameOptionsMenu.wnd:ButtonCommunicator"));
 					if (buttonBuddy)
 						buttonBuddy->winEnable(FALSE);
-					GameSpyCloseOverlay(GSOVERLAY_BUDDY);
 
 					*TheGameSpyGame = *myGame;
 					TheGameSpyGame->startGame(0);
@@ -1607,10 +1600,10 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 				break;
 			case PeerResponse::PEERRESPONSE_PLAYERJOIN:
 				{
-					if (resp.player.roomType != StagingRoom)
+					/*if (resp.player.roomType != StagingRoom)
 					{
 						break;
-					}
+					}*/
 					sawImportantMessage = TRUE;
 					PlayerInfo p;
 					fillPlayerInfo(&resp, &p);
@@ -1747,7 +1740,6 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 								TheGameSpyInfo->getCurrentStagingRoom()->reset();
 								TheGameSpyInfo->leaveStagingRoom();
 								//TheGameSpyInfo->joinBestGroupRoom();
-								GSMessageBoxOk(TheGameText->fetch("GUI:HostLeftTitle"), TheGameText->fetch("GUI:HostLeft"));
 								nextScreen = "Menus/WOLCustomLobby.wnd";
 								TheShell->pop();
 							}
@@ -1772,8 +1764,7 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 					disconMunkee.format("GUI:GSDisconReason%d", resp.discon.reason);
 					title = TheGameText->fetch( "GUI:GSErrorTitle" );
 					body = TheGameText->fetch( disconMunkee );
-					GameSpyCloseAllOverlays();
-					GSMessageBoxOk( title, body );
+					//GameSpyCloseAllOverlays();
 					TheGameSpyInfo->reset();
 					TheShell->pop();
 				}
@@ -1951,7 +1942,6 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 									TheGameSpyInfo->getCurrentStagingRoom()->reset();
 									TheGameSpyInfo->leaveStagingRoom();
 									//TheGameSpyInfo->joinBestGroupRoom();
-									GSMessageBoxOk(TheGameText->fetch("GUI:GSErrorTitle"), TheGameText->fetch("GUI:GSKicked"));
 									nextScreen = "Menus/WOLCustomLobby.wnd";
 									TheShell->pop();
 								}
@@ -2043,7 +2033,6 @@ void WOLGameSetupMenuUpdate( WindowLayout * layout, void *userData)
 								{
 									message = TheGameText->fetch("GUI:GSKickedGameFull");
 								}
-								GSMessageBoxOk(TheGameText->fetch("GUI:GSErrorTitle"), message);
 								nextScreen = "Menus/WOLCustomLobby.wnd";
 								TheShell->pop();
 							}
@@ -2286,7 +2275,7 @@ WindowMsgHandledType WOLGameSetupMenuInput( GameWindow *window, UnsignedInt msg,
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OH_BitTest( state, KEY_STATE_UP ) )
 					{
 						TheWindowManager->winSendSystemMsg( window, GBM_SELECTED, 
 																							(WindowMsgData)buttonBack, buttonBackID );
@@ -2395,7 +2384,7 @@ WindowMsgHandledType WOLGameSetupMenuSystem( GameWindow *window, UnsignedInt msg
 														 WindowMsgData mData1, WindowMsgData mData2 )
 {
 	UnicodeString txtInput;
-	static buttonCommunicatorID = NAMEKEY_INVALID;
+	static Int buttonCommunicatorID = NAMEKEY_INVALID;
 	switch( msg )
 	{
 		//-------------------------------------------------------------------------------------------------	
@@ -2495,7 +2484,7 @@ WindowMsgHandledType WOLGameSetupMenuSystem( GameWindow *window, UnsignedInt msg
 
 				GameWindow *control = (GameWindow *)mData1;
 				Int controlID = control->winGetWindowId();
-				static buttonCommunicatorID = NAMEKEY("GameSpyGameOptionsMenu.wnd:ButtonCommunicator");
+				static NameKeyType buttonCommunicatorID = NAMEKEY("GameSpyGameOptionsMenu.wnd:ButtonCommunicator");
 
 				if ( controlID == buttonBackID )
 				{
@@ -2517,7 +2506,7 @@ WindowMsgHandledType WOLGameSetupMenuSystem( GameWindow *window, UnsignedInt msg
 				} //if ( controlID == buttonBack )
 				else if ( controlID == buttonCommunicatorID )
 				{
-					GameSpyToggleOverlay( GSOVERLAY_BUDDY );
+					//GameSpyToggleOverlay( GSOVERLAY_BUDDY );
 
 				}
 				else if ( controlID == buttonEmoteID )

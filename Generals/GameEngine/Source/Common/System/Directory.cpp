@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -95,7 +94,7 @@ Directory::Directory( const AsciiString& dirPath ) : m_dirPath(dirPath)
 	while (!done)
 	{
 		// if this is a subdirectory keep the name around till the end
-		if( BitTest( item.dwFileAttributes, FILE_ATTRIBUTE_DIRECTORY ) )
+		if( OH_BitTest( item.dwFileAttributes, FILE_ATTRIBUTE_DIRECTORY ) )
 		{
 			if ( strcmp( item.cFileName, "." ) && strcmp( item.cFileName, ".." ) )
 			{

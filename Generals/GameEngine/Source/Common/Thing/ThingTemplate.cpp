@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -989,11 +988,11 @@ void ThingTemplate::validateAudio()
 	{
 		if (!it->second.getEventName().isEmpty() && it->second.getEventName().compareNoCase("NoSound") != 0) 
 		{
-			DEBUG_ASSERTCRASH(TheAudio->isValidAudioEvent(&it->second), 
-												("Invalid UnitSpecificSound '%s' in Object '%s'. (%s?)", 
-												it->first.str(), 
-												getName().str(), 
-												it->second.getEventName().str())); 
+			DEBUG_ASSERTCRASH(TheAudio->isValidAudioEvent(&it->second),
+												("Invalid UnitSpecificSound '%s' in Object '%s'. (%s?)",
+												it->first.str(),
+												getName().str(),
+												it->second.getEventName().str()));
 		}
 	}
 #endif
@@ -1169,7 +1168,8 @@ void ThingTemplate::initForLTA(const AsciiString& name)
 
 	char buffer[1024];
 	strncpy(buffer, name.str(), sizeof(buffer));
-	for (int i=0; buffer[i]; i++) {
+	int i = 0;
+	for (i=0; buffer[i]; i++) {
 		if (buffer[i] == '/') {
 			i++;
 			break;

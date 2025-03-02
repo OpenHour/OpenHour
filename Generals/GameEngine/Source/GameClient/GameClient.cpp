@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -30,6 +29,8 @@
 // SYSTEM INCLUDES ////////////////////////////////////////////////////////////
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 #include "GameClient/GameClient.h"
+
+#include <timeapi.h>
 
 // USER INCLUDES //////////////////////////////////////////////////////////////
 #include "Common/ActionManager.h"
@@ -431,7 +432,7 @@ void GameClient::reset( void )
 {
 	Drawable *draw, *nextDraw;
 	m_drawableHash.clear();
-	m_drawableHash.resize(DRAWABLE_HASH_SIZE);
+	//m_drawableHash.resize(DRAWABLE_HASH_SIZE);
 	
 	// need to reset the in game UI to clear drawables before they are destroyed
 	TheInGameUI->reset();
@@ -1099,7 +1100,7 @@ void GameClient::preloadAssets( TimeOfDay timeOfDay )
 	DEBUG_LOG(("Preloading memory dwAvailVirtual  %d --> %d : %d\n",
 		before.dwAvailVirtual, after.dwAvailVirtual, before.dwAvailVirtual - after.dwAvailVirtual));
 
-	char *textureNames[] = {
+	const char *textureNames[] = {
 		"ptspruce01.tga",
 		"exrktflame.tga",
 		"cvlimo3_d2.tga",
@@ -1142,7 +1143,7 @@ void GameClient::preloadAssets( TimeOfDay timeOfDay )
 	};
 
 	GlobalMemoryStatus(&before);
-	for (i=0; *textureNames[i]; ++i)
+	for (int i=0; *textureNames[i]; ++i)
 		TheDisplay->preloadTextureAssets(textureNames[i]);
 	GlobalMemoryStatus(&after);
 

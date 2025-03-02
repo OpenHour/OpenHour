@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -177,7 +176,8 @@ class SoundSceneClass
 
 		//////////////////////////////////////////////////////////////////////
 		//	Collection methods
-		//////////////////////////////////////////////////////////////////////		
+		//////////////////////////////////////////////////////////////////////
+	public:
 		class AudibleInfoClass : public MultiListObjectClass, public AutoPoolClass<AudibleInfoClass, 64>
 		{
 		public:
@@ -193,6 +193,7 @@ class SoundSceneClass
 			float						distance2;
 		};
 
+	protected:
 		typedef MultiListClass<AudibleInfoClass>	COLLECTED_SOUNDS;
 
 		virtual void			Collect_Audible_Sounds (Listener3DClass *listener, COLLECTED_SOUNDS &list);

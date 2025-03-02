@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -316,7 +315,9 @@ static INIBlockParse findBlockParse(const char* token)
 //-------------------------------------------------------------------------------------------------
 static INIFieldParseProc findFieldParse(const FieldParse* parseTable, const char* token, int& offset, const void*& userData)
 {
-	for (const FieldParse* parse = parseTable; parse->token; ++parse)
+	const FieldParse* parse = nullptr;
+
+	for (parse = parseTable; parse->token; ++parse)
 	{
 		if (strcmp( parse->token, token ) == 0)
 		{
@@ -1502,7 +1503,7 @@ void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList
 				for (int ptIdx = 0; ptIdx < parseTableList.getCount(); ++ptIdx)
 				{
 					int offset = 0;
-					void* userData = 0;
+					const void* userData = nullptr;
 					INIFieldParseProc parse = findFieldParse(parseTableList.getNthFieldParse(ptIdx), field, offset, userData);
 					if (parse)
 					{

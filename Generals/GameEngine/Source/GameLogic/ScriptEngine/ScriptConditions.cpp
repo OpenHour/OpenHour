@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1128,8 +1127,8 @@ Bool ScriptConditions::evaluateNamedDiscovered(Parameter *pItemParm, Parameter* 
 	}
 
 	// If we are stealthed we are not visible.
-	if (BitTest( theObj->getStatusBits(), OBJECT_STATUS_STEALTHED) && 
-		!BitTest( theObj->getStatusBits(), OBJECT_STATUS_DETECTED)) {
+	if (OH_BitTest( theObj->getStatusBits(), OBJECT_STATUS_STEALTHED) && 
+		!OH_BitTest( theObj->getStatusBits(), OBJECT_STATUS_DETECTED)) {
 		return false;
 	}
 	ObjectShroudStatus shroud = theObj->getShroudedStatus(pPlayer->getPlayerIndex());
@@ -1164,8 +1163,8 @@ Bool ScriptConditions::evaluateTeamDiscovered(Parameter *pTeamParm, Parameter *p
 		}
 		
 		// If we are stealthed we are not visible.
-		if (BitTest( pObj->getStatusBits(), OBJECT_STATUS_STEALTHED) && 
-			!BitTest( pObj->getStatusBits(), OBJECT_STATUS_DETECTED)) {
+		if (OH_BitTest( pObj->getStatusBits(), OBJECT_STATUS_STEALTHED) && 
+			!OH_BitTest( pObj->getStatusBits(), OBJECT_STATUS_DETECTED)) {
 			continue;
 		}
 		ObjectShroudStatus shroud = pObj->getShroudedStatus(pPlayer->getPlayerIndex());
@@ -1826,7 +1825,7 @@ Bool ScriptConditions::evaluateSkirmishSpecialPowerIsReady(Parameter *pSkirmishP
 			for (DLINK_ITERATOR<Object> iter = team->iterate_TeamMemberList(); !iter.done(); iter.advance()) {
 				Object *pObj = iter.cur();
 				if (!pObj) continue;
-				if ( BitTest( pObj->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) || pObj->isDisabled() )
+				if ( OH_BitTest( pObj->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) || pObj->isDisabled() )
 				{
 					continue; // can't fire if under construction or disabled.
 				}

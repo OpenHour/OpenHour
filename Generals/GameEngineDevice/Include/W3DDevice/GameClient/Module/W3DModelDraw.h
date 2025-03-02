@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -33,6 +32,7 @@
 #define __W3DModelDraw_H_
 
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
+#include <unordered_map>
 #include "Common/ModelState.h"
 #include "Common/DrawModule.h" 
 #ifdef BRUTAL_TIMING_HACK // hack for collecting model timing info.  jba.
@@ -135,7 +135,7 @@ struct PristineBoneInfo
 	Matrix3D mtx;
 	Int boneIndex;
 };
-typedef std::hash_map< NameKeyType, PristineBoneInfo, rts::hash<NameKeyType>, rts::equal_to<NameKeyType> > PristineBoneInfoMap;
+typedef std::unordered_map<NameKeyType, PristineBoneInfo, rts::hash<NameKeyType>, rts::equal_to<NameKeyType> > PristineBoneInfoMap;
 
 //-------------------------------------------------------------------------------------------------
 
@@ -267,7 +267,7 @@ private:
 typedef std::vector<ModelConditionInfo> ModelConditionVector;
 
 //-------------------------------------------------------------------------------------------------
-typedef std::hash_map< TransitionSig, ModelConditionInfo, std::hash<TransitionSig>, std::equal_to<TransitionSig> > TransitionMap;
+typedef std::unordered_map< TransitionSig, ModelConditionInfo> TransitionMap;
 
 //-------------------------------------------------------------------------------------------------
 // this is more efficient and also helps solve a projectile-launch-offset problem for double-upgraded

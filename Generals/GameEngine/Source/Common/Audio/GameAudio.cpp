@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -982,18 +981,18 @@ Bool AudioManager::shouldPlayLocally(const AudioEventRTS *audioEvent)
 		return TRUE;
 	}
 
-	if (!BitTest(ei->m_type, (ST_PLAYER | ST_ALLIES | ST_ENEMIES | ST_EVERYONE))) {
+	if (!OH_BitTest(ei->m_type, (ST_PLAYER | ST_ALLIES | ST_ENEMIES | ST_EVERYONE))) {
 		DEBUG_CRASH(("No player restrictions specified for '%s'. Using Everyone.\n", ei->m_audioName.str()));
 		return TRUE;
 	}
 
-	if (BitTest(ei->m_type, ST_EVERYONE)) {
+	if (OH_BitTest(ei->m_type, ST_EVERYONE)) {
 		return TRUE;
 	}
 
 	Player *owningPlayer = ThePlayerList->getNthPlayer(audioEvent->getPlayerIndex());
 
-	if (BitTest(ei->m_type, ST_PLAYER) && BitTest(ei->m_type, ST_UI) && owningPlayer == NULL) {
+	if (OH_BitTest(ei->m_type, ST_PLAYER) && OH_BitTest(ei->m_type, ST_UI) && owningPlayer == NULL) {
 		DEBUG_ASSERTCRASH(!TheGameLogic->isInGameLogicUpdate(), ("Playing %s sound -- player-based UI sound without specifying a player.\n"));
 		return TRUE;
 	}
@@ -1013,17 +1012,17 @@ Bool AudioManager::shouldPlayLocally(const AudioEventRTS *audioEvent)
 		return FALSE;
 	}
 
-	if (BitTest(ei->m_type, ST_PLAYER))  {
+	if (OH_BitTest(ei->m_type, ST_PLAYER))  {
 		return owningPlayer == localPlayer;
 	}
 
-	if (BitTest(ei->m_type, ST_ALLIES)) { 
+	if (OH_BitTest(ei->m_type, ST_ALLIES)) { 
 		// We have to also check that the owning player isn't the local player, because PLAYER 
 		// wasn't specified, or we wouldn't have gotten here.
 		return (owningPlayer != localPlayer) && owningPlayer->getRelationship(localTeam) == ALLIES;
 	}
 
-	if (BitTest(ei->m_type, ST_ENEMIES)) {
+	if (OH_BitTest(ei->m_type, ST_ENEMIES)) {
 		return owningPlayer->getRelationship(localTeam) == ENEMIES;
 	}
 	

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -151,7 +150,7 @@ void AISkirmishPlayer::processBaseBuilding( void )
 				}	else {
 					if (bldg->getControllingPlayer() == m_player) {
 						// Check for built or dozer missing.
-						if( BitTest( bldg->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == TRUE) {
+						if( OH_BitTest( bldg->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == TRUE) {
 							if (bldg->isKindOf(KINDOF_FS_POWER) && !bldg->isKindOf(KINDOF_CASH_GENERATOR)) {
 								powerUnderConstruction = true;
 							}

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -19,6 +18,10 @@
 
 #ifndef URLLAUNCH_H
 #define URLLAUNCH_H
+
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <tchar.h>
 
 HRESULT MakeEscapedURL( LPWSTR pszInURL, LPWSTR *ppszOutURL );
 

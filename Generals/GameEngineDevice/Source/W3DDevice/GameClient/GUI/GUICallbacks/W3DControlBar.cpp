@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -99,7 +98,7 @@ void W3DRightHUDDraw( GameWindow *window, WinInstanceData *instData )
 {
 
 	// draw the default stuff
-	if( BitTest(window->winGetStatus(), WIN_STATUS_IMAGE ))
+	if( OH_BitTest(window->winGetStatus(), WIN_STATUS_IMAGE ))
 		W3DGameWinDefaultDraw( window, instData );
 	
 }  // end W3DRightHUDDraw
@@ -465,7 +464,7 @@ void W3DPowerDrawA( GameWindow *window, WinInstanceData *instData )
 
 void W3DCommandBarGridDraw( GameWindow *window, WinInstanceData *instData )
 {
-	if( BitTest(window->winGetStatus(), WIN_STATUS_IMAGE ))
+	if( OH_BitTest(window->winGetStatus(), WIN_STATUS_IMAGE ))
 	{
 		W3DGameWinDefaultDraw( window, instData );
 		return;
@@ -744,7 +743,7 @@ void W3DDrawMapPreview( GameWindow *window, WinInstanceData *instData)
 
 	}  // end else
 
-	if(!BitTest(window->winGetStatus(), WIN_STATUS_IMAGE) || !window->winGetEnabledImage(0))
+	if(!OH_BitTest(window->winGetStatus(), WIN_STATUS_IMAGE) || !window->winGetEnabledImage(0))
 		TheDisplay->drawFillRect(ul.x, ul.y, lr.x -ul.x, lr.y-ul.y, lineColor);
 	else
 		TheDisplay->drawImage(window->winGetEnabledImage(0) , ul.x, ul.y, lr.x, lr.y );

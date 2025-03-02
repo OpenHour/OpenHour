@@ -42,9 +42,8 @@
 #ifndef __SOUNDBUFFER_H
 #define __SOUNDBUFFER_H
 
-#pragma warning (push, 3)
-#include "Mss.H"
-#pragma warning (pop)
+#define WIN32_LEAN_AND_MEAN 1
+#include <Windows.h>
 
 #include "RefCount.H"
 

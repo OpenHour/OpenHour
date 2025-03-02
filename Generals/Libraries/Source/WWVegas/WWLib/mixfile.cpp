@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -353,7 +352,7 @@ MixFileFactoryClass::Flush_Changes (void)
 		//
 		//	Add the new files that are pending
 		//
-		for (index = 0; index < PendingAddFileList.Count (); index ++) {
+		for (int index = 0; index < PendingAddFileList.Count (); index ++) {
 			new_mix_file.Add_File (PendingAddFileList[index].FullPath, PendingAddFileList[index].Filename);
 		}
 	}

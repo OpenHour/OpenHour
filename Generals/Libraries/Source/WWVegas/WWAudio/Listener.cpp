@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -77,14 +76,14 @@ Listener3DClass::Initialize_Miles_Handle (void)
 	// Do we have a valid sample handle from miles?
 	if (m_SoundHandle != NULL) {
 		
-		::AIL_set_3D_position (m_SoundHandle->Get_H3DSAMPLE (), 0.0F, 0.0F, 0.0F);
-		::AIL_set_3D_orientation (m_SoundHandle->Get_H3DSAMPLE (),
-				0.0F, 0.0F, 1.0F,
-				0.0F, 1.0F, 0.0F);
+		//::AIL_set_3D_position (m_SoundHandle->Get_H3DSAMPLE (), 0.0F, 0.0F, 0.0F);
+		//::AIL_set_3D_orientation (m_SoundHandle->Get_H3DSAMPLE (),
+		//		0.0F, 0.0F, 1.0F,
+		//		0.0F, 1.0F, 0.0F);
 
 
 		// Associate this object instance with the handle
-		m_SoundHandle->Set_Sample_User_Data (INFO_OBJECT_PTR, (S32)this);
+		m_SoundHandle->Set_Sample_User_Data (INFO_OBJECT_PTR, (int32_t)this);
 	}
 		
 	return ;

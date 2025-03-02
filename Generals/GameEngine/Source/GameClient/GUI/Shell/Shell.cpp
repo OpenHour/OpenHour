@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -30,6 +29,8 @@
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
+#include <timeapi.h>
+
 #include "Common/RandomValue.h"
 #include "GameClient/Shell.h"
 #include "GameClient/WindowLayout.h"
@@ -39,7 +40,6 @@
 #include "GameClient/AnimateWindowManager.h"
 #include "GameClient/ShellMenuScheme.h"
 #include "GameLogic/GameLogic.h"
-#include "GameNetwork/GameSpyOverlay.h"
 #include "GameNetwork/GameSpy/PeerDefsImplementation.h"
 
 // PUBLIC DATA ////////////////////////////////////////////////////////////////////////////////////
@@ -265,8 +265,8 @@ void Shell::push( AsciiString filename, Bool shutdownImmediate )
 	// sanity
 	if( filename.isEmpty() )
 		return;
-	if(TheGameSpyInfo)
-			GameSpyCloseAllOverlays();
+	//if(TheGameSpyInfo)
+//			GameSpyCloseAllOverlays();
 
 
 #ifdef DEBUG_LOGGING
@@ -328,8 +328,8 @@ void Shell::push( AsciiString filename, Bool shutdownImmediate )
 void Shell::pop( void )
 {
 	WindowLayout *screen = top();
-	if(TheGameSpyInfo)
-			GameSpyCloseAllOverlays();
+	//if(TheGameSpyInfo)
+	//		GameSpyCloseAllOverlays();
 
 
 	// sanity
@@ -599,8 +599,8 @@ void Shell::unlinkScreen( WindowLayout *screen )
 //-------------------------------------------------------------------------------------------------
 void Shell::doPush( AsciiString layoutFile )
 {
-	if(TheGameSpyInfo)
-			GameSpyCloseAllOverlays();
+//	if(TheGameSpyInfo)
+//			GameSpyCloseAllOverlays();
 	WindowLayout *newScreen;
 	
 	// create new layout and load from window manager

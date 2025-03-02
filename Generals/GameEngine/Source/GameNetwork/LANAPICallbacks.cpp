@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -28,6 +27,8 @@
 // Description: LAN API Callbacks
 ///////////////////////////////////////////////////////////////////////////////////////
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
+
+#include <timeapi.h>
 
 #include "strtok_r.h"
 #include "Common/GameEngine.h"
@@ -104,8 +105,8 @@ void LANAPI::OnAccept( UnsignedInt playerIP, Bool status )
 { 
 	if( AmIHost() )
 	{
-		
-		for (Int i = 0; i < MAX_SLOTS; i++)
+		Int i = 0;
+		for (i = 0; i < MAX_SLOTS; i++)
 		{
 			if (m_currentGame->getIP(i) == playerIP)
 			{
@@ -138,8 +139,9 @@ void LANAPI::OnHasMap( UnsignedInt playerIP, Bool status )
 { 
 	if( AmIHost() )
 	{
+	  	Int i = 0;
 		
-		for (Int i = 0; i < MAX_SLOTS; i++)
+		for (i = 0; i < MAX_SLOTS; i++)
 		{
 			if (m_currentGame->getIP(i) == playerIP)
 			{

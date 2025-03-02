@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -109,7 +108,7 @@ RailroadBehavior::RailroadBehavior( Thing *thing, const ModuleData *moduleData )
 {
 	const RailroadBehaviorModuleData *modData = getRailroadBehaviorModuleData();
 
-	m_carriageTemplateNameIterator = 0;
+	m_carriageTemplateNameIterator = {};
 
 	m_nextStationTask = DO_NOTHING;
 	m_trailerID = INVALID_ID;
@@ -275,7 +274,7 @@ void RailroadBehavior::onCollide( Object *other, const Coord3D *loc, const Coord
 		DemoTrapUpdate *dtu = (DemoTrapUpdate*)other->findUpdateModule(key_DemoTrapUpdate);
 		if( dtu )
 		{
-			if( ! BitTest( other-> getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) )
+			if( ! OH_BitTest( other-> getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) )
 				obj->kill(); // it can only detonate on me if it is ready
 
 			playImpactSound(other, other->getPosition());
@@ -1041,12 +1040,12 @@ void RailroadBehavior::hitchNewCarriagebyTemplate( ObjectID locoID, const Templa
 			}
 			else
 			{
-				DEBUG_ASSERTCRASH( rb, 
+				/*DEBUG_ASSERTCRASH( rb,
 					("%s could not hitch a %s without a RailroadBehavior... \nwhat kind of nutty conductor are you? \nThe next carriage would have been a %s.", 
 					locomotive->getTemplate()->getName().str(),
 					newCarriage->getTemplate()->getName().str(),
 					*iter
-					) );
+					) );*/
 			}
 
 		}

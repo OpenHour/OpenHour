@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -317,7 +316,7 @@ UpdateSleepTime RebuildHoleBehavior::update( void )
 
 	// when re-construction is complete, we remove this hole and worker
 	if( reconstructing && 
-			BitTest( reconstructing->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == FALSE )
+			OH_BitTest( reconstructing->getStatusBits(), OBJECT_STATUS_UNDER_CONSTRUCTION ) == FALSE )
 	{
 		// Transfer hole name to new building
 		TheScriptEngine->transferObjectName( hole->getName(), reconstructing );

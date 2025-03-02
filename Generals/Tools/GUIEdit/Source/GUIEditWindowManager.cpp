@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -814,7 +813,7 @@ GameWindow *GUIEditWindowManager::duplicateWindow( GameWindow *source,
 	source->winGetSize( &size.x, &size.y );
 
 	// create a new window or gadget of the appropriate type
-	if( BitTest( style, GWS_PUSH_BUTTON ) )
+	if( OH_BitTest( style, GWS_PUSH_BUTTON ) )
 	{
 
 		duplicate = 
@@ -829,7 +828,7 @@ GameWindow *GUIEditWindowManager::duplicateWindow( GameWindow *source,
 																							FALSE );
 
 	}  // end if
-	else if( BitTest( style, GWS_RADIO_BUTTON ) )
+	else if( OH_BitTest( style, GWS_RADIO_BUTTON ) )
 	{
 		RadioButtonData *radioData = (RadioButtonData *)source->winGetUserData();
 		RadioButtonData radioDataCopy;
@@ -850,7 +849,7 @@ GameWindow *GUIEditWindowManager::duplicateWindow( GameWindow *source,
 																							 FALSE );
 
 	}  // end else if
-	else if( BitTest( style, GWS_CHECK_BOX ) )
+	else if( OH_BitTest( style, GWS_CHECK_BOX ) )
 	{
 
 		duplicate = 
@@ -865,7 +864,7 @@ GameWindow *GUIEditWindowManager::duplicateWindow( GameWindow *source,
 																						FALSE );
 
 	}  // end else if
-	else if( BitTest( style, GWS_HORZ_SLIDER | GWS_VERT_SLIDER ) )
+	else if( OH_BitTest( style, GWS_HORZ_SLIDER | GWS_VERT_SLIDER ) )
 	{
 		SliderData *sliderData = (SliderData *)source->winGetUserData();
 		SliderData sliderDataCopy;
@@ -918,7 +917,7 @@ GameWindow *GUIEditWindowManager::duplicateWindow( GameWindow *source,
 		}  // end if
 
 	}  // end else if
-	else if( BitTest( style, GWS_COMBO_BOX ) )
+	else if( OH_BitTest( style, GWS_COMBO_BOX ) )
 	{
 		ComboBoxData *comboData = (ComboBoxData *)source->winGetUserData();
 		ComboBoxData comboDataCopy;
@@ -1106,7 +1105,7 @@ GameWindow *GUIEditWindowManager::duplicateWindow( GameWindow *source,
 		}  // end if
 
 	}  // end else if
-	else if( BitTest( style, GWS_SCROLL_LISTBOX ) )
+	else if( OH_BitTest( style, GWS_SCROLL_LISTBOX ) )
 	{
 		ListboxData *listData = (ListboxData *)source->winGetUserData();
 		ListboxData listDataCopy;
@@ -1256,7 +1255,7 @@ GameWindow *GUIEditWindowManager::duplicateWindow( GameWindow *source,
 		}  // end if
 
 	}  // end else if
-	else if( BitTest( style, GWS_ENTRY_FIELD ) )
+	else if( OH_BitTest( style, GWS_ENTRY_FIELD ) )
 	{
 		EntryData *entryData = (EntryData *)source->winGetUserData();
 		EntryData entryDataCopy;
@@ -1281,7 +1280,7 @@ GameWindow *GUIEditWindowManager::duplicateWindow( GameWindow *source,
 																						 FALSE );
 
 	}  // end else if
-	else if( BitTest( style, GWS_STATIC_TEXT ) )
+	else if( OH_BitTest( style, GWS_STATIC_TEXT ) )
 	{
 		TextData *textData = (TextData *)source->winGetUserData();
 		TextData textDataCopy;
@@ -1301,7 +1300,7 @@ GameWindow *GUIEditWindowManager::duplicateWindow( GameWindow *source,
 																							FALSE );
 
 	}  // end else if
-	else if( BitTest( style, GWS_PROGRESS_BAR ) )
+	else if( OH_BitTest( style, GWS_PROGRESS_BAR ) )
 	{
 		
 		duplicate = 
@@ -1316,7 +1315,7 @@ GameWindow *GUIEditWindowManager::duplicateWindow( GameWindow *source,
 																							 FALSE );
 
 	}  // end else if
-	else if( BitTest( style, GWS_USER_WINDOW ) )
+	else if( OH_BitTest( style, GWS_USER_WINDOW ) )
 	{
 
 		// create plain ol generic window

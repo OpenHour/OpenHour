@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -45,6 +44,7 @@
 // SYSTEM INCLUDES 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
+#include <ctime>
 
 // USER INCLUDES 
 #define DEBUG_THREADSAFE
@@ -700,7 +700,7 @@ void ReleaseCrash(const char *reason)
 
 	if (!GetRegistryLanguage().compareNoCase("german2") || !GetRegistryLanguage().compareNoCase("german") )
 	{
-		::MessageBox(NULL, "Es ist ein gravierender Fehler aufgetreten. Solche Fehler können durch viele verschiedene Dinge wie Viren, überhitzte Hardware und Hardware, die den Mindestanforderungen des Spiels nicht entspricht, ausgelöst werden. Tipps zur Vorgehensweise findest du in den Foren unter www.generals.ea.com, Informationen zum Technischen Kundendienst im Handbuch zum Spiel.", "Fehler...", MB_OK|MB_TASKMODAL|MB_ICONERROR);
+		::MessageBox(NULL, "Es ist ein gravierender Fehler aufgetreten. Solche Fehler kï¿½nnen durch viele verschiedene Dinge wie Viren, ï¿½berhitzte Hardware und Hardware, die den Mindestanforderungen des Spiels nicht entspricht, ausgelï¿½st werden. Tipps zur Vorgehensweise findest du in den Foren unter www.generals.ea.com, Informationen zum Technischen Kundendienst im Handbuch zum Spiel.", "Fehler...", MB_OK|MB_TASKMODAL|MB_ICONERROR);
 	} 
 	else
 	{

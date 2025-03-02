@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -94,7 +93,7 @@ CriticalSectionClass::CriticalSectionClass() : handle(NULL), locked(false)
 	#ifdef _UNIX
 		//assert(0);
 	#else
-		handle=W3DNEWARRAY char[sizeof(CRITICAL_SECTION)];
+		handle = new CRITICAL_SECTION;
 		InitializeCriticalSection((CRITICAL_SECTION*)handle);
 	#endif
 }

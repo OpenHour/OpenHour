@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1760,7 +1759,8 @@ void GameLogic::logicMessageDispatcher( GameMessage *msg, void *userData )
 			if (msg->getArgument(0)->boolean)
 			{
 				// transfer control to any living ally
-				for (Int i=0; i<ThePlayerList->getPlayerCount(); ++i)
+				Int i = 0;
+				for (i=0; i<ThePlayerList->getPlayerCount(); ++i)
 				{
 					if (i != msg->getPlayerIndex())
 					{

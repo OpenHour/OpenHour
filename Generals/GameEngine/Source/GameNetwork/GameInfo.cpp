@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -767,7 +766,7 @@ void GameInfo::adjustSlotsForMap()
 		// now go through and close the appropriate number of slots.
 		// note that no players are kicked in this process, we leave
 		// that up to the user.
-		for (i = 0; i < MAX_SLOTS; ++i)
+		for (Int i = 0; i < MAX_SLOTS; ++i)
 		{
 			// we have room for more players, if this slot is unoccupied, set it to open.
 			GameSlot *slot = getSlot(i);

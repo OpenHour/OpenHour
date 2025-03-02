@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -27,6 +26,8 @@
 // Author: Matthew D. Campbell, December 2001
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
+
+#include <timeapi.h>
 
 #include "GameClient/GameInfoWindow.h"
 #include "GameClient/GameText.h"
@@ -245,7 +246,7 @@ void LANDisplayGameList( GameWindow *gameListbox, LANGameInfo *gameList )
 AsciiString GenerateGameOptionsString( void )
 {
 	if(!TheLAN->GetMyGame() || !TheLAN->GetMyGame()->amIHost())
-		return AsciiString.TheEmptyString;
+		return AsciiString::TheEmptyString;
 
 	return GameInfoToAsciiString(TheLAN->GetMyGame());
 }

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -158,7 +157,7 @@ NetPacketList NetPacket::ConstructBigCommandPacketList(NetCommandRef *ref) {
 
 	if (!DoesCommandRequireACommandID(msg->getNetCommandType())) {
 		DEBUG_CRASH(("Trying to wrap a command that doesn't have a unique command ID"));
-		return NULL;
+		return {};
 	}
 
 	UnsignedInt bufferSize = GetBufferSizeNeededForCommand(msg);  // need to implement.  I have a drinking problem.
@@ -5239,7 +5238,7 @@ NetCommandMsg * NetPacket::readGameMessage(UnsignedByte *data, Int &i)
 		lasttype = parserArgType->getType();
 		argsLeftForType = parserArgType->getArgCount();
 	}
-	for (j = 0; j < totalArgCount; ++j) {
+	for (Int j = 0; j < totalArgCount; ++j) {
 		readGameMessageArgumentFromPacket(lasttype, msg, data, i);
 
 		--argsLeftForType;
@@ -5560,7 +5559,7 @@ NetCommandMsg * NetPacket::readPacketRouterAckMessage(UnsignedByte *data, Int &i
 NetCommandMsg * NetPacket::readDisconnectChatMessage(UnsignedByte *data, Int &i) {
 	NetDisconnectChatCommandMsg *msg = newInstance(NetDisconnectChatCommandMsg);
 
-	UnsignedShort text[256];
+	WideChar text[256];
 	UnsignedByte length;
 	memcpy(&length, data + i, sizeof(UnsignedByte));
 	++i;
@@ -5583,7 +5582,7 @@ NetCommandMsg * NetPacket::readDisconnectChatMessage(UnsignedByte *data, Int &i)
 NetCommandMsg * NetPacket::readChatMessage(UnsignedByte *data, Int &i) {
 	NetChatCommandMsg *msg = newInstance(NetChatCommandMsg);
 
-	UnsignedShort text[256];
+	WideChar text[256];
 	UnsignedByte length;
 	Int playerMask;
 	memcpy(&length, data + i, sizeof(UnsignedByte));

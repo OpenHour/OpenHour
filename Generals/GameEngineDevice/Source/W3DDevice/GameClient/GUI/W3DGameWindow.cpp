@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -308,14 +307,14 @@ void W3DGameWinDefaultDraw( GameWindow *window, WinInstanceData *instData )
 	w3dWindow->winGetSize( &size.x, &size.y );
 
 	// image drawing vs color drawing
-	if( BitTest( window->winGetStatus(), WIN_STATUS_IMAGE ) )
+	if( OH_BitTest( window->winGetStatus(), WIN_STATUS_IMAGE ) )
 	{
 		const Image *image;
 
 		// get image
-		if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+		if( OH_BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 			image = window->winGetDisabledImage( 0 );
-		else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+		else if( OH_BitTest( instData->getState(), WIN_STATE_HILITED ) )
 			image = window->winGetHiliteImage( 0 );
 		else
 			image = window->winGetEnabledImage( 0 );
@@ -338,14 +337,14 @@ void W3DGameWinDefaultDraw( GameWindow *window, WinInstanceData *instData )
 		Color color, borderColor;
 
 		// get colors
-		if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+		if( OH_BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 		{
 
 			color				= window->winGetDisabledColor( 0 );
 			borderColor = window->winGetDisabledBorderColor( 0 );
 
 		}  // end if
-		else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+		else if( OH_BitTest( instData->getState(), WIN_STATE_HILITED ) )
 		{
 
 			color				= window->winGetHiliteColor( 0 );
