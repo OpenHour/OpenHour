@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -278,7 +277,7 @@ SoundSceneClass::Collect_Audible_Sounds
 		float length2 = (pos - listener_pos).Length2 ();
 		if (length2 <= radius2) {
 			
-			AudibleInfoClass *audible_info = W3DNEW AudibleInfoClass (sound_obj, length2);
+			AudibleInfoClass *audible_info = new AudibleInfoClass(sound_obj, length2);
 			list.Add (audible_info);
 			
 			//
@@ -310,7 +309,7 @@ SoundSceneClass::Collect_Audible_Sounds
 		float length2 = (pos - listener_pos).Length2 ();
 		if (length2 <= radius2) {
 			
-			AudibleInfoClass *audible_info = W3DNEW AudibleInfoClass (sound_obj, length2);
+			AudibleInfoClass *audible_info = new AudibleInfoClass(sound_obj, length2);
 			list.Add (audible_info);
 
 			//

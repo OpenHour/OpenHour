@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -479,6 +478,10 @@ m_ChooseVictimAlwaysUsesNormal(false)
 	// By default, difficulty should be normal.
 	setGlobalDifficulty(DIFFICULTY_NORMAL);
 
+	for (std::size_t i = 0; i < MAX_ATTACK_PRIORITIES; i++)
+	{
+		m_attackPriorityInfo[i] = newInstance(AttackPriorityInfo);
+	}
 }  // end ScriptEngine
 
 //-------------------------------------------------------------------------------------------------
@@ -523,7 +526,6 @@ ScriptEngine::~ScriptEngine()
 			m_conditionTemplates[i].m_uiName.str()));
 	}
 #endif
-
 }  // end ~ScriptEngine
 
 //-------------------------------------------------------------------------------------------------
@@ -5416,7 +5418,7 @@ void ScriptEngine::reset( void )
 
 	// reset the attack priority data
 	for( i = 0; i < MAX_ATTACK_PRIORITIES; ++i )
-		m_attackPriorityInfo[ i ].reset();
+		m_attackPriorityInfo[ i ]->reset();
 
 	// clear out all of our object counts.
 	for( i = 0; i < MAX_PLAYER_COUNT; ++i )
@@ -5618,7 +5620,7 @@ void ScriptEngine::update( void )
 #ifdef _DEBUG
 	if (TheGameLogic->getFrame()==0) {
 		for (i=0; i<m_numAttackInfo; i++) {
-			m_attackPriorityInfo[i].dumpPriorityInfo();
+			m_attackPriorityInfo[i]->dumpPriorityInfo();
 		}
 	}
 #endif
@@ -6509,16 +6511,16 @@ AttackPriorityInfo * ScriptEngine::findAttackInfo(const AsciiString& name, Bool 
 	// Note - m_attackPriorityInfo[0] is the default info, with an empty name.
 	Int i;
 	for (i=1; i<m_numAttackInfo; i++) {
-		if (m_attackPriorityInfo[i].getName() == name) {
-			return &m_attackPriorityInfo[i];
+		if (m_attackPriorityInfo[i]->getName() == name) {
+			return m_attackPriorityInfo[i];
 		}
 	}
 	if (addIfNotFound && m_numAttackInfo<MAX_ATTACK_PRIORITIES) {
-		m_attackPriorityInfo[m_numAttackInfo].friend_setName(name);
+		m_attackPriorityInfo[m_numAttackInfo]->friend_setName(name);
 		m_numAttackInfo++;
-		return &m_attackPriorityInfo[m_numAttackInfo-1];
+		return m_attackPriorityInfo[m_numAttackInfo-1];
 	}
-	return NULL;
+	return nullptr;
 }
 
 /// Attack priority stuff.
@@ -6528,7 +6530,7 @@ AttackPriorityInfo * ScriptEngine::findAttackInfo(const AsciiString& name, Bool 
 const AttackPriorityInfo *ScriptEngine::getDefaultAttackInfo(void)
 {
 	// Note - m_attackPriorityInfo[0] is the default info, with an empty name.
-	return &m_attackPriorityInfo[0];
+	return m_attackPriorityInfo[0];
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -6539,12 +6541,12 @@ const AttackPriorityInfo *ScriptEngine::getAttackInfo(const AsciiString& name)
 {
 	Int i;
 	for (i=1; i<m_numAttackInfo; i++) {
-		if (m_attackPriorityInfo[i].getName() == name) {
-			return &m_attackPriorityInfo[i];
+		if (m_attackPriorityInfo[i]->getName() == name) {
+			return m_attackPriorityInfo[i];
 		}
 	}
 	// Note - m_attackPriorityInfo[0] is the default info, with an empty name.
-	return &m_attackPriorityInfo[0];
+	return m_attackPriorityInfo[0];
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -8957,7 +8959,7 @@ void ScriptEngine::xfer( Xfer *xfer )
 	{
 
 		// xfer each data
-		xfer->xferSnapshot( &m_attackPriorityInfo[ i ] );
+		xfer->xferSnapshot( m_attackPriorityInfo[ i ] );
 
 	}  // end for i
 

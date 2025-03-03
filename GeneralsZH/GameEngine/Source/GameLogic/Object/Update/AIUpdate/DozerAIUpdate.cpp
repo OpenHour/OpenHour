@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1832,7 +1831,7 @@ void DozerAIUpdate::privateRepair( Object *obj, CommandSourceType cmdSource )
   //
 	//	Object *bridge = TheGameLogic->findObjectByID( btbi->getBridgeID() );
 	//	DEBUG_ASSERTCRASH( bridge, ("Unable to find bridge object\n") );
-	//	if( BitTest( bridge->getStatusBits(), OBJECT_STATUS_UNDERGOING_REPAIR ) == TRUE )
+	//	if( OHBitTest( bridge->getStatusBits(), OBJECT_STATUS_UNDERGOING_REPAIR ) == TRUE )
 	//		return;
   //
 	//}  // end if

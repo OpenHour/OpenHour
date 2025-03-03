@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -857,31 +856,31 @@ char *HierarchyView::getWindowTreeName( GameWindow *window )
 
 	// no name available, construct one based on type
 	Int style = window->winGetStyle();
-	if( BitTest( style, GWS_PUSH_BUTTON ) )
+	if( OHBitTest( style, GWS_PUSH_BUTTON ) )
 		strcpy( buffer, "Button" );
-	else if( BitTest( style, GWS_RADIO_BUTTON ) )
+	else if( OHBitTest( style, GWS_RADIO_BUTTON ) )
 		strcpy( buffer, "Radio Button" );
-	else if( BitTest( style, GWS_TAB_CONTROL ) )
+	else if( OHBitTest( style, GWS_TAB_CONTROL ) )
 		strcpy( buffer, "Tab Control" );
-	else if( BitTest( style, GWS_CHECK_BOX ) )
+	else if( OHBitTest( style, GWS_CHECK_BOX ) )
 		strcpy( buffer, "Check Box" );
-	else if( BitTest( style, GWS_HORZ_SLIDER ) )
+	else if( OHBitTest( style, GWS_HORZ_SLIDER ) )
 		strcpy( buffer, "Horizontal Slider" );
-	else if( BitTest( style, GWS_VERT_SLIDER ) )
+	else if( OHBitTest( style, GWS_VERT_SLIDER ) )
 		strcpy( buffer, "Vertical Slider" );
-	else if( BitTest( style, GWS_STATIC_TEXT ) )
+	else if( OHBitTest( style, GWS_STATIC_TEXT ) )
 		strcpy( buffer, "Static Text" );
-	else if( BitTest( style, GWS_ENTRY_FIELD ) )
+	else if( OHBitTest( style, GWS_ENTRY_FIELD ) )
 		strcpy( buffer, "Text Entry" );
-	else if( BitTest( style, GWS_SCROLL_LISTBOX ) )
+	else if( OHBitTest( style, GWS_SCROLL_LISTBOX ) )
 		strcpy( buffer, "Listbox" );
-	else if( BitTest( style, GWS_PROGRESS_BAR ) )	
+	else if( OHBitTest( style, GWS_PROGRESS_BAR ) )	
 		strcpy( buffer, "Progress Bar" );
-	else if( BitTest( style, GWS_USER_WINDOW ) )
+	else if( OHBitTest( style, GWS_USER_WINDOW ) )
 		strcpy( buffer, "User Window" );
-	else if( BitTest( style, GWS_TAB_PANE ) )
+	else if( OHBitTest( style, GWS_TAB_PANE ) )
 		strcpy( buffer, "Tab Pane" );
-	else if( BitTest( style, GWS_COMBO_BOX ) )
+	else if( OHBitTest( style, GWS_COMBO_BOX ) )
 		strcpy( buffer, "Combo Box" );
 	else
 		strcpy( buffer, "Undefined" );

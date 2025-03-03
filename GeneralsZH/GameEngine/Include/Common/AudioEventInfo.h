@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -128,7 +127,7 @@ public:
 
   /// Is this a permenant sound? That is, if I start this sound up, will it ever end
   /// "on its own" or only if I explicitly kill it?
-  Bool isPermanentSound() const { return BitTest( m_control, AC_LOOP ) && (m_loopCount == 0 );  }
+  Bool isPermanentSound() const { return OHBitTest( m_control, AC_LOOP ) && (m_loopCount == 0 );  }
   
 	static const FieldParse m_audioEventInfo[];		///< the parse table for INI definition
 	const FieldParse *getFieldParse( void ) const { return m_audioEventInfo; }

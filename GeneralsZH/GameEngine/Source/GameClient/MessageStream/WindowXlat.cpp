@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -323,7 +322,7 @@ GameMessageDisposition WindowTranslator::translateGameMessage(const GameMessage 
 			// If we're in a movie, we want to be able to escape out of it
 			if(returnCode != WIN_INPUT_USED 
 				&& (key == KEY_ESC) 
-				&& (BitTest( state, KEY_STATE_UP ))
+				&& (OHBitTest( state, KEY_STATE_UP ))
 				&& TheDisplay->isMoviePlaying()
 				&& TheGlobalData->m_allowExitOutOfMovies == TRUE )
 			{
@@ -333,7 +332,7 @@ GameMessageDisposition WindowTranslator::translateGameMessage(const GameMessage 
 
 			if(returnCode != WIN_INPUT_USED 
 				&& (key == KEY_ESC) 
-				&& (BitTest( state, KEY_STATE_UP ))
+				&& (OHBitTest( state, KEY_STATE_UP ))
 				&& (TheInGameUI && (TheInGameUI->getInputEnabled() == FALSE)) )
 			{
 				returnCode = WIN_INPUT_USED;

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -70,7 +69,6 @@ extern char *LANnextScreen;
 extern Bool LANisShuttingDown;
 extern Bool LANbuttonPushed;
 extern void MapSelectorTooltip(GameWindow *window, WinInstanceData *instData,	UnsignedInt mouse);
-extern void gameAcceptTooltip(GameWindow *window, WinInstanceData *instData, UnsignedInt mouse);
 Color white = GameMakeColor( 255, 255, 255, 255 );
 static bool s_isIniting = FALSE;
 // window ids ------------------------------------------------------------------------------
@@ -202,8 +200,9 @@ static void playerTooltip(GameWindow *window,
 													WinInstanceData *instData,
 													UnsignedInt mouse)
 {
+	Int i = 0;
 	Int idx = -1;
-	for (Int i=0; i<MAX_SLOTS; ++i)
+	for (i=0; i<MAX_SLOTS; ++i)
 	{
 		if (window && window == GadgetComboBoxGetEditBox(comboBoxPlayer[i]))
 		{
@@ -788,7 +787,7 @@ void InitLanGameGadgets( void )
 		buttonAccept[i] = TheWindowManager->winGetWindowFromId( parentLanGameOptions, buttonAcceptID[i] );
 		DEBUG_ASSERTCRASH(buttonAccept[i], ("Could not find the buttonAccept[%d]",i ));
 		//Added by Saad for the tooltips on the MultiPlayer icons
-		buttonAccept[i]->winSetTooltipFunc(gameAcceptTooltip);
+		//buttonAccept[i]->winSetTooltipFunc(gameAcceptTooltip);
 //		
 //		tmpString.format("LanGameOptionsMenu.wnd:ButtonStartPosition%d", i);
 //		buttonStartPositionID[i] = TheNameKeyGenerator->nameToKey( tmpString );
@@ -976,8 +975,10 @@ void updateGameOptions( void )
 		GadgetStaticTextSetText(textEntryMapDisplay, mapDisplayName);
 
     GadgetCheckBoxSetChecked( checkboxLimitSuperweapons, theGame->getSuperweaponRestriction() != 0 );
-		Int itemCount = GadgetComboBoxGetLength(comboBoxStartingCash);
-    for ( Int index = 0; index < itemCount; index++ )
+	Int itemCount = GadgetComboBoxGetLength(comboBoxStartingCash);
+	Int index = 0;
+
+    for (index = 0; index < itemCount; index++)
     {
       Int value  = (Int)GadgetComboBoxGetItemData(comboBoxStartingCash, index);
       if ( value == theGame->getStartingCash().countMoney() )
@@ -1090,7 +1091,7 @@ WindowMsgHandledType LanGameOptionsMenuInput( GameWindow *window, UnsignedInt ms
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OHBitTest( state, KEY_STATE_UP ) )
 					{
 						TheWindowManager->winSendSystemMsg( window, GBM_SELECTED, 
 																							(WindowMsgData)buttonBack, buttonBackID );

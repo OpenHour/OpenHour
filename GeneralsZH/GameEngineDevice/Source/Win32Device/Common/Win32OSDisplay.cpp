@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -50,40 +49,40 @@ static void RTSFlagsToOSFlags(UnsignedInt buttonFlags, UnsignedInt otherFlags, U
 {
 	outWindowsFlags = 0;
 
-	if (BitTest(buttonFlags, OSDBT_OK)) {
+	if (OHBitTest(buttonFlags, OSDBT_OK)) {
 		outWindowsFlags |= MB_OK;
 	}
 	
-	if (BitTest(buttonFlags, OSDBT_CANCEL)) {
+	if (OHBitTest(buttonFlags, OSDBT_CANCEL)) {
 		outWindowsFlags |= MB_OKCANCEL;
 	}
 
 	//-----------------------------------------------------------------------------------------------
-	if (BitTest(otherFlags, OSDOF_SYSTEMMODAL)) {
+	if (OHBitTest(otherFlags, OSDOF_SYSTEMMODAL)) {
 		outWindowsFlags |= MB_SYSTEMMODAL;
 	}
 
-	if (BitTest(otherFlags, OSDOF_APPLICATIONMODAL)) {
+	if (OHBitTest(otherFlags, OSDOF_APPLICATIONMODAL)) {
 		outWindowsFlags |= MB_APPLMODAL;
 	}
 
-	if (BitTest(otherFlags, OSDOF_TASKMODAL)) {
+	if (OHBitTest(otherFlags, OSDOF_TASKMODAL)) {
 		outWindowsFlags |= MB_TASKMODAL;
 	}
 
-	if (BitTest(otherFlags, OSDOF_EXCLAMATIONICON)) {
+	if (OHBitTest(otherFlags, OSDOF_EXCLAMATIONICON)) {
 		outWindowsFlags |= MB_ICONEXCLAMATION;
 	}
 
-	if (BitTest(otherFlags, OSDOF_INFORMATIONICON)) {
+	if (OHBitTest(otherFlags, OSDOF_INFORMATIONICON)) {
 		outWindowsFlags |= MB_ICONINFORMATION;
 	}
 
-	if (BitTest(otherFlags, OSDOF_ERRORICON)) {
+	if (OHBitTest(otherFlags, OSDOF_ERRORICON)) {
 		outWindowsFlags |= MB_ICONERROR;
 	}
 
-	if (BitTest(otherFlags, OSDOF_STOPICON)) {
+	if (OHBitTest(otherFlags, OSDOF_STOPICON)) {
 		outWindowsFlags |= MB_ICONSTOP;
 	}
 

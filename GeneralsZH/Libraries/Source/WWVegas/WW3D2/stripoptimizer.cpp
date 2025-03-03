@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -201,7 +200,7 @@ void StripOptimizerClass::Optimize_Strip_Order (int* strips, int strip_count)
 
 //	WWASSERT((out+outSize)==o);							// HUH?
 
-	for (i = 0; i < outSize; i++)						// copy output
+	for (int i = 0; i < outSize; i++)						// copy output
 		strips[i] = out[i];
 
 	delete[] out;
@@ -288,7 +287,7 @@ void StripOptimizerClass::Optimize_Triangle_Order (int *tris, int triangle_count
 
 	WWASSERT(o == (out+triangle_count));
 
-	for (i = 0; i < triangle_count; i++)
+	for (int i = 0; i < triangle_count; i++)
 	{
 		Tri* d = (Tri*)(tris)+i;
 		*d = out[i];
@@ -716,7 +715,7 @@ inline Vector3i Stripify::getTriangleNodeConnectivityWeights (const TriangleQueu
 
 	Vector3i v(-1,-1,-1);
 
-	for (i = 0; i < 3; i++) {
+	for (int i = 0; i < 3; i++) {
 		if (weight[0] == highestVal) v[i] = +1;
 	}
 		

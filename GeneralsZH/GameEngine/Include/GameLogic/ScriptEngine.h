@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -435,7 +434,7 @@ protected:
 	Int								m_numCounters;
 	TFlag							m_flags[MAX_FLAGS];
 	Int								m_numFlags;
-	AttackPriorityInfo m_attackPriorityInfo[MAX_ATTACK_PRIORITIES];
+	AttackPriorityInfo* m_attackPriorityInfo[MAX_ATTACK_PRIORITIES];
 	Int								m_numAttackInfo;
 	Int								m_endGameTimer;
 	Int								m_closeWindowTimer;

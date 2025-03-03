@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -248,7 +247,7 @@ void W3DMouse::freeD3DAssets(void)
 		REF_PTR_RELEASE(m_currentD3DSurface[i]);
 
 	//free textures.
-	for (i=0; i<NUM_MOUSE_CURSORS; i++)
+	for (Int i=0; i<NUM_MOUSE_CURSORS; i++)
 	{
 		for (Int j=0; j<MAX_2D_CURSOR_ANIM_FRAMES; j++)
 			REF_PTR_RELEASE(cursorTextures[i][j]);

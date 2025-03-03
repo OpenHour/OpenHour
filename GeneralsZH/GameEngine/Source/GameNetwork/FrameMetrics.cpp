@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -76,7 +75,7 @@ void FrameMetrics::init() {
 		m_fpsList[i] = 30.0;
 	}
 	m_fpsListIndex = 0;
-	for (i = 0; i < TheGlobalData->m_networkLatencyHistoryLength; ++i) {
+	for (Int i = 0; i < TheGlobalData->m_networkLatencyHistoryLength; ++i) {
 		m_latencyList[i] = (Real)0.2;
 	}
 	m_cushionIndex = 0;

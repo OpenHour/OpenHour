@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -64,7 +63,7 @@ W3DBufferManager::W3DBufferManager(void)
 
 	for (Int i=0; i<MAX_FVF; i++)
 		m_W3DVertexBuffers[i]=NULL;
-	for (i=0; i<MAX_FVF; i++)
+	for (Int i=0; i<MAX_FVF; i++)
 		for (Int j=0; j<MAX_VB_SIZES; j++)
 			m_W3DVertexBufferSlots[i][j]=NULL;
 

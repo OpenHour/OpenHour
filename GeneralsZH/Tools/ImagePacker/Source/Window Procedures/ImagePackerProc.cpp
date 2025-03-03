@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -147,9 +146,9 @@ BOOL CALLBACK ImagePackerProc( HWND hWndDialog, UINT message,
 
 			// set option checks for gap method
 			UnsignedInt gapOptions = TheImagePacker->getGapMethod();
-			if( BitTest( gapOptions, ImagePacker::GAP_METHOD_EXTEND_RGB ) )
+			if( OHBitTest( gapOptions, ImagePacker::GAP_METHOD_EXTEND_RGB ) )
 				CheckDlgButton( hWndDialog, CHECK_GAP_EXTEND_RGB, BST_CHECKED );
-			if( BitTest( gapOptions, ImagePacker::GAP_METHOD_GUTTER ) )
+			if( OHBitTest( gapOptions, ImagePacker::GAP_METHOD_GUTTER ) )
 				CheckDlgButton( hWndDialog, CHECK_GAP_GUTTER, BST_CHECKED );
 
 			return TRUE;

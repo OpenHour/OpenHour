@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1598,7 +1597,7 @@ void SphereMeshClass::Generate(float radius, int slices, int stacks)
 
 	// Do Fan #2
 	int vtx_idx = Vertex_ct - 1;
-	for (ct = fan_size; ct < (fan_size * 2); ct++) {
+	for (int ct = fan_size; ct < (fan_size * 2); ct++) {
 		fans[ct] = vtx_idx;
 		vtx_idx--;
 	}
@@ -1616,7 +1615,7 @@ void SphereMeshClass::Generate(float radius, int slices, int stacks)
 			int base_vtx  = 1 + (stacks * (Slices+1));
 			int cur_vtx = base_vtx;
 
-			for(ct = 0; ct <= Slices; ct++) {
+			for(int ct = 0; ct <= Slices; ct++) {
 
 				strips[store_idx]   = cur_vtx + (Slices+1);
 				strips[store_idx+1] = cur_vtx;

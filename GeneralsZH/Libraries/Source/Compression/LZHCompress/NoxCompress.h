@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -28,13 +27,13 @@
 #define LZH_EXTENSION ".nxz"
 #define RUL_EXTENSION ".rul"
 
-Bool DecompressFile		(char *infile, char *outfile);
-Bool CompressFile			(char *infile, char *outfile);
-Bool CompressPacket		(char *inPacket, char *outPacket);
-Bool DecompressPacket	(char *inPacket, char *outPacket);
-UnsignedInt CalcNewSize		(UnsignedInt rawSize);
+bool DecompressFile		(char *infile, char *outfile);
+bool CompressFile			(char *infile, char *outfile);
+bool CompressPacket		(char *inPacket, char *outPacket);
+bool DecompressPacket	(char *inPacket, char *outPacket);
+unsigned int CalcNewSize		(unsigned int rawSize);
 
-Bool DecompressMemory		(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize);
-Bool CompressMemory			(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize);
+bool DecompressMemory		(void *inBufferVoid, int inSize, void *outBufferVoid, int& outSize);
+bool CompressMemory			(void *inBufferVoid, int inSize, void *outBufferVoid, int& outSize);
 
 #endif __compress_h

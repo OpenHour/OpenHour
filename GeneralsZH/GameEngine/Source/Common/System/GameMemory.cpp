@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1633,9 +1632,11 @@ void* MemoryPool::allocateBlockDoNotZeroImplementation(DECLARE_LITERALSTRING_ARG
 
 	if (m_firstBlobWithFreeBlocks != NULL && !m_firstBlobWithFreeBlocks->hasAnyFreeBlocks()) 
 	{
+		MemoryPoolBlob* blob = nullptr;
+
 		// hmm... the current 'free' blob has nothing available. look and see if there
 		// are any other existing blobs with freespace.
-		for (MemoryPoolBlob *blob = m_firstBlob; blob != NULL; blob = blob->getNextInList()) 
+		for (blob = m_firstBlob; blob != NULL; blob = blob->getNextInList())
 		{
 			if (blob->hasAnyFreeBlocks())
 			 	break;
@@ -3135,10 +3136,12 @@ void MemoryPoolFactory::debugMemoryReport(Int flags, Int startCheckpoint, Int en
 
 	if (flags & REPORT_POOL_OVERFLOW)
 	{
+		MemoryPool* pool = nullptr;
+
 		DEBUG_LOG(("------------------------------------------\n"));
 		DEBUG_LOG(("Begin Pool Overflow Report\n"));
 		DEBUG_LOG(("------------------------------------------\n"));
-		for (MemoryPool *pool = m_firstPoolInFactory; pool; pool = pool->getNextPoolInList())
+		for (pool = m_firstPoolInFactory; pool; pool = pool->getNextPoolInList())
 		{
 			if (pool->getPeakBlockCount() > pool->getInitialBlockCount())
 			{
@@ -3233,13 +3236,6 @@ void MemoryPoolFactory::debugMemoryReport(Int flags, Int startCheckpoint, Int en
 	these definitions of new/delete) ahead of all others. (We do debug checking
 	to ensure that's the case)
 */
-#if defined(_DEBUG)
-	#pragma comment(lib, "GameEngineDebug")
-#elif defined(_INTERNAL)
-	#pragma comment(lib, "GameEngineInternal")
-#else
-	#pragma comment(lib, "GameEngine")
-#endif
 
 #ifdef MEMORYPOOL_OVERRIDE_MALLOC
 	#pragma comment(linker, "/force:multiple")
@@ -3450,7 +3446,7 @@ void initMemoryManager()
 	linktest = new char[8];
 	delete [] linktest;
 
-	linktest = new char("",1);
+	linktest = new char;
 	delete linktest;
 
 #ifdef MEMORYPOOL_OVERRIDE_MALLOC

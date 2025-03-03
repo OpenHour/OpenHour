@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -300,7 +299,7 @@ UpdateSleepTime ToppleUpdate::update()
 		// Hit so either bounce or stop if too little remaining velocity.
 		m_angularVelocity *= -d->m_bounceVelocityPercent;
 
-		if( BitTest( m_options, TOPPLE_OPTIONS_NO_BOUNCE ) == TRUE || 
+		if( OHBitTest( m_options, TOPPLE_OPTIONS_NO_BOUNCE ) == TRUE || 
 				fabs(m_angularVelocity) < VELOCITY_BOUNCE_LIMIT )
 		{
 			// too slow, just stop
@@ -344,7 +343,7 @@ UpdateSleepTime ToppleUpdate::update()
 		else if( fabs(m_angularVelocity) >= VELOCITY_BOUNCE_SOUND_LIMIT )
 		{
 			// fast enough bounce to warrant the bounce fx
-			if( BitTest( m_options, TOPPLE_OPTIONS_NO_FX ) == FALSE )
+			if( OHBitTest( m_options, TOPPLE_OPTIONS_NO_FX ) == FALSE )
 				FXList::doFXObj(d->m_bounceFX, obj);
 		}
 	}

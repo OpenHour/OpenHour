@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -92,7 +91,6 @@ static void drawFramerateBar(void);
 #include "WW3D2/Render2DSentence.h"
 #include "WW3D2/SortingRenderer.h"
 #include "WW3D2/Textureloader.h"
-#include "WW3D2/DX8WebBrowser.h"
 #include "WW3D2/Mesh.h"
 #include "WW3D2/HLOD.h"
 #include "WW3D2/Meshmatdesc.h"
@@ -462,7 +460,6 @@ W3DDisplay::~W3DDisplay()
 	delete m_assetManager;
 	WW3D::Shutdown();
 	WWMath::Shutdown();
-	DX8WebBrowser::Shutdown();
 	delete TheW3DFileSystem;
 	TheW3DFileSystem = NULL;
 
@@ -823,8 +820,6 @@ void W3DDisplay::init( void )
 		m_nativeDebugDisplay->setFontHeight( 13 );
 		m_nativeDebugDisplay->setFontWidth( 9 );
 	}
-
-	DX8WebBrowser::Initialize();
 
 	// we're now online
 	m_initialized = true;
@@ -1461,7 +1456,7 @@ void W3DDisplay::gatherDebugStats( void )
 
 			unibuffer.concat( L"\nModelStates: " );
 			ModelConditionFlags mcFlags = draw->getModelConditionFlags();
-			const numEntriesPerLine = 4;
+			const int numEntriesPerLine = 4;
 			int lineCount = 0;
 
 			for( int i = 0; i < MODELCONDITION_COUNT; i++ )
@@ -1557,7 +1552,7 @@ void W3DDisplay::drawCurrentDebugDisplay( void )
 		if ( m_debugDisplay && m_debugDisplayCallback )
 		{
 			m_debugDisplay->reset();
-			m_debugDisplayCallback( m_debugDisplay, m_debugDisplayUserData );
+			m_debugDisplayCallback( m_debugDisplay, m_debugDisplayUserData, nullptr );
 		}
 	}
 }  // end drawCurrentDebugDisplay
@@ -2666,7 +2661,7 @@ void W3DDisplay::drawImage( const Image *image, Int startX, Int startY,
 	}
 
 	// if we have raw texture data we will use it, otherwise we are referencing filenames
-	if( BitTest( image->getStatus(), IMAGE_STATUS_RAW_TEXTURE ) )
+	if( OHBitTest( image->getStatus(), IMAGE_STATUS_RAW_TEXTURE ) )
 		m_2DRender->Set_Texture( (TextureClass *)(image->getRawTextureData()) );
 	else
 		m_2DRender->Set_Texture( image->getFilename().str() );
@@ -2688,7 +2683,7 @@ void W3DDisplay::drawImage( const Image *image, Int startX, Int startY,
 			RectClass clipped_rect;
 			RectClass clipped_uv_rect;
 
-			if( BitTest( image->getStatus(), IMAGE_STATUS_ROTATED_90_CLOCKWISE ) )
+			if( OHBitTest( image->getStatus(), IMAGE_STATUS_ROTATED_90_CLOCKWISE ) )
 			{
 
 	
@@ -2756,7 +2751,7 @@ void W3DDisplay::drawImage( const Image *image, Int startX, Int startY,
 	}
 
 	// if rotated 90 degrees clockwise we have to adjust the uv coords
-	if( BitTest( image->getStatus(), IMAGE_STATUS_ROTATED_90_CLOCKWISE ) )
+	if( OHBitTest( image->getStatus(), IMAGE_STATUS_ROTATED_90_CLOCKWISE ) )
 	{
 
 		m_2DRender->Add_Tri( Vector2( screen_rect.Left, screen_rect.Top ), 

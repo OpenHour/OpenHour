@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1022,8 +1021,9 @@ void ActiveBody::createParticleSystems( const AsciiString &boneBaseName,
 		Int boneIndex = GameClientRandomValue( 0, maxSystems - i - 1 );
 
 		// find the actual bone location to use and mark that bone index as used
+        Int j = 0;
 		Int count = 0;
-		for( Int j = 0; j < numBones; j++ )
+		for(j = 0; j < numBones; j++)
 		{
 
 			// ignore bone positions that have already been used

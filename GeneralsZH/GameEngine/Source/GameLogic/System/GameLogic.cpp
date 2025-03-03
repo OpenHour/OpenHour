@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -32,7 +31,6 @@
 #include "Common/AudioAffect.h"
 #include "Common/AudioHandleSpecialValues.h"
 #include "Common/BuildAssistant.h"
-#include "Common/CopyProtection.h"
 #include "Common/CRCDebug.h"
 #include "Common/GameAudio.h"
 #include "Common/GameEngine.h"
@@ -1482,7 +1480,7 @@ void GameLogic::startNewGame( Bool loadingSaveGame )
 		d.setBool(TheKey_teamIsSingleton, true);
 		TheSidesList->addTeam(&d);
 	//}
-	TheSidesList->validateSides();		
+	TheSidesList->validateSides();
 
 	// update the loadscreen 
 	updateLoadProgress(LOAD_PROGRESS_POST_SIDE_LIST_INIT);
@@ -2325,9 +2323,9 @@ void GameLogic::startNewGame( Bool loadingSaveGame )
 	{
 		BuddyRequest req;
 		req.buddyRequestType = BuddyRequest::BUDDYREQUEST_SETSTATUS;
-		req.arg.status.status = GP_PLAYING;
-		strcpy(req.arg.status.statusString, "Playing");
-		sprintf(req.arg.status.locationString, "%s", WideCharStringToMultiByte(TheGameSpyGame->getGameName().str()).c_str());
+		//req.arg.status.status = GP_PLAYING;
+		//strcpy(req.arg.status.statusString, "Playing");
+		//sprintf(req.arg.status.locationString, "%s", WideCharStringToMultiByte(TheGameSpyGame->getGameName().str()).c_str());
 		TheGameSpyBuddyMessageQueue->addRequest(req);
 	}	
 	
@@ -2835,8 +2833,8 @@ Int GameLogic::rebalanceChildSleepyUpdate(Int i)
 
 	// our children are i*2 and i*2+1
   Int child = ((i+1)<<1)-1;
-	UpdateModulePtr* pChild = &m_sleepyUpdates[child];
-	UpdateModulePtr* pSZ = &m_sleepyUpdates[m_sleepyUpdates.size()];	// yes, this is off the end.
+	UpdateModulePtr* pChild = &m_sleepyUpdates.data()[child];
+	UpdateModulePtr* pSZ = &m_sleepyUpdates.data()[m_sleepyUpdates.size()];	// yes, this is off the end.
 
   while (pChild < pSZ) 
 	{
@@ -2867,7 +2865,7 @@ Int GameLogic::rebalanceChildSleepyUpdate(Int i)
 		pI = pChild;
 
 		child = ((i+1)<<1)-1;
-		pChild = &m_sleepyUpdates[child];
+		pChild = &m_sleepyUpdates.data()[child];
   }
 #else
 	// our children are i*2 and i*2+1
@@ -3791,18 +3789,6 @@ void GameLogic::update( void )
 	TheWeaponStore->UPDATE();	
 	TheLocomotorStore->UPDATE();	
 	TheVictoryConditions->UPDATE();
-
-#ifdef DO_COPY_PROTECTION
-	if (!isInShellGame() && isInGame())
-	{
-		if ((m_frame == 1024) && !CopyProtect::validate())
-		{
-			DEBUG_LOG(("Copy protection failed - bailing"));
-			GameMessage *msg = TheMessageStream->appendMessage(GameMessage::MSG_SELF_DESTRUCT);
-			msg->appendBooleanArgument(FALSE);
-		}
-	}
-#endif
 
 	{
 		//Handle disabled statii (and re-enable objects once frame matches)

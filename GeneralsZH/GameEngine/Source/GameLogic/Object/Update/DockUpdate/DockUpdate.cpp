@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -144,9 +143,10 @@ Bool DockUpdate::reserveApproachPosition( Object* docker, Coord3D *position, Int
 	if( position == NULL )
 		return FALSE;
 
+	Int positionIndex = 0;
 	ObjectID dockerID = docker->getID();
 
-	for( Int positionIndex = 0; positionIndex < m_approachPositionOwners.size(); ++positionIndex )
+	for( positionIndex = 0; positionIndex < m_approachPositionOwners.size(); ++positionIndex )
 	{
 		if( m_approachPositionOwners[positionIndex] == dockerID )
 		{
@@ -595,7 +595,7 @@ void DockUpdate::xfer( Xfer *xfer )
 	vectorSize = m_approachPositionOwners.size();
 	xfer->xferInt( &vectorSize );
 	m_approachPositionOwners.resize(vectorSize);
-	for( vectorIndex = 0; vectorIndex < vectorSize; ++vectorIndex )
+	for( Int vectorIndex = 0; vectorIndex < vectorSize; ++vectorIndex )
 	{
 		xfer->xferObjectID( &m_approachPositionOwners[vectorIndex] );
 	}
@@ -604,7 +604,7 @@ void DockUpdate::xfer( Xfer *xfer )
 	vectorSize = m_approachPositionReached.size();
 	xfer->xferInt( &vectorSize );
 	m_approachPositionReached.resize(vectorSize);
-	for( vectorIndex = 0; vectorIndex < vectorSize; ++vectorIndex )
+	for( Int vectorIndex = 0; vectorIndex < vectorSize; ++vectorIndex )
 	{
 		// Vector of Bool gets packed as bitfield internally
 		Bool unpack = m_approachPositionReached[vectorIndex];

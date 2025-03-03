@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1320,9 +1319,10 @@ void ThingTemplate::initForLTA(const AsciiString& name)
 {
 	m_nameString = name;
 
+	int i = 0;
 	char buffer[1024];
 	strncpy(buffer, name.str(), sizeof(buffer));
-	for (int i=0; buffer[i]; i++) {
+	for (i=0; buffer[i]; i++) {
 		if (buffer[i] == '/') {
 			i++;
 			break;

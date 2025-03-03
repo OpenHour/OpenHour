@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -232,21 +231,20 @@ Object *ResourceGatheringManager::findBestSupplyCenter( Object *queryObject )
 		ObjectID currentID = *iterator;
 		Object *currentCenter =TheGameLogic->findObjectByID(currentID);
 
-		if( currentCenter == NULL )
+		if( currentCenter == nullptr )
 		{
-			iterator = m_supplyWarehouses.erase( iterator );
+			iterator = m_supplyCenters.erase( iterator );
+			continue;
 		}
-		else
-		{
-			Real currentCost = computeRelativeCost( queryObject, currentCenter, NULL );
-			if( currentCost < bestCost )
-			{
-				bestCenter = currentCenter;
-				bestCost = currentCost;
-			}
 
-			iterator++;
+		Real currentCost = computeRelativeCost( queryObject, currentCenter, nullptr );
+		if( currentCost < bestCost )
+		{
+			bestCenter = currentCenter;
+			bestCost = currentCost;
 		}
+
+		++iterator;
 	}
 
 	return bestCenter;

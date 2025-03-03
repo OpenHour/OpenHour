@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -39,7 +38,7 @@
 
 #include <string.h>	// stricmp()
 #include "animatedsoundmgr.h"
-#include "ini.h"
+#include "../WWLib/INI.H"
 #include "inisup.h"
 #include "ffactory.h"
 #include "wwfile.h"
@@ -141,7 +140,7 @@ Build_List_From_String
 			// Parse the string and pull out its entries.
 			//
 			count = 0;
-			for (entry = buffer;
+			for (const char* entry = buffer;
 				  (entry != NULL) && (entry[1] != 0);
 				  entry = ::strstr (entry, delimiter))
 			{
@@ -157,7 +156,7 @@ Build_List_From_String
 				// Copy this entry into its own string
 				//
 				StringClass entry_string = entry;
-				char *delim_start = ::strstr (entry_string, delimiter);				
+				char *delim_start = const_cast<char*>(::strstr (entry_string, delimiter));
 				if (delim_start != NULL) {
 					delim_start[0] = 0;
 				}

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -4515,7 +4514,7 @@ void Drawable::startAmbientSound(BodyDamageType dt, TimeOfDay tod, Bool onlyIfPe
 		{
       if ( !onlyIfPermanent || info->isPermanentSound() )
       {
-			  if( BitTest( info->m_type, ST_GLOBAL) || info->m_priority == AP_CRITICAL )
+			  if( OHBitTest( info->m_type, ST_GLOBAL) || info->m_priority == AP_CRITICAL )
 			  {
 				  //Play it anyways.
 				  m_ambientSound->m_event.setDrawableID(getID());

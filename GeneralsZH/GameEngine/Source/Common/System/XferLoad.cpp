@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -186,7 +185,7 @@ void XferLoad::xferSnapshot( Snapshot *snapshot )
 	snapshot->xfer( this );
 
 	// add this snapshot to the game state for later post processing if not restricted
-	if( BitTest( getOptions(), XO_NO_POST_PROCESSING ) == FALSE )
+	if( OHBitTest( getOptions(), XO_NO_POST_PROCESSING ) == FALSE )
 		TheGameState->addPostProcessSnapshot( snapshot );
 
 }  // end xferSnapshot

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -428,7 +427,7 @@ void SinglePlayerLoadScreen::init( GameInfo *game )
 			m_unicodeObjectiveLines[i] = TheGameText->fetch(mission->m_missionObjectivesLabel[i]);
 	}
 
-	for(i = 0; i < MAX_DISPLAYED_UNITS; ++i)
+	for(Int i = 0; i < MAX_DISPLAYED_UNITS; ++i)
 	{
 		lineName.format("SinglePlayerLoadScreen.wnd:StaticTextCameoText%d",i);
 		m_unitDesc[i] = TheWindowManager->winGetWindowFromId( m_loadScreen,TheNameKeyGenerator->nameToKey( lineName ));
@@ -1395,7 +1394,7 @@ void MultiPlayerLoadScreen::init( GameInfo *game )
 
 	Int netSlot = 0;
 	// Loop through and make the loadscreen look all good.
-	for (i = 0; i < MAX_SLOTS; ++i)
+	for (Int i = 0; i < MAX_SLOTS; ++i)
 	{
 		// Load the Progress Bar
 		AsciiString winName;
@@ -1462,7 +1461,7 @@ void MultiPlayerLoadScreen::init( GameInfo *game )
 		netSlot++;
 	}
 	
-	for(i = netSlot; i < MAX_SLOTS; ++i)
+	for(Int i = netSlot; i < MAX_SLOTS; ++i)
 	{
 		m_progressBars[i]->winHide(TRUE);
 		m_playerNames[i]->winHide(TRUE);
@@ -1647,7 +1646,7 @@ GameSlot *lSlot = game->getSlot(game->getLocalSlotNum());
 
 	Int netSlot = 0;
 	// Loop through and make the loadscreen look all good.
-	for (i = 0; i < MAX_SLOTS; ++i)
+	for (Int i = 0; i < MAX_SLOTS; ++i)
 	{
 		// Load the Progress Bar
 		AsciiString winName;
@@ -1731,14 +1730,14 @@ GameSlot *lSlot = game->getSlot(game->getLocalSlotNum());
 			slot->getName().str(), slot->getProfileID(), stats.id));
 
 		Bool isPreorder = TheGameSpyInfo->didPlayerPreorder(stats.id);
-		Int rankPoints = CalculateRank(stats);
-		Int favSide = GetFavoriteSide(stats);
+		//Int rankPoints = CalculateRank(stats);
+		//Int favSide = GetFavoriteSide(stats);
 		const Image *preorderImg = TheMappedImageCollection->findImageByName("OfficersClubsmall");
 		if (!isPreorder)
 			preorderImg = NULL;
-		const Image *rankImg = LookupSmallRankImage(favSide, rankPoints);
+		//const Image *rankImg = LookupSmallRankImage(favSide, rankPoints);
 		m_playerOfficerMedal[i]->winSetEnabledImage(0, preorderImg);
-		m_playerRank[i]->winSetEnabledImage(0, rankImg);
+		//m_playerRank[i]->winSetEnabledImage(0, rankImg);
 
 		UnicodeString formatString;
 	
@@ -1833,7 +1832,7 @@ GameSlot *lSlot = game->getSlot(game->getLocalSlotNum());
 		netSlot++;
 	}
 	
-	for(i = netSlot; i < MAX_SLOTS; ++i)
+	for(Int i = netSlot; i < MAX_SLOTS; ++i)
 	{
 		m_playerWin[i]->winHide(TRUE);
 		//m_playerNames[i]->winHide(TRUE);

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -30,9 +29,10 @@
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
+#include <direct.h>
+
 #include "Common/INI.h"
 #include "Common/Registry.h"
-#include "GameNetwork/WOLBrowser/WebBrowser.h"
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -83,21 +83,21 @@ AsciiString encodeURL(AsciiString source)
 void INI::parseWebpageURLDefinition( INI* ini )
 {
 	AsciiString tag;
-	WebBrowserURL *url;
+	//WebBrowserURL *url;
 
 	// read the name
 	const char* c = ini->getNextToken();
 	tag.set( c );
 
-	if (TheWebBrowser != NULL)
-	{
-		url = TheWebBrowser->findURL(tag);
+	/*if (TheWebBrowser != NULL)
+	//{
+		//url = TheWebBrowser->findURL(tag);
 
 		if (url == NULL)
 		{
-			url = TheWebBrowser->makeNewURL(tag);
+			//url = TheWebBrowser->makeNewURL(tag);
 		}
-	}
+	}*/
 
 	// find existing item if present
 //	track = TheAudio->Music->getTrack( name );
@@ -113,16 +113,16 @@ void INI::parseWebpageURLDefinition( INI* ini )
 //										 name.str()) );
 
 	// parse the ini definition
-	ini->initFromINI( url, url->getFieldParse() );
+	//ini->initFromINI( url, url->getFieldParse() );
 
-	if (url->m_url.startsWith("file://"))
+	/*if (url->m_url.startsWith("file://"))
 	{
 		char cwd[_MAX_PATH] = "\\";
 		getcwd(cwd, _MAX_PATH);
 
 		url->m_url.format("file://%s\\Data\\%s\\%s", encodeURL(cwd).str(), GetRegistryLanguage().str(), url->m_url.str()+7);
 		DEBUG_LOG(("INI::parseWebpageURLDefinition() - converted URL to [%s]\n", url->m_url.str()));
-	}
+	}*/
 }  // end parseMusicTrackDefinition
 
 

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -644,7 +643,7 @@ WW3DErrorType ShdMeshClass::Load_W3D(ChunkLoadClass& cload)
 	Set_Collision_Type( col_bits << 1 );
 	Set_Hidden(hdr.Attributes & W3D_MESH_FLAG_HIDDEN);
 	
-	for (i=0;i<SubMeshes.Length(); i++) { 
+	for (int i=0;i<SubMeshes.Length(); i++) {
 		bool shadow = (hdr.Attributes & W3D_MESH_FLAG_CAST_SHADOW) == W3D_MESH_FLAG_CAST_SHADOW;
 		SubMeshes[i].Mesh->Set_Flag(MeshGeometryClass::CAST_SHADOW,shadow);
 	}
@@ -653,7 +652,7 @@ WW3DErrorType ShdMeshClass::Load_W3D(ChunkLoadClass& cload)
 	// if sorting has been enabled (alpha blending on pass 0) or if pass0 contains alpha-test.
 	// This flag is used to determine if the mesh can cast a geometric shadow.
 	bool is_translucent = false;
-	for (i=0;i<SubMeshes.Length(); i++) { 
+	for (int i=0;i<SubMeshes.Length(); i++) {
 		if (SubMeshes[i].Mesh) {
 			if (SubMeshes[i].Mesh->Is_Sorting()) {
 				Set_Translucent(true);

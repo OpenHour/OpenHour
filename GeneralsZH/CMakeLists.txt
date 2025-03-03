@@ -12,3 +12,36 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+add_executable(GeneralsZH WIN32)
+
+set_target_properties(GeneralsZH PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/GeneralsZH/bin")
+
+add_subdirectory(GameEngine)
+add_subdirectory(GameEngineDevice)
+add_subdirectory(Libraries)
+add_subdirectory(Main)
+
+target_include_directories(GeneralsZH PRIVATE
+        ${D3D8_INCLUDE_DIR})
+
+target_link_directories(GeneralsZH PRIVATE
+        ${D3D8_LIBRARIES}
+        ${D3D9_LIBRARIES})
+
+target_link_libraries(GeneralsZH PRIVATE
+        Imm32
+        ddraw
+        dxguid
+        dinput8
+        d3d8
+        d3dx8
+        Version
+        Vfw32
+        WS2_32
+        Winmm
+        Wmvcore
+
+        zlib
+        LZHL::LZHL
+        cityhash::cityhash)

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -506,7 +505,7 @@ void Anim2D::tryNextFrame( void )
 			case ANIM_2D_PING_PONG_BACKWARDS:
 			{
 
-				if( BitTest( m_status, ANIM_2D_STATUS_REVERSED ) )
+				if( OHBitTest( m_status, ANIM_2D_STATUS_REVERSED ) )
 				{
 					//
 					// decrement frame, unless we're at frame 0 in which case we
@@ -645,7 +644,7 @@ void Anim2D::draw( Int x, Int y )
 	// frame numbers for animation instances that are registered with a system as the
 	// system will update them during its update phase
 	//
- 	if( m_collectionSystem == NULL && BitTest( m_status, ANIM_2D_STATUS_FROZEN ) == FALSE )
+ 	if( m_collectionSystem == NULL && OHBitTest( m_status, ANIM_2D_STATUS_FROZEN ) == FALSE )
 		tryNextFrame();
 
 }  // end draw
@@ -673,7 +672,7 @@ void Anim2D::draw( Int x, Int y, Int width, Int height )
 	// frame numbers for animation instances that are registered with a system as the
 	// system will update them during its update phase
 	//
- 	if( m_collectionSystem == NULL && BitTest( m_status, ANIM_2D_STATUS_FROZEN ) == FALSE )
+ 	if( m_collectionSystem == NULL && OHBitTest( m_status, ANIM_2D_STATUS_FROZEN ) == FALSE )
 		tryNextFrame();
 
 }  // end draw
@@ -776,7 +775,7 @@ void Anim2DCollection::update( void )
 	{
 
 		// try to update the frame
-		if( BitTest( anim->getStatus(), ANIM_2D_STATUS_FROZEN ) == FALSE )	
+		if( OHBitTest( anim->getStatus(), ANIM_2D_STATUS_FROZEN ) == FALSE )	
 			anim->tryNextFrame();
 
 	}  // end for, anim

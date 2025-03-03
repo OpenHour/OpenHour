@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -80,6 +79,7 @@ protected:
 	** This class encapsulates the current state of a camera shaker.  It is a multi-list object
 	** and is allocated in pools.
 	*/
+public:
 	class CameraShakerClass : public MultiListObjectClass, public AutoPoolClass<CameraShakerClass,256>
 	{	
 	public:
@@ -102,6 +102,7 @@ protected:
 		Vector3				Phi;
 	};
 
+protected:
 	MultiListClass<CameraShakerClass>	CameraShakerList;
 
 };

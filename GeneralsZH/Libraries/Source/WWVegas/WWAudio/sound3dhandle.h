@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -71,7 +70,7 @@ public:
 	//
 	//	Handle access
 	//
-	H3DSAMPLE					Get_H3DSAMPLE (void)		{ return SampleHandle; }
+	void*					Get_H3DSAMPLE (void)		{ return SampleHandle; }
 
 
 	//
@@ -83,18 +82,18 @@ public:
 	void							Stop_Sample (void);
 	void							Resume_Sample (void);
 	void							End_Sample (void);
-	void							Set_Sample_Pan (S32 pan);
-	S32							Get_Sample_Pan (void);
-	void							Set_Sample_Volume (S32 volume);
-	S32							Get_Sample_Volume (void);
-	void							Set_Sample_Loop_Count (U32 count);
-	U32							Get_Sample_Loop_Count (void);
-	void							Set_Sample_MS_Position (U32 ms);
-	void							Get_Sample_MS_Position (S32 *len, S32 *pos);
-	void							Set_Sample_User_Data (S32 i, U32 val);
-	U32							Get_Sample_User_Data (S32 i);
-	S32							Get_Sample_Playback_Rate (void);
-	void							Set_Sample_Playback_Rate (S32 rate);
+	void							Set_Sample_Pan (int pan);
+	int							Get_Sample_Pan (void);
+	void							Set_Sample_Volume (int volume);
+	int							Get_Sample_Volume (void);
+	void							Set_Sample_Loop_Count (unsigned int count);
+	unsigned int							Get_Sample_Loop_Count (void);
+	void							Set_Sample_MS_Position (unsigned int ms);
+	void							Get_Sample_MS_Position (int *len, int *pos);
+	void							Set_Sample_User_Data (int i, unsigned int val);
+	unsigned int							Get_Sample_User_Data (int i);
+	int							Get_Sample_Playback_Rate (void);
+	void							Set_Sample_Playback_Rate (int rate);
 	
 protected:
 	
@@ -105,7 +104,7 @@ protected:
 	///////////////////////////////////////////////////////////////////
 	//	Protected member data
 	///////////////////////////////////////////////////////////////////
-	H3DSAMPLE	SampleHandle;
+	void*	SampleHandle;
 };
 
 

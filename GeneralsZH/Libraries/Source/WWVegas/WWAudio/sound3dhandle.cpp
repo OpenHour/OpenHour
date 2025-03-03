@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -44,7 +43,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 Sound3DHandleClass::Sound3DHandleClass (void)	:
-	SampleHandle ((H3DSAMPLE)INVALID_MILES_HANDLE)
+	SampleHandle (nullptr)
 {
 	return ;
 }
@@ -71,7 +70,7 @@ Sound3DHandleClass::Initialize (SoundBufferClass *buffer)
 {
 	SoundHandleClass::Initialize (buffer);
 
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE && Buffer != NULL) {
+	/*if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE && Buffer != NULL) {
 
 		//
 		//	Configure the 3D sample
@@ -90,7 +89,7 @@ Sound3DHandleClass::Initialize (SoundBufferClass *buffer)
 			WWDEBUG_SAY (("WWAudio: Couldn't set 3d sample file.  Reason %s\r\n", ::AIL_last_error ()));
 		}
 
-	}
+	}*/
 
 	return ;
 }
@@ -104,10 +103,9 @@ Sound3DHandleClass::Initialize (SoundBufferClass *buffer)
 void
 Sound3DHandleClass::Start_Sample (void)
 {
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		::AIL_start_3D_sample (SampleHandle);
-	}
-	return ;
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	::AIL_start_3D_sample (SampleHandle);
+	//}
 }
 
 
@@ -119,11 +117,9 @@ Sound3DHandleClass::Start_Sample (void)
 void
 Sound3DHandleClass::Stop_Sample (void)
 {
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		::AIL_stop_3D_sample (SampleHandle);
-	}
-
-	return ;
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	::AIL_stop_3D_sample (SampleHandle);
+	//}
 }
 
 
@@ -135,10 +131,9 @@ Sound3DHandleClass::Stop_Sample (void)
 void
 Sound3DHandleClass::Resume_Sample (void)
 {
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		::AIL_resume_3D_sample (SampleHandle);
-	}
-	return ;
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	::AIL_resume_3D_sample (SampleHandle);
+	//}
 }
 
 
@@ -150,11 +145,9 @@ Sound3DHandleClass::Resume_Sample (void)
 void
 Sound3DHandleClass::End_Sample (void)
 {
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		::AIL_end_3D_sample (SampleHandle);
-	}
-
-	return ;
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	::AIL_end_3D_sample (SampleHandle);
+	//}
 }
 
 
@@ -163,8 +156,7 @@ Sound3DHandleClass::End_Sample (void)
 //	Set_Sample_Pan
 //
 //////////////////////////////////////////////////////////////////////
-void
-Sound3DHandleClass::Set_Sample_Pan (S32 /*pan*/)
+void Sound3DHandleClass::Set_Sample_Pan (int /*pan*/)
 {
 	return ;
 }
@@ -175,8 +167,7 @@ Sound3DHandleClass::Set_Sample_Pan (S32 /*pan*/)
 //	Get_Sample_Pan
 //
 //////////////////////////////////////////////////////////////////////
-S32
-Sound3DHandleClass::Get_Sample_Pan (void)
+int Sound3DHandleClass::Get_Sample_Pan (void)
 {
 	return 64;
 }
@@ -188,13 +179,11 @@ Sound3DHandleClass::Get_Sample_Pan (void)
 //
 //////////////////////////////////////////////////////////////////////
 void
-Sound3DHandleClass::Set_Sample_Volume (S32 volume)
+Sound3DHandleClass::Set_Sample_Volume (int volume)
 {
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		::AIL_set_3D_sample_volume (SampleHandle, volume);
-	}
-
-	return ;
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	::AIL_set_3D_sample_volume (SampleHandle, volume);
+	//}
 }
 
 
@@ -203,14 +192,14 @@ Sound3DHandleClass::Set_Sample_Volume (S32 volume)
 //	Get_Sample_Volume
 //
 //////////////////////////////////////////////////////////////////////
-S32
+int
 Sound3DHandleClass::Get_Sample_Volume (void)
 {
-	S32 retval = 0;
+	int retval = 0;
 
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		retval = ::AIL_3D_sample_volume (SampleHandle);
-	}
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	retval = ::AIL_3D_sample_volume (SampleHandle);
+	//}
 
 	return retval;
 }
@@ -222,11 +211,11 @@ Sound3DHandleClass::Get_Sample_Volume (void)
 //
 //////////////////////////////////////////////////////////////////////
 void
-Sound3DHandleClass::Set_Sample_Loop_Count (U32 count)
+Sound3DHandleClass::Set_Sample_Loop_Count (unsigned int count)
 {
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		::AIL_set_3D_sample_loop_count (SampleHandle, count);
-	}
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	::AIL_set_3D_sample_loop_count (SampleHandle, count);
+	//}
 
 	return ;
 }
@@ -237,14 +226,14 @@ Sound3DHandleClass::Set_Sample_Loop_Count (U32 count)
 //	Get_Sample_Loop_Count
 //
 //////////////////////////////////////////////////////////////////////
-U32
+unsigned int
 Sound3DHandleClass::Get_Sample_Loop_Count (void)
 {
-	U32 retval = 0;
+	unsigned int retval = 0;
 
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		retval = ::AIL_3D_sample_loop_count (SampleHandle);
-	}
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	retval = ::AIL_3D_sample_loop_count (SampleHandle);
+	//}
 
 	return retval;
 }
@@ -256,16 +245,16 @@ Sound3DHandleClass::Get_Sample_Loop_Count (void)
 //
 //////////////////////////////////////////////////////////////////////
 void
-Sound3DHandleClass::Set_Sample_MS_Position (U32 ms)
+Sound3DHandleClass::Set_Sample_MS_Position (unsigned int ms)
 {
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	/*if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
 
 		WWASSERT (Buffer != NULL);
 		U32 bytes_per_sec = (Buffer->Get_Rate () * Buffer->Get_Bits ()) >> 3;
 		U32 bytes = (ms * bytes_per_sec) / 1000;
 		bytes += (bytes & 1);
 		::AIL_set_3D_sample_offset (SampleHandle, bytes);
-	}
+	}*/
 
 	return ;
 }
@@ -277,9 +266,9 @@ Sound3DHandleClass::Set_Sample_MS_Position (U32 ms)
 //
 //////////////////////////////////////////////////////////////////////
 void
-Sound3DHandleClass::Get_Sample_MS_Position (S32 *len, S32 *pos)
+Sound3DHandleClass::Get_Sample_MS_Position (int *len, int *pos)
 {
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	/*if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
 
 		WWASSERT (Buffer != NULL);
 		if (pos != NULL) {
@@ -295,7 +284,7 @@ Sound3DHandleClass::Get_Sample_MS_Position (S32 *len, S32 *pos)
 			U32 ms = (bytes * 1000) / bytes_per_sec;
 			(*len) = ms;
 		}
-	}
+	}*/
 
 	return ;
 }
@@ -307,12 +296,11 @@ Sound3DHandleClass::Get_Sample_MS_Position (S32 *len, S32 *pos)
 //
 //////////////////////////////////////////////////////////////////////
 void
-Sound3DHandleClass::Set_Sample_User_Data (S32 i, U32 val)
+Sound3DHandleClass::Set_Sample_User_Data (int i, unsigned int val)
 {
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		::AIL_set_3D_object_user_data (SampleHandle, i, val);
-	}
-	return ;
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	::AIL_set_3D_object_user_data (SampleHandle, i, val);
+	//}
 }
 
 
@@ -321,14 +309,14 @@ Sound3DHandleClass::Set_Sample_User_Data (S32 i, U32 val)
 //	Get_Sample_User_Data
 //
 //////////////////////////////////////////////////////////////////////
-U32
-Sound3DHandleClass::Get_Sample_User_Data (S32 i)
+unsigned int
+Sound3DHandleClass::Get_Sample_User_Data (int i)
 {
-	U32 retval = 0;
+	unsigned int retval = 0;
 
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		retval = AIL_3D_object_user_data (SampleHandle, i);
-	}
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	retval = AIL_3D_object_user_data (SampleHandle, i);
+	//}
 
 	return retval;
 }
@@ -339,14 +327,14 @@ Sound3DHandleClass::Get_Sample_User_Data (S32 i)
 //	Get_Sample_Playback_Rate
 //
 //////////////////////////////////////////////////////////////////////
-S32
+int
 Sound3DHandleClass::Get_Sample_Playback_Rate (void)
 {	
-	S32 retval = 0;
+	int retval = 0;
 
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		retval = ::AIL_3D_sample_playback_rate (SampleHandle);
-	}
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	retval = ::AIL_3D_sample_playback_rate (SampleHandle);
+	//}
 
 	return retval;
 }
@@ -358,11 +346,11 @@ Sound3DHandleClass::Get_Sample_Playback_Rate (void)
 //
 //////////////////////////////////////////////////////////////////////
 void
-Sound3DHandleClass::Set_Sample_Playback_Rate (S32 rate)
+Sound3DHandleClass::Set_Sample_Playback_Rate (int rate)
 {
-	if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
-		::AIL_set_3D_sample_playback_rate (SampleHandle, rate);
-	}
+	//if (SampleHandle != (H3DSAMPLE)INVALID_MILES_HANDLE) {
+	//	::AIL_set_3D_sample_playback_rate (SampleHandle, rate);
+	//}
 
 	return ;
 }
@@ -376,8 +364,6 @@ Sound3DHandleClass::Set_Sample_Playback_Rate (S32 rate)
 void
 Sound3DHandleClass::Set_Miles_Handle (uint32 handle)
 {
-	WWASSERT (SampleHandle == (H3DSAMPLE)INVALID_MILES_HANDLE);
-
-	SampleHandle = (H3DSAMPLE)handle;
-	return ;
+	//WWASSERT (SampleHandle == (H3DSAMPLE)INVALID_MILES_HANDLE);
+	//SampleHandle = (H3DSAMPLE)handle;
 }

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -61,7 +60,6 @@
 #include "GameClient/GadgetStaticText.h"
 #include "GameNetwork/GameSpy/Peerdefs.h"
 #include "GameNetwork/GameSpy/PeerThread.h"
-#include "GameNetwork/GameSpyOverlay.h"
 
 
 //-----------------------------------------------------------------------------
@@ -135,10 +133,10 @@ WindowMsgHandledType PopupJoinGameInput( GameWindow *window, UnsignedInt msg, Wi
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OHBitTest( state, KEY_STATE_UP ) )
 					{
-						GameSpyCloseOverlay(GSOVERLAY_GAMEPASSWORD);
-						SetLobbyAttemptHostJoin( FALSE );
+						//GameSpyCloseOverlay(GSOVERLAY_GAMEPASSWORD);
+						//SetLobbyAttemptHostJoin( FALSE );
 						parentPopup = NULL;
 					}  // end if
 
@@ -187,8 +185,8 @@ WindowMsgHandledType PopupJoinGameSystem( GameWindow *window, UnsignedInt msg, W
 			Int controlID = control->winGetWindowId();
 			if (controlID == buttonCancelID)
 			{
-				GameSpyCloseOverlay(GSOVERLAY_GAMEPASSWORD);
-				SetLobbyAttemptHostJoin( FALSE );
+				//GameSpyCloseOverlay(GSOVERLAY_GAMEPASSWORD);
+				//SetLobbyAttemptHostJoin( FALSE );
 				parentPopup = NULL;
 			}
 			break;
@@ -246,8 +244,8 @@ static void joinGame( AsciiString password )
 	GameSpyStagingRoom *ourRoom = TheGameSpyInfo->findStagingRoomByID(TheGameSpyInfo->getCurrentStagingRoomID());
 	if (!ourRoom)
 	{
-		GameSpyCloseOverlay(GSOVERLAY_GAMEPASSWORD);
-		SetLobbyAttemptHostJoin( FALSE );
+		//GameSpyCloseOverlay(GSOVERLAY_GAMEPASSWORD);
+		//SetLobbyAttemptHostJoin( FALSE );
 		parentPopup = NULL;
 		return;
 	}
@@ -258,6 +256,6 @@ static void joinGame( AsciiString password )
 	req.password = password.str();
 	TheGameSpyPeerMessageQueue->addRequest(req);
 	DEBUG_LOG(("Attempting to join game %d(%ls) with password [%s]\n", ourRoom->getID(), ourRoom->getGameName().str(), password.str()));
-	GameSpyCloseOverlay(GSOVERLAY_GAMEPASSWORD);
+	//GameSpyCloseOverlay(GSOVERLAY_GAMEPASSWORD);
 	parentPopup = NULL;
 }

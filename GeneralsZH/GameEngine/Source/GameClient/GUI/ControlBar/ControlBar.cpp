@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -206,7 +205,7 @@ void ControlBar::populatePurchaseScience( Player* player )
 		commandButton = commandSet1->getCommandButton(i);
 
 		// if button is not present, just hide the window
-		if( commandButton == NULL || BitTest( commandButton->getOptions(), SCRIPT_ONLY ) )
+		if( commandButton == NULL || OHBitTest( commandButton->getOptions(), SCRIPT_ONLY ) )
 		{
 			// hide window on interface
 			m_sciencePurchaseWindowsRank1[ i ]->winHide( TRUE );
@@ -266,7 +265,7 @@ void ControlBar::populatePurchaseScience( Player* player )
 		commandButton = commandSet3->getCommandButton(i);
 
 		// if button is not present, just hide the window
-		if( commandButton == NULL || BitTest( commandButton->getOptions(), SCRIPT_ONLY ) )
+		if( commandButton == NULL || OHBitTest( commandButton->getOptions(), SCRIPT_ONLY ) )
 		{
 			// hide window on interface
 			m_sciencePurchaseWindowsRank3[ i ]->winHide( TRUE );
@@ -329,7 +328,7 @@ void ControlBar::populatePurchaseScience( Player* player )
 		commandButton = commandSet8->getCommandButton(i);
 
 		// if button is not present, just hide the window
-		if( commandButton == NULL || BitTest( commandButton->getOptions(), SCRIPT_ONLY ) )
+		if( commandButton == NULL || OHBitTest( commandButton->getOptions(), SCRIPT_ONLY ) )
 		{
 			// hide window on interface
 			m_sciencePurchaseWindowsRank8[ i ]->winHide( TRUE );
@@ -638,7 +637,7 @@ Bool CommandButton::isValidToUseOn(const Object *sourceObj, const Object *target
 		return false;
 	}
 
-	if( BitTest( m_options, COMMAND_OPTION_NEED_OBJECT_TARGET ) && !targetObj ) 
+	if( OHBitTest( m_options, COMMAND_OPTION_NEED_OBJECT_TARGET ) && !targetObj ) 
 	{
 		return false;
 	}
@@ -649,7 +648,7 @@ Bool CommandButton::isValidToUseOn(const Object *sourceObj, const Object *target
 		pos.set( targetLocation );
 	}
 
-	if( BitTest( m_options, NEED_TARGET_POS ) && !targetLocation ) 
+	if( OHBitTest( m_options, NEED_TARGET_POS ) && !targetLocation ) 
 	{
 		if( targetObj )
 		{
@@ -661,12 +660,12 @@ Bool CommandButton::isValidToUseOn(const Object *sourceObj, const Object *target
 		}
 	}
 	
-	if( BitTest( m_options, COMMAND_OPTION_NEED_OBJECT_TARGET ) ) 
+	if( OHBitTest( m_options, COMMAND_OPTION_NEED_OBJECT_TARGET ) ) 
 	{
 		return TheActionManager->canDoSpecialPowerAtObject( sourceObj, targetObj, commandSource, m_specialPower, m_options, false );
 	}
 
-	if( BitTest( m_options, NEED_TARGET_POS ) ) 
+	if( OHBitTest( m_options, NEED_TARGET_POS ) ) 
 	{
 		return TheActionManager->canDoSpecialPowerAtLocation( sourceObj, &pos, commandSource, m_specialPower, NULL, m_options, false );
 	}
@@ -729,7 +728,7 @@ const FieldParse CommandSet::m_commandSetFieldParseTable[] =
 //-------------------------------------------------------------------------------------------------
 Bool CommandButton::isContextCommand() const
 {
-	return BitTest( m_options, CONTEXTMODE_COMMAND );
+	return OHBitTest( m_options, CONTEXTMODE_COMMAND );
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -2449,7 +2448,7 @@ void ControlBar::setControlCommand( GameWindow *button, const CommandButton *com
 	// set the button gadget control to be a normal button or a check like button if
 	// the command says it needs one
 	//
-	if( BitTest( commandButton->getOptions(), CHECK_LIKE ))
+	if( OHBitTest( commandButton->getOptions(), CHECK_LIKE ))
 		GadgetButtonEnableCheckLike( button, TRUE, FALSE );
 	else
 		GadgetButtonEnableCheckLike( button, FALSE, FALSE );
@@ -3196,7 +3195,7 @@ void ControlBar::triggerRadarAttackGlow( void )
 		return;
 	m_radarAttackGlowOn = TRUE;
 	m_remainingRadarAttackGlowFrames = RADAR_ATTACK_GLOW_FRAMES;
-	if(BitTest(m_radarAttackGlowWindow->winGetStatus(),WIN_STATUS_ENABLED) == TRUE)
+	if(OHBitTest(m_radarAttackGlowWindow->winGetStatus(),WIN_STATUS_ENABLED) == TRUE)
 		m_radarAttackGlowWindow->winEnable(FALSE);
 }
 
@@ -3214,7 +3213,7 @@ void ControlBar::updateRadarAttackGlow ( void )
 	
 	if(m_remainingRadarAttackGlowFrames % RADAR_ATTACK_GLOW_NUM_TIMES == 0)
 	{
-		m_radarAttackGlowWindow->winEnable(!BitTest(m_radarAttackGlowWindow->winGetStatus(),WIN_STATUS_ENABLED));
+		m_radarAttackGlowWindow->winEnable(!OHBitTest(m_radarAttackGlowWindow->winGetStatus(),WIN_STATUS_ENABLED));
 	}
 
 	
@@ -3259,7 +3258,7 @@ void ControlBar::initSpecialPowershortcutBar( Player *player)
 	parentName = layoutName;
 	parentName.concat(":ButtonParent%d");
 	m_currentlyUsedSpecialPowersButtons = MIN(pt->getSpecialPowerShortcutButtonCount(), MAX_SPECIAL_POWER_SHORTCUTS);
-	for( i = 0; i < MAX_SPECIAL_POWER_SHORTCUTS; i++ )
+	for(Int i = 0; i < MAX_SPECIAL_POWER_SHORTCUTS; i++)
 	{
 		windowName.format( tempName, i+1 );
 		id = TheNameKeyGenerator->nameToKey( windowName.str() );
@@ -3320,7 +3319,7 @@ void ControlBar::populateSpecialPowerShortcut( Player *player)
 		else
 		{
 
-			if( BitTest( commandButton->getOptions(), NEED_UPGRADE ) )
+			if( OHBitTest( commandButton->getOptions(), NEED_UPGRADE ) )
 			{
 				const UpgradeTemplate *upgrade = commandButton->getUpgradeTemplate();
 				if( upgrade && !ThePlayerList->getLocalPlayer()->hasUpgradeComplete( upgrade->getUpgradeMask() ) )
@@ -3335,7 +3334,7 @@ void ControlBar::populateSpecialPowerShortcut( Player *player)
 			// commands that require sciences we don't have are hidden so they never show up
 			// cause we can never pick "another" general technology throughout the game
 			//
-			if( BitTest( commandButton->getOptions(), NEED_SPECIAL_POWER_SCIENCE ) )
+			if( OHBitTest( commandButton->getOptions(), NEED_SPECIAL_POWER_SCIENCE ) )
 			{
 				const SpecialPowerTemplate *power = commandButton->getSpecialPowerTemplate();
 

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -96,14 +95,14 @@ void W3DGadgetComboBoxDraw( GameWindow *window, WinInstanceData *instData )
 	height = size.y;
 
 	// get the right colors
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OHBitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 		background		= GadgetComboBoxGetDisabledColor( window );
 		border				= GadgetComboBoxGetDisabledBorderColor( window );
 		titleColor		= window->winGetDisabledTextColor();
 		titleBorder		= window->winGetDisabledTextBorderColor();
 	}  // end if, disabled
-	else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+	else if( OHBitTest( instData->getState(), WIN_STATE_HILITED ) )
 	{
 		background		= GadgetComboBoxGetHiliteColor( window );
 		border				= GadgetComboBoxGetHiliteBorderColor( window );
@@ -168,13 +167,13 @@ void W3DGadgetComboBoxImageDraw( GameWindow *window, WinInstanceData *instData )
 	height = size.y;
 
 	// get the image
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OHBitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 		image				= GadgetComboBoxGetDisabledImage( window );
 		titleColor	= window->winGetDisabledTextColor();
 		titleBorder = window->winGetDisabledTextBorderColor();
 	}
-	else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+	else if( OHBitTest( instData->getState(), WIN_STATE_HILITED ) )
 	{
 		image				= GadgetComboBoxGetHiliteImage( window );
 		titleColor	= window->winGetHiliteTextColor();

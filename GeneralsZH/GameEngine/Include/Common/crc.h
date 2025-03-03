@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -32,7 +31,6 @@
 #define _CRC_H_
 
 #include "Lib/BaseType.h"
-#include "winsock2.h" // for htonl
 
 #ifdef _DEBUG
 

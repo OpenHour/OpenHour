@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -49,7 +48,6 @@
 #include "GameClient/MapUtil.h"
 #include "GameClient/MessageBox.h"
 #include "GameClient/Mouse.h"
-#include "GameNetwork/GameSpyOverlay.h"
 
 #include "GameClient/LanguageFilter.h"
 #include "GameNetwork/GameSpy/BuddyDefs.h"
@@ -70,14 +68,14 @@
 
 // PRIVATE DATA ///////////////////////////////////////////////////////////////////////////////////
 // Note: if you add more columns, you must modify the .wnd files and change the listbox properties (yuck!)
-static enum {
+enum {
 	COLUMN_NAME = 0,
 	COLUMN_MAP,
 	COLUMN_LADDER,
 	COLUMN_NUMPLAYERS,
 	COLUMN_PASSWORD,
 	COLUMN_OBSERVER,
-  COLUMN_USE_STATS,
+	COLUMN_USE_STATS,
 	COLUMN_PING,
 };
 
@@ -437,7 +435,7 @@ typedef std::set<GameSpyStagingRoom *> BuddyGameSet;
 static BuddyGameSet *theBuddyGames = NULL;
 static void populateBuddyGames(void)
 {
-	BuddyInfoMap *m = TheGameSpyInfo->getBuddyMap();
+	/*BuddyInfoMap *m = TheGameSpyInfo->getBuddyMap();
 	theBuddyGames = NEW BuddyGameSet;
 	if (!m)
 	{
@@ -461,7 +459,7 @@ static void populateBuddyGames(void)
 				}
 			}
 		}
-	}
+	}*/
 }
 
 static void clearBuddyGames(void)
@@ -709,7 +707,7 @@ void RefreshGameListBox( GameWindow *win, Bool showMap )
 	populateBuddyGames();
 	for (StagingRoomMap::iterator srmIt = srm->begin(); srmIt != srm->end(); ++srmIt)
 	{
-		sgl.insert(srmIt->second);
+		//sgl.insert(srmIt->second);
 	}
 
 	// populate listbox

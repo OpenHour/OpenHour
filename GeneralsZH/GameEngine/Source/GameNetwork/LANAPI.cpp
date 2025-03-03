@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -25,6 +24,8 @@
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #define WIN32_LEAN_AND_MEAN  // only bare bones windows stuff wanted
+
+#include <lmcons.h>
 
 #include "Common/CRC.h"
 #include "Common/GameState.h"

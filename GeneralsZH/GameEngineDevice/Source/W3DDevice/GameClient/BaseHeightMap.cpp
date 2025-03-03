@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1697,12 +1696,12 @@ void BaseHeightMapRenderObjClass::updateShorelineTiles(Int minX, Int minY, Int m
 
 	if (shoreLineSortInfosXMajor)
 		for (Int i=minX; i<maxX; i++)
-			for (j=minY; j<maxY; j++)
+			for (Int j=minY; j<maxY; j++)
 			{
 				updateShorelineTile(i,j,border,pMap);
 			}
 	else
-		for (j=minY; j<maxY; j++)
+		for (Int j=minY; j<maxY; j++)
 			for (Int i=minX; i<maxX; i++)
 			{
 				updateShorelineTile(i,j,border,pMap);
@@ -2698,8 +2697,9 @@ void BaseHeightMapRenderObjClass::renderShoreLinesSorted(CameraClass *pCamera)
 			try {
 			//Loop over visible terrain and extract all the tiles that need shoreline blend
 			if (m_shoreLineSortInfosXMajor)	//map is wider than taller.
-			{	
-				for (Int x=drawStartX; x<drawEdgeX; x++)
+			{
+                Int x = 0;
+				for (x=drawStartX; x<drawEdgeX; x++)
 				{	//figure out how many tiles are available in this column
 					shoreLineTileSortInfo *sortInfo=&m_shoreLineSortInfos[x];
 
@@ -2819,7 +2819,8 @@ flushVertexBuffer0:
 			}
 			else
 			{
-				for (Int y=drawStartY; y<drawEdgeY; y++)
+                Int y = 0;
+				for (y=drawStartY; y<drawEdgeY; y++)
 				{	//figure out how many tiles are available in this row
 					shoreLineTileSortInfo *sortInfo=&m_shoreLineSortInfos[y];
 

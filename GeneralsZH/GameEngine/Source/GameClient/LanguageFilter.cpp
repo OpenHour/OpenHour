@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -59,7 +58,7 @@ void LanguageFilter::init() {
 	}
 
 	wchar_t word[128];
-	while (readWord(file1, word)) {
+	while (readWord(file1, reinterpret_cast<UnsignedShort*>(word))) {
 		Int wordLen = wcslen(word);
 		if (wordLen == 0) {
 			continue;

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -167,7 +166,7 @@ void DynamicAudioEventInfo::xferNoName( Xfer * xfer )
     Int field;
     for ( field = 0; field < OVERRIDE_COUNT; field++ )
     {
-      m_overriddenFields.set( field, BitTest( overriddenFlags, 1 << field ) );
+      m_overriddenFields.set( field, OHBitTest( overriddenFlags, 1 << field ) );
     }
   }
   else
@@ -187,7 +186,7 @@ void DynamicAudioEventInfo::xferNoName( Xfer * xfer )
 
   if ( wasLoopFlagOverriden() )
   {
-    Bool loopFlag = BitTest( m_control, AC_LOOP );
+    Bool loopFlag = OHBitTest( m_control, AC_LOOP );
     xfer->xferBool( &loopFlag );
     if ( loopFlag )
     {

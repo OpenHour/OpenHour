@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -66,7 +65,6 @@
 #include "GameNetwork/GameSpy/GSConfig.h"
 #include "GameNetwork/GameSpy/Peerdefs.h"
 #include "GameNetwork/GameSpy/PeerThread.h"
-#include "GameNetwork/GameSpyOverlay.h"
 
 #include "GameNetwork/GameSpy/LadderDefs.h"
 #include "Common/CustomMatchPreferences.h"
@@ -414,7 +412,7 @@ WindowMsgHandledType PopupHostGameInput( GameWindow *window, UnsignedInt msg, Wi
 					// send a simulated selected event to the parent window of the
 					// back/exit button
 					//
-					if( BitTest( state, KEY_STATE_UP ) )
+					if( OHBitTest( state, KEY_STATE_UP ) )
 					{
 						TheWindowManager->winSendSystemMsg( window, GBM_SELECTED, 
 																							(WindowMsgData)buttonCancel, buttonCancelID );
@@ -518,7 +516,7 @@ WindowMsgHandledType PopupHostGameSystem( GameWindow *window, UnsignedInt msg, W
 						{
 							// "Choose a ladder" selected - open overlay
 							PopulateCustomLadderComboBox(); // this restores the non-"Choose a ladder" selection
-							GameSpyOpenOverlay( GSOVERLAY_LADDERSELECT );
+							//GameSpyOpenOverlay( GSOVERLAY_LADDERSELECT );
 						}
 					}
 				}
@@ -534,8 +532,8 @@ WindowMsgHandledType PopupHostGameSystem( GameWindow *window, UnsignedInt msg, W
       if( controlID == buttonCancelID )
 			{
 				parentPopup = NULL;
-				GameSpyCloseOverlay(GSOVERLAY_GAMEOPTIONS);
-				SetLobbyAttemptHostJoin( FALSE );
+				//GameSpyCloseOverlay(GSOVERLAY_GAMEOPTIONS);
+				//SetLobbyAttemptHostJoin( FALSE );
 			}
 			else if( controlID == buttonCreateGameID)
 			{
@@ -549,7 +547,7 @@ WindowMsgHandledType PopupHostGameSystem( GameWindow *window, UnsignedInt msg, W
 				}
 				createGame();
 				parentPopup = NULL;
-				GameSpyCloseOverlay(GSOVERLAY_GAMEOPTIONS);
+				//GameSpyCloseOverlay(GSOVERLAY_GAMEOPTIONS);
 			}
 			break;
 		}

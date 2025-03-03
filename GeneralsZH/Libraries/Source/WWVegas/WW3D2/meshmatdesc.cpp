@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -850,7 +849,7 @@ void MeshMatDescClass::Post_Load_Process(bool lighting_enabled,MeshModelClass * 
 	** HACK: Kill BUMPENV passes on hardware that doesn't support BUMPENV
 	** HACK: Set lighting to false on all passes if all passes are of type NO DIFFUSE, NO AMBIENT, YES EMISSIVE
 	*/
-	for (pass=0; pass<PassCount; pass++) {
+	for (int pass=0; pass<PassCount; pass++) {
 		bool kill_pass = false;
 
 		/*

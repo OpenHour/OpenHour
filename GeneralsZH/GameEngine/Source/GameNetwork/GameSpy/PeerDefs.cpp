@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -42,7 +41,6 @@
 #include "GameNetwork/GameSpy/PingThread.h"
 #include "GameNetwork/GameSpy/PersistentStorageThread.h"
 #include "GameNetwork/GameSpy/GSConfig.h"
-#include "GameNetwork/GameSpyOverlay.h"
 #include "GameNetwork/RankPointValue.h"
 #include "GameLogic/GameLogic.h"
 
@@ -54,7 +52,6 @@
 
 GameSpyInfoInterface *TheGameSpyInfo = NULL;
 extern GameSpyStagingRoom *TheGameSpyGame = NULL;
-void deleteNotificationBox( void );
 
 bool AsciiComparator::operator()(AsciiString s1, AsciiString s2) const
 {
@@ -82,8 +79,8 @@ void GameSpyInfo::reset( void )
 	clearGroupRoomList();
 	clearStagingRoomList();
 	m_localStagingRoomID = 0;
-	m_buddyRequestMap.clear();
-	m_buddyMap.clear();
+	//m_buddyRequestMap.clear();
+	//m_buddyMap.clear();
 	m_buddyMessages.clear();
 	m_joinedStagingRoom = 0;
 	m_isHosting = false;
@@ -291,7 +288,8 @@ void GameSpyInfo::setGameOptions( void )
 
 Bool GameSpyInfo::isBuddy( Int id )
 {
-	return m_buddyMap.find(id) != m_buddyMap.end();
+		return false;
+	//return m_buddyMap.find(id) != m_buddyMap.end();
 }
 
 void GameSpyInfo::addGroupRoom( GameSpyGroupRoom room )
@@ -421,12 +419,12 @@ void GameSpyInfo::joinBestGroupRoom( void )
 		}
 		else
 		{
-			GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSGroupRoomJoinFail"), NULL);
+			//GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSGroupRoomJoinFail"), NULL);
 		}
 	}
 	else
 	{
-		GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSGroupRoomJoinFail"), NULL);
+		//GSMessageBoxOk(TheGameText->fetch("GUI:Error"), TheGameText->fetch("GUI:GSGroupRoomJoinFail"), NULL);
 	}
 }
 
@@ -736,7 +734,7 @@ void TearDownGameSpy( void )
 	}
 
 	// make sure the notification box doesn't exist
-	deleteNotificationBox();
+	//deleteNotificationBox();
 }
 
 

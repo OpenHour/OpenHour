@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -128,7 +127,7 @@ void ControlBar::addCommonCommands( Drawable *draw, Bool firstDrawable )
 			command = commandSet->getCommandButton(i);
 
 			// add if present and can be used in a multi select
-			if( command && BitTest( command->getOptions(), OK_FOR_MULTI_SELECT ) == TRUE )
+			if( command && OHBitTest( command->getOptions(), OK_FOR_MULTI_SELECT ) == TRUE )
 			{
 
 				// put it in the common command set
@@ -387,7 +386,7 @@ void ControlBar::updateContextMultiSelect( void )
 			}
 
 			//If button is a CHECK_LIKE, then update it's status now.
-			if( BitTest( command->getOptions(), CHECK_LIKE ) )
+			if( OHBitTest( command->getOptions(), CHECK_LIKE ) )
 			{
 				GadgetCheckLikeButtonSetVisualCheck( win, availability == COMMAND_ACTIVE );
 			}

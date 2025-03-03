@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -34,6 +33,9 @@
  * Functions:                                                                                  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#include <mmreg.h>
 
 #include "soundbuffer.h"
 #include "rawfile.h"
@@ -41,8 +43,6 @@
 #include "utils.h"
 #include "ffactory.h"
 #include "win.h"
-
-
 
 /////////////////////////////////////////////////////////////////////////////////
 //	FileMappingClass
@@ -127,8 +127,8 @@ SoundBufferClass::Determine_Stats (unsigned char *buffer)
 	m_Type = WAVE_FORMAT_IMA_ADPCM;
 
 	// Attempt to get statistical information about this sound
-	AILSOUNDINFO info = { 0 };
-	if ((buffer != NULL) && (::AIL_WAV_info (buffer, &info) != 0)) {
+	//AILSOUNDINFO info = { 0 };
+	/*if ((buffer != NULL) && (::AIL_WAV_info (buffer, &info) != 0)) {
 
 		// Cache this information
 		m_Rate = info.rate;
@@ -139,9 +139,7 @@ SoundBufferClass::Determine_Stats (unsigned char *buffer)
 		// Determine how long this sound will play for
 		float bytes_sec = float((m_Channels * m_Rate * m_Bits) >> 3);
 		m_Duration = (unsigned long)((((float)m_Length) / bytes_sec) * 1000.0F);
-	}
-
-	return ;
+	}*/
 }
 
 

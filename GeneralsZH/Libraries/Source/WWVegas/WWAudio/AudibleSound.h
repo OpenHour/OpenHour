@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -40,10 +39,6 @@
 
 #ifndef __SOUNDOBJ_H
 #define __SOUNDOBJ_H
-
-#pragma warning (push, 3)
-#include "mss.h"
-#pragma warning (pop)
 
 //#include <malloc.h>
 #include "vector3.h"

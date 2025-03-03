@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -67,8 +66,8 @@ public:
 	virtual void setCachedLocalPlayerStats( PSPlayerStats stats ) {m_cachedLocalPlayerStats = stats;	}
 	virtual PSPlayerStats getCachedLocalPlayerStats( void ){ return m_cachedLocalPlayerStats;	}
 
-	virtual BuddyInfoMap* getBuddyMap( void ) { return &m_buddyMap; }
-	virtual BuddyInfoMap* getBuddyRequestMap( void ) { return &m_buddyRequestMap; }
+	//virtual BuddyInfoMap* getBuddyMap( void ) { return &m_buddyMap; }
+	//virtual BuddyInfoMap* getBuddyRequestMap( void ) { return &m_buddyRequestMap; }
 	virtual BuddyMessageList* getBuddyMessages( void ) { return &m_buddyMessages; }
 	virtual Bool isBuddy( Int id );
 
@@ -148,8 +147,8 @@ private:
 	GroupRoomMap m_groupRooms;
 	StagingRoomMap m_stagingRooms;
 	Bool m_stagingRoomsDirty;
-	BuddyInfoMap m_buddyMap;
-	BuddyInfoMap m_buddyRequestMap;
+	//BuddyInfoMap m_buddyMap;
+	//BuddyInfoMap m_buddyRequestMap;
 	PlayerInfoMap m_playerInfoMap;
 	BuddyMessageList m_buddyMessages;
 	Int m_currentGroupRoomID;

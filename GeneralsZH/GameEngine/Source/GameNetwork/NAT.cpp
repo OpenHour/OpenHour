@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -501,7 +500,7 @@ void NAT::establishConnectionPaths() {
 	m_connectionPairIndex = m_numNodes - 2;
 	Bool connectionAssigned[MAX_SLOTS];
 
-	for (i = 0; i < MAX_SLOTS; ++i) {
+	for (Int i = 0; i < MAX_SLOTS; ++i) {
 		m_connectionNodes[i].m_slotIndex = -1;
 		connectionAssigned[i] = FALSE;
 		m_sourcePorts[i] = 0;
@@ -520,7 +519,7 @@ void NAT::establishConnectionPaths() {
 	DEBUG_LOG(("NAT::establishConnectionPaths - about to set up the node list\n"));
 	DEBUG_LOG(("NAT::establishConnectionPaths - doing the netgear stuff\n"));
 	UnsignedInt otherNetgearNum = -1;
-	for (i = 0; i < MAX_SLOTS; ++i) {
+	for (Int i = 0; i < MAX_SLOTS; ++i) {
 		if ((m_slotList != NULL) && (m_slotList[i] != NULL)) {
 			if ((m_slotList[i]->getNATBehavior() & FirewallHelperClass::FIREWALL_TYPE_NETGEAR_BUG) != 0) {
 				if (otherNetgearNum == -1) {
@@ -553,7 +552,7 @@ void NAT::establishConnectionPaths() {
 
 	// fill in the rest of the nodes with the remaining slots.
 	DEBUG_LOG(("NAT::establishConnectionPaths - doing the non-Netgear nodes\n"));
-	for (i = 0; i < MAX_SLOTS; ++i) {
+	for (Int i = 0; i < MAX_SLOTS; ++i) {
 		if (connectionAssigned[i] == TRUE) {
 			continue;
 		}
@@ -576,13 +575,13 @@ void NAT::establishConnectionPaths() {
 
 // sanity check
 #if defined(_DEBUG) || defined(_INTERNAL)
-	for (i = 0; i < m_numNodes; ++i) {
+	for (Int i = 0; i < m_numNodes; ++i) {
 		DEBUG_ASSERTCRASH(connectionAssigned[i] == TRUE, ("connection number %d not assigned", i));
 	}
 #endif
 
 	// find the local node number.
-	for (i = 0; i < m_numNodes; ++i) {
+	for (Int i = 0; i < m_numNodes; ++i) {
 		if (m_connectionNodes[i].m_slotIndex == TheGameSpyGame->getLocalSlotNum()) {
 			m_localNodeNumber = i;
 			DEBUG_LOG(("NAT::establishConnectionPaths - local node is %d\n", m_localNodeNumber));
@@ -592,7 +591,7 @@ void NAT::establishConnectionPaths() {
 
 	// set up the names in the connection window.
 	Int playerNum = 0;
-	for (i = 0; i < MAX_SLOTS; ++i) {
+	for (Int i = 0; i < MAX_SLOTS; ++i) {
 		while ((i < MAX_SLOTS) && (m_slotList[i] != NULL) && !(m_slotList[i]->isHuman())) {
 			++i;
 		}
@@ -666,7 +665,7 @@ void NAT::doThisConnectionRound() {
 	m_beenProbed = FALSE;
 	m_numRetries = 0;
 
-	for (i = 0; i < m_numNodes; ++i) {
+	for (Int i = 0; i < m_numNodes; ++i) {
 		Int targetNodeNumber = m_connectionPairs[m_connectionPairIndex][m_connectionRound][i];
 		DEBUG_LOG(("NAT::doThisConnectionRound - node %d needs to connect to node %d\n", i, targetNodeNumber));
 		if (targetNodeNumber != -1) {
@@ -1303,9 +1302,10 @@ void NAT::setConnectionState(Int nodeNumber, NATConnectionState state) {
 	}
 
 	// find the menu slot of the target node.
+	Int i = 0;
 	Int slotIndex = m_connectionNodes[m_targetNodeNumber].m_slotIndex;
 	Int slot = 0;
-	for (Int i = 0; i < MAX_SLOTS; ++i) {
+	for (i = 0; i < MAX_SLOTS; ++i) {
 		if (m_slotList[i] != NULL) {
 			if (m_slotList[i]->isHuman()) {
 				if (i != m_connectionNodes[m_localNodeNumber].m_slotIndex) {

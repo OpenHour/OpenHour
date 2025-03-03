@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -87,13 +86,13 @@ WindowMsgHandledType GadgetStaticTextInput( GameWindow *window, UnsignedInt msg,
         case KEY_RIGHT:
         case KEY_TAB:
 					// Just in case some fool sets static text as a tab stop
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OHBitTest( mData2, KEY_STATE_DOWN ) )
             window->winNextTab();
           break;
 
         case KEY_UP:
         case KEY_LEFT:
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OHBitTest( mData2, KEY_STATE_DOWN ) )
             window->winPrevTab();
           break;
 

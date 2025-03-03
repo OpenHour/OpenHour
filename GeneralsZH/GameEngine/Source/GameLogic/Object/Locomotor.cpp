@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -989,7 +988,7 @@ void Locomotor::locoUpdate_moveTowardsPosition(Object* obj, const Coord3D& goalP
 	// do not allow for invalid positions that the pathfinder cannot handle ... for airborne
 	// objects we don't need the pathfinder so we'll ignore this
 	//
-	if( BitTest( m_template->m_surfaces, LOCOMOTORSURFACE_AIR ) == false &&
+	if( OHBitTest( m_template->m_surfaces, LOCOMOTORSURFACE_AIR ) == false &&
 			!TheAI->pathfinder()->validMovementTerrain(obj->getLayer(), this, obj->getPosition()) && 
 			!getFlag(ALLOW_INVALID_POSITION)) 
 	{
@@ -1043,7 +1042,7 @@ void Locomotor::locoUpdate_moveTowardsPosition(Object* obj, const Coord3D& goalP
 		{
 			*blocked = false;
 		}
-		if (treatAsAirborne && BitTest( m_template->m_surfaces, LOCOMOTORSURFACE_AIR ) ) 
+		if (treatAsAirborne && OHBitTest( m_template->m_surfaces, LOCOMOTORSURFACE_AIR ) ) 
 		{
 			// Airborne flying objects don't collide for now.  jba.
 			*blocked = false;

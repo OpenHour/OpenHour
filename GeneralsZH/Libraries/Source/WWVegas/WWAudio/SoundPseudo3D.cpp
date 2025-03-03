@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -229,7 +228,7 @@ SoundPseudo3DClass::Update_Pseudo_Pan (void)
 		//
 		// Pass the pan on
 		//
-		m_SoundHandle->Set_Sample_Pan (S32(pan * 127.0F));
+		m_SoundHandle->Set_Sample_Pan (int(pan * 127.0F));
 	}
 
 	return ;

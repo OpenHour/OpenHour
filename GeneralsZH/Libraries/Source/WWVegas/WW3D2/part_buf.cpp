@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1475,8 +1474,9 @@ void ParticleBufferClass::Reset_Colors(ParticlePropertyStruct<Vector3> &new_prop
 		// previous one by at least a millisecond, and we stop at the first
 		// keytime of MaxAge or larger. (If all keyframes below MaxAge, color is
 		// constant during the last segment between last keyframe and MaxAge).
+		unsigned int ckey = 0;
 		ui_previous_key_time = 0;
-		for (unsigned int ckey = 0; ckey < new_props.NumKeyFrames; ckey++) {
+		for (ckey = 0; ckey < new_props.NumKeyFrames; ckey++) {
 			ui_current_key_time = (unsigned int)(new_props.KeyTimes[ckey] * 1000.0f);
 			WWASSERT(ui_current_key_time > ui_previous_key_time);
 			if (ui_current_key_time >= MaxAge) break;
@@ -1634,8 +1634,9 @@ void ParticleBufferClass::Reset_Opacity(ParticlePropertyStruct<float> &new_props
 		// previous one by at least a millisecond, and we stop at the first
 		// keytime of MaxAge or larger. (If all keyframes below MaxAge, alpha is
 		// constant during the last segment between last keyframe and MaxAge).
+		unsigned int akey = 0;
 		ui_previous_key_time = 0;
-		for (unsigned int akey = 0; akey < new_props.NumKeyFrames; akey++) {
+		for (akey = 0; akey < new_props.NumKeyFrames; akey++) {
 			ui_current_key_time = (unsigned int)(new_props.KeyTimes[akey] * 1000.0f);
 			WWASSERT(ui_current_key_time > ui_previous_key_time);
 			if (ui_current_key_time >= MaxAge) break;
@@ -1790,8 +1791,9 @@ void ParticleBufferClass::Reset_Size(ParticlePropertyStruct<float> &new_props)
 		// previous one by at least a millisecond, and we stop at the first
 		// keytime of MaxAge or larger. (If all keyframes below MaxAge, size is
 		// constant during the last segment between last keyframe and MaxAge).
+		unsigned int skey = 0;
 		ui_previous_key_time = 0;
-		for (unsigned int skey = 0; skey < new_props.NumKeyFrames; skey++) {
+		for (skey = 0; skey < new_props.NumKeyFrames; skey++) {
 			ui_current_key_time = (unsigned int)(new_props.KeyTimes[skey] * 1000.0f);
 			WWASSERT(ui_current_key_time > ui_previous_key_time);
 			if (ui_current_key_time >= MaxAge) break;
@@ -1959,8 +1961,9 @@ void ParticleBufferClass::Reset_Rotations(ParticlePropertyStruct<float> &new_pro
 		// previous one by at least a millisecond, and we stop at the first
 		// keytime of MaxAge or larger. (If all keyframes below MaxAge, the value is
 		// constant during the last segment between last keyframe and MaxAge).
+		unsigned int key = 0;
 		ui_previous_key_time = 0;
-		for (unsigned int key = 0; key < new_props.NumKeyFrames; key++) {
+		for (key = 0; key < new_props.NumKeyFrames; key++) {
 			ui_current_key_time = (unsigned int)(new_props.KeyTimes[key] * 1000.0f);
 			WWASSERT(ui_current_key_time > ui_previous_key_time);
 			if (ui_current_key_time >= MaxAge) break;
@@ -2173,8 +2176,9 @@ void ParticleBufferClass::Reset_Frames(ParticlePropertyStruct<float> &new_props)
 		// previous one by at least a millisecond, and we stop at the first
 		// keytime of MaxAge or larger. (If all keyframes below MaxAge, the value is
 		// constant during the last segment between last keyframe and MaxAge).
+		unsigned int key = 0;
 		ui_previous_key_time = 0;
-		for (unsigned int key = 0; key < new_props.NumKeyFrames; key++) {
+		for (key = 0; key < new_props.NumKeyFrames; key++) {
 			ui_current_key_time = (unsigned int)(new_props.KeyTimes[key] * 1000.0f);
 			WWASSERT(ui_current_key_time > ui_previous_key_time);
 			if (ui_current_key_time >= MaxAge) break;
@@ -2320,8 +2324,9 @@ void ParticleBufferClass::Reset_Blur_Times(ParticlePropertyStruct<float> &new_bl
 		// previous one by at least a millisecond, and we stop at the first
 		// keytime of MaxAge or larger. (If all keyframes below MaxAge, the value is
 		// constant during the last segment between last keyframe and MaxAge).
+		unsigned int key = 0;
 		ui_previous_key_time = 0;
-		for (unsigned int key = 0; key < new_blur_times.NumKeyFrames; key++) {
+		for (key = 0; key < new_blur_times.NumKeyFrames; key++) {
 			ui_current_key_time = (unsigned int)(new_blur_times.KeyTimes[key] * 1000.0f);
 			WWASSERT(ui_current_key_time > ui_previous_key_time);
 			if (ui_current_key_time >= MaxAge) break;

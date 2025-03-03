@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -240,7 +239,7 @@ static void loadExistingGroupsCombo( HWND combo, GameWindow *window )
 		return;
 
 	// if this is a radio button get the group
-	if( BitTest( window->winGetStyle(), GWS_RADIO_BUTTON ) )
+	if( OHBitTest( window->winGetStyle(), GWS_RADIO_BUTTON ) )
 	{
 		RadioButtonData *radioData = (RadioButtonData *)window->winGetUserData();
 		char buffer[ 64 ];

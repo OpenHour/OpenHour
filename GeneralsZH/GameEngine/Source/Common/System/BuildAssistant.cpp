@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -684,13 +683,13 @@ LegalBuildCode BuildAssistant::isLocationClearOfObjects( const Coord3D *worldPos
 		Relationship rel = builderObject ? builderObject->getRelationship( them ) : NEUTRAL;
 
 		//Kris: If the object is stealthed and we can't see it, pretend we can build there.
-		if( BitTest( options, IGNORE_STEALTHED ) )
+		if( OHBitTest( options, IGNORE_STEALTHED ) )
 		{
 			if( rel != ALLIES )
 			{
 				if( them->testStatus( OBJECT_STATUS_STEALTHED ) && !them->testStatus( OBJECT_STATUS_DETECTED ) && !them->testStatus( OBJECT_STATUS_DISGUISED ) )
 				{
-					if( BitTest( options, FAIL_STEALTHED_WITHOUT_FEEDBACK ) )
+					if( OHBitTest( options, FAIL_STEALTHED_WITHOUT_FEEDBACK ) )
 					{
 						feedbackWithFailure = FALSE; //We want to fail now but without feedback
 					}
@@ -823,7 +822,7 @@ LegalBuildCode BuildAssistant::isLocationClearOfObjects( const Coord3D *worldPos
 
 		Relationship rel = builderObject ? builderObject->getRelationship( them ) : NEUTRAL;
 		//Kris: If the building is stealthed and we can't see it, pretend we can build there.
-		if( BitTest( options, IGNORE_STEALTHED ) )
+		if( OHBitTest( options, IGNORE_STEALTHED ) )
 		{
 			if( rel != ALLIES )
 			{
@@ -922,7 +921,7 @@ LegalBuildCode BuildAssistant::isLocationLegalToBuild( const Coord3D *worldPos,
 
 	// check shroud level
 	// This should be the first check, since returning other errors for shrouded areas could be used to game the system
-	if( BitTest( options, SHROUD_REVEALED ) )
+	if( OHBitTest( options, SHROUD_REVEALED ) )
 	{
 		{
 			Int x, y;
@@ -943,7 +942,7 @@ LegalBuildCode BuildAssistant::isLocationLegalToBuild( const Coord3D *worldPos,
 	// any immobile objects, or an enemy object.  Friendly objects should politely 
 	// "move out of the way" when you build something where they're standing
 	//
-	if( BitTest( options, NO_OBJECT_OVERLAP ) )
+	if( OHBitTest( options, NO_OBJECT_OVERLAP ) )
 	{
 		LegalBuildCode code = isLocationClearOfObjects(worldPos, build, angle, builderObject, options, player);
 		if( code != LBC_OK )
@@ -956,7 +955,7 @@ LegalBuildCode BuildAssistant::isLocationLegalToBuild( const Coord3D *worldPos,
 	// if NO_ENEMY_OBJECT_OVERLAP is set, we are not allowed to construct 'build' if it would overlap
 	// any enemy objects.  Friendly objects are ignored.
 	//
-	if( BitTest( options, NO_ENEMY_OBJECT_OVERLAP ) )
+	if( OHBitTest( options, NO_ENEMY_OBJECT_OVERLAP ) )
 	{
 		LegalBuildCode code = isLocationClearOfObjects(worldPos, build, angle, builderObject, options, player);
 		if( code != LBC_OK )
@@ -994,7 +993,7 @@ LegalBuildCode BuildAssistant::isLocationLegalToBuild( const Coord3D *worldPos,
 	}
 
 	// if clear path is requested check to see if the builder object can get there (unless it's a structure)
-	if( BitTest( options, CLEAR_PATH ) && builderObject && !builderObject->isKindOf( KINDOF_IMMOBILE ) )
+	if( OHBitTest( options, CLEAR_PATH ) && builderObject && !builderObject->isKindOf( KINDOF_IMMOBILE ) )
 	{
 		AIUpdateInterface *ai = builderObject->getAIUpdateInterface();
 
@@ -1014,7 +1013,7 @@ LegalBuildCode BuildAssistant::isLocationLegalToBuild( const Coord3D *worldPos,
 	}  // end if
 
 	// check basic terrain restrctions
-	if( BitTest( options, TERRAIN_RESTRICTIONS ) )
+	if( OHBitTest( options, TERRAIN_RESTRICTIONS ) )
 	{
 
 		//

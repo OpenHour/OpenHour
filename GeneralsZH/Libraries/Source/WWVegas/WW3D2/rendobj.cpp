@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -119,7 +118,7 @@ Filename_From_Asset_Name (const char *asset_name)
 		//
 		// Do we need to strip off the model's suffix?
 		//
-		char *suffix = ::strchr (filename, '.');
+		char *suffix = const_cast<char*>(::strchr (filename, '.'));
 		if (suffix != NULL) {
 			suffix[0] = 0;
 		}

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -184,7 +183,7 @@ void ControlBar::showBuildTooltipLayout( GameWindow *cmdButton )
 
 	if(!cmdButton)
 		return;
-	if(BitTest(cmdButton->winGetStyle(), GWS_PUSH_BUTTON))
+	if(OHBitTest(cmdButton->winGetStyle(), GWS_PUSH_BUTTON))
 	{
 		const CommandButton *commandButton = (const CommandButton *)GadgetButtonGetData(cmdButton);
 		
@@ -219,7 +218,7 @@ void ControlBar::showBuildTooltipLayout( GameWindow *cmdButton )
 	else
 	{
 		// we're a generic window
-		if(!BitTest(cmdButton->winGetStyle(), GWS_USER_WINDOW) && !BitTest(cmdButton->winGetStyle(), GWS_STATIC_TEXT))
+		if(!OHBitTest(cmdButton->winGetStyle(), GWS_USER_WINDOW) && !OHBitTest(cmdButton->winGetStyle(), GWS_STATIC_TEXT))
 			return;
 		populateBuildTooltipLayout(NULL, cmdButton);
 	}
@@ -240,7 +239,7 @@ void ControlBar::repopulateBuildTooltipLayout( void )
 {
 	if(!prevWindow || !m_buildToolTipLayout)
 		return;
-	if(!BitTest(prevWindow->winGetStyle(), GWS_PUSH_BUTTON))
+	if(!OHBitTest(prevWindow->winGetStyle(), GWS_PUSH_BUTTON))
 		return;
 	const CommandButton *commandButton = (const CommandButton *)GadgetButtonGetData(prevWindow);
 	populateBuildTooltipLayout(commandButton);

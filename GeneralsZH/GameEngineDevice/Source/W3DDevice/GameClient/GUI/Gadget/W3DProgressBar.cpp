@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -83,14 +82,14 @@ void W3DGadgetProgressBarDraw( GameWindow *window, WinInstanceData *instData )
 	window->winGetSize( &size.x, &size.y );
 
 	// get the right colors to use
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OHBitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 		backColor		= GadgetProgressBarGetDisabledColor( window );
 		backBorder	= GadgetProgressBarGetDisabledBorderColor( window );
 		barColor		= GadgetProgressBarGetDisabledBarColor( window );
 		barBorder		= GadgetProgressBarGetDisabledBarBorderColor( window );
 	}  // end if, disabled
-	else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+	else if( OHBitTest( instData->getState(), WIN_STATE_HILITED ) )
 	{
 		backColor		= GadgetProgressBarGetHiliteColor( window );
 		backBorder	= GadgetProgressBarGetHiliteBorderColor( window );
@@ -242,7 +241,7 @@ void W3DGadgetProgressBarImageDraw( GameWindow *window, WinInstanceData *instDat
 	yOffset = instData->m_imageOffset.y;
 
 	// get the right images to use
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OHBitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 
 		backLeft				= GadgetProgressBarGetDisabledImageLeft( window );
@@ -255,7 +254,7 @@ void W3DGadgetProgressBarImageDraw( GameWindow *window, WinInstanceData *instDat
 		//barSmallCenter	= GadgetProgressBarGetDisabledBarImageSmallCenter( window );
 
 	}  // end if, disabled
-	else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+	else if( OHBitTest( instData->getState(), WIN_STATE_HILITED ) )
 	{
 
 		backLeft				= GadgetProgressBarGetHiliteImageLeft( window );

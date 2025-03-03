@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -82,12 +81,12 @@ static void drawRadioButtonText( GameWindow *window, WinInstanceData *instData )
 	window->winGetSize( &size.x, &size.y );
 
 	// get the right text color
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OHBitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 		textColor = window->winGetDisabledTextColor();
 		dropColor = window->winGetDisabledTextBorderColor();
 	}  // end if, disabled
-	else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+	else if( OHBitTest( instData->getState(), WIN_STATE_HILITED ) )
 	{
 		textColor = window->winGetHiliteTextColor();
 		dropColor = window->winGetHiliteTextBorderColor();
@@ -143,7 +142,7 @@ void W3DGadgetRadioButtonDraw( GameWindow *window, WinInstanceData *instData )
 	// get the colors we should be using to draw, see GadgetRadioButton.h
 	// draw appropriate state, see GadgetRadioButton.h for info
 	//
-	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	if( OHBitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 
 		// disabled background
@@ -151,7 +150,7 @@ void W3DGadgetRadioButtonDraw( GameWindow *window, WinInstanceData *instData )
 		backBorder		= GadgetRadioGetDisabledBorderColor( window );
 
 		// check box
-		if( BitTest( instData->getState(), WIN_STATE_SELECTED ) )
+		if( OHBitTest( instData->getState(), WIN_STATE_SELECTED ) )
 		{
 				boxColor		= GadgetRadioGetDisabledCheckedBoxColor( window );
 				boxBorder		= GadgetRadioGetDisabledCheckedBoxBorderColor( window );
@@ -163,7 +162,7 @@ void W3DGadgetRadioButtonDraw( GameWindow *window, WinInstanceData *instData )
 		}
 
 	}  // end if
-	else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+	else if( OHBitTest( instData->getState(), WIN_STATE_HILITED ) )
 	{
 
 		// hilited background 
@@ -171,7 +170,7 @@ void W3DGadgetRadioButtonDraw( GameWindow *window, WinInstanceData *instData )
 		backBorder		= GadgetRadioGetHiliteBorderColor( window );
 
 		// check box
-		if( BitTest( instData->getState(), WIN_STATE_SELECTED ) )
+		if( OHBitTest( instData->getState(), WIN_STATE_SELECTED ) )
 		{
 			boxColor		= GadgetRadioGetHiliteCheckedBoxColor( window );
 			boxBorder		= GadgetRadioGetHiliteCheckedBoxBorderColor( window );
@@ -191,7 +190,7 @@ void W3DGadgetRadioButtonDraw( GameWindow *window, WinInstanceData *instData )
 		backBorder		= GadgetRadioGetEnabledBorderColor( window );
 
 		// check box
-		if( BitTest( instData->getState(), WIN_STATE_SELECTED ) )
+		if( OHBitTest( instData->getState(), WIN_STATE_SELECTED ) )
 		{
 			boxColor		= GadgetRadioGetEnabledCheckedBoxColor( window );
 			boxBorder		= GadgetRadioGetEnabledCheckedBoxBorderColor( window );
@@ -280,7 +279,7 @@ void W3DGadgetRadioButtonImageDraw( GameWindow *window,
 	xOffset = instData->m_imageOffset.x;
 	yOffset = instData->m_imageOffset.y;
 
-	if( BitTest( instData->getState(), WIN_STATE_SELECTED ) )
+	if( OHBitTest( instData->getState(), WIN_STATE_SELECTED ) )
 	{
 		//backgroundImage	= GadgetRadioGetEnabledCheckedBoxImage( window );
 		leftImage					= GadgetRadioGetSelectedImage( window );
@@ -288,7 +287,7 @@ void W3DGadgetRadioButtonImageDraw( GameWindow *window,
 		rightImage				= GadgetRadioGetSelectedCheckedBoxImage( window );
 		
 	}
-	else if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
+	else if( OHBitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 		// disabled background
 		leftImage					= GadgetRadioGetDisabledImage( window );
@@ -296,7 +295,7 @@ void W3DGadgetRadioButtonImageDraw( GameWindow *window,
 		rightImage				= GadgetRadioGetDisabledCheckedBoxImage( window );
 		
 	}  // end if
-	else if( BitTest( instData->getState(), WIN_STATE_HILITED ) )
+	else if( OHBitTest( instData->getState(), WIN_STATE_HILITED ) )
 	{
 		// hilited background 
 		leftImage					= GadgetRadioGetHiliteImage( window );

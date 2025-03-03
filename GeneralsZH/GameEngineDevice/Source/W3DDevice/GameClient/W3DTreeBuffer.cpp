@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1906,7 +1905,7 @@ void W3DTreeBuffer::updateTopplingTree(TTree *tree)
 		// Hit so either bounce or stop if too little remaining velocity.
 		tree->m_angularVelocity *= -d->m_bounceVelocityPercent;
 
-		if( BitTest( tree->m_options, W3D_TOPPLE_OPTIONS_NO_BOUNCE ) == TRUE || 
+		if( OHBitTest( tree->m_options, W3D_TOPPLE_OPTIONS_NO_BOUNCE ) == TRUE || 
 				fabs(tree->m_angularVelocity) < VELOCITY_BOUNCE_LIMIT )
 		{
 			// too slow, just stop
@@ -1919,7 +1918,7 @@ void W3DTreeBuffer::updateTopplingTree(TTree *tree)
 		else if( fabs(tree->m_angularVelocity) >= VELOCITY_BOUNCE_SOUND_LIMIT )
 		{
 			// fast enough bounce to warrant the bounce fx
-			if( BitTest( tree->m_options, W3D_TOPPLE_OPTIONS_NO_FX ) == FALSE ) {
+			if( OHBitTest( tree->m_options, W3D_TOPPLE_OPTIONS_NO_FX ) == FALSE ) {
 				Vector3 loc(0, 0, 3*TREE_RADIUS_APPROX); // Kinda towards the top of the tree. jba. [7/11/2003]
 				Vector3 xloc;
 				tree->m_mtx.Transform_Vector(tree->m_mtx, loc, &xloc);

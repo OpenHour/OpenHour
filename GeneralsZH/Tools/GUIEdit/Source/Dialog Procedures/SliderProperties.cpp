@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -106,7 +105,7 @@ static LRESULT CALLBACK sliderPropertiesCallback( HWND hWndDialog,
 					Bool vert = FALSE;
 
 					if( window )
-						vert = BitTest( window->winGetStyle(), GWS_VERT_SLIDER );
+						vert = OHBitTest( window->winGetStyle(), GWS_VERT_SLIDER );
 
 					//
 					// using the current colors in the base of the slider, assign a
@@ -158,7 +157,7 @@ static LRESULT CALLBACK sliderPropertiesCallback( HWND hWndDialog,
 					if( window )
 					{
 						ImageAndColorInfo *info;
-						Bool vert = BitTest( window->winGetStyle(), GWS_VERT_SLIDER );
+						Bool vert = OHBitTest( window->winGetStyle(), GWS_VERT_SLIDER );
 
 						// save the common properties
 						if( SaveCommonDialogProperties( hWndDialog, window ) == FALSE )
@@ -367,7 +366,7 @@ HWND InitSliderPropertiesDialog( GameWindow *window )
 	//
 	const Image *image;
 	Color color, borderColor;
-	Bool vert = BitTest( window->winGetStyle(), GWS_VERT_SLIDER );
+	Bool vert = OHBitTest( window->winGetStyle(), GWS_VERT_SLIDER );
 
 	// --------------------------------------------------------------------------
 	if( vert )

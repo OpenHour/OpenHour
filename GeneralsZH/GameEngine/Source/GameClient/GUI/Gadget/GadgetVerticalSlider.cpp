@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -87,7 +86,7 @@ WindowMsgHandledType GadgetVerticalSliderInput( GameWindow *window, UnsignedInt 
 		// ------------------------------------------------------------------------
 		case GWM_MOUSE_ENTERING:
 
-			if( BitTest( instData->getStyle(), GWS_MOUSE_TRACK ) ) 
+			if( OHBitTest( instData->getStyle(), GWS_MOUSE_TRACK ) ) 
 			{
 
 				BitSet( instData->m_state, WIN_STATE_HILITED );
@@ -103,7 +102,7 @@ WindowMsgHandledType GadgetVerticalSliderInput( GameWindow *window, UnsignedInt 
 		// ------------------------------------------------------------------------
 		case GWM_MOUSE_LEAVING:
 
-			if( BitTest( instData->getStyle(), GWS_MOUSE_TRACK ) ) 
+			if( OHBitTest( instData->getStyle(), GWS_MOUSE_TRACK ) ) 
 			{
 
 				BitClear( instData->m_state, WIN_STATE_HILITED );
@@ -117,7 +116,7 @@ WindowMsgHandledType GadgetVerticalSliderInput( GameWindow *window, UnsignedInt 
 		// ------------------------------------------------------------------------
 		case GWM_LEFT_DRAG:
 
-			if( BitTest( instData->getStyle(), GWS_MOUSE_TRACK ) )
+			if( OHBitTest( instData->getStyle(), GWS_MOUSE_TRACK ) )
 				TheWindowManager->winSendSystemMsg( window->winGetOwner(), 
 																						GGM_LEFT_DRAG,
 																						(WindowMsgData)window, 
@@ -191,7 +190,7 @@ WindowMsgHandledType GadgetVerticalSliderInput( GameWindow *window, UnsignedInt 
 				// --------------------------------------------------------------------
 				case KEY_UP:
 
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OHBitTest( mData2, KEY_STATE_DOWN ) )
 					{
 
 						if( s->position < s->maxVal - 1)
@@ -215,7 +214,7 @@ WindowMsgHandledType GadgetVerticalSliderInput( GameWindow *window, UnsignedInt 
 				// --------------------------------------------------------------------
 				case KEY_DOWN:
 
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OHBitTest( mData2, KEY_STATE_DOWN ) )
 					{
 
 						if( s->position > s->minVal + 1 ) 
@@ -237,14 +236,14 @@ WindowMsgHandledType GadgetVerticalSliderInput( GameWindow *window, UnsignedInt 
 				case KEY_RIGHT:
 				case KEY_TAB:
 
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OHBitTest( mData2, KEY_STATE_DOWN ) )
 						window->winNextTab();
 					break;
 
 				// --------------------------------------------------------------------
 				case KEY_LEFT:
 
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OHBitTest( mData2, KEY_STATE_DOWN ) )
 						window->winPrevTab();
 					break;
 

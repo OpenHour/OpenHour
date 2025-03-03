@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -121,9 +120,9 @@ Bool GameSpyInfo::sendChat( UnicodeString message, Bool isAction, GameWindow *pl
 {
 	static UnicodeString s_prevMsg = UnicodeString::TheEmptyString;  //stop spam before it happens
 
-	RoomType roomType = StagingRoom;
-	if (getCurrentGroupRoom())
-		roomType = GroupRoom;
+	//RoomType roomType = StagingRoom;
+	//if (getCurrentGroupRoom())
+	//	roomType = GroupRoom;
 
 	PeerRequest req;
 	req.text = message.str();
@@ -219,8 +218,8 @@ void GameSpyInfo::addChat( PlayerInfo p, UnicodeString msg, Bool isPublic, Bool 
 	if(isSavedIgnored(p.m_profileID) || isIgnored(p.m_name))
 		return;
 	
-	Bool isOwner = p.m_flags & PEER_FLAG_OP;
-	Bool isBuddy = getBuddyMap()->find(p.m_profileID) != getBuddyMap()->end();
+	Bool isOwner = false;//p.m_flags & PEER_FLAG_OP;
+	Bool isBuddy = false;//getBuddyMap()->find(p.m_profileID) != getBuddyMap()->end();
 
 	Bool isMe = p.m_name.compare(TheGameSpyInfo->getLocalName()) == 0;
 

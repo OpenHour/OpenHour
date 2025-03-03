@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -57,7 +56,7 @@ SimplePersistFactoryClass<FilteredSoundClass, CHUNKID_FILTERED_SOUND> _FilteredS
 //
 /////////////////////////////////////////////////////////////////////////////////
 FilteredSoundClass::FilteredSoundClass (void)
-	:	m_hFilter (INVALID_MILES_HANDLE)
+	:	m_hFilter (nullptr)
 {	
 	return ;
 }
@@ -69,7 +68,7 @@ FilteredSoundClass::FilteredSoundClass (void)
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////
 FilteredSoundClass::FilteredSoundClass (const FilteredSoundClass &src)
-	:	m_hFilter (INVALID_MILES_HANDLE),
+	:	m_hFilter (nullptr),
 		SoundPseudo3DClass (src)
 {
 	(*this) = src;
@@ -113,30 +112,30 @@ FilteredSoundClass::Initialize_Miles_Handle (void)
 	SoundPseudo3DClass::Initialize_Miles_Handle ();
 	m_hFilter = WWAudioClass::Get_Instance ()->Get_Reverb_Filter ();
 	if ((m_SoundHandle != NULL) &&
-		 (m_hFilter != INVALID_MILES_HANDLE)) {
+		 (m_hFilter != nullptr)) {
 		
 		//
 		//	Pass the filter onto the sample
 		//
-		::AIL_set_sample_processor (m_SoundHandle->Get_HSAMPLE (), DP_FILTER, m_hFilter);
+		//::AIL_set_sample_processor (m_SoundHandle->Get_HSAMPLE (), DP_FILTER, m_hFilter);
 
 		//
 		//	Change the reverb's settings to simulate a 'tinny' effect.
 		//
-		F32 reverb_level   = 0.3F;
-		F32 reverb_reflect = 0.01F;
-		F32 reverb_decay   = 0.535F;
-		::AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
-														"Reverb level",
-														&reverb_level);
+		//F32 reverb_level   = 0.3F;
+		//F32 reverb_reflect = 0.01F;
+		//F32 reverb_decay   = 0.535F;
+		//::AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
+		//												"Reverb level",
+		//												&reverb_level);
 
-		::AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
-														"Reverb reflect time",
-														&reverb_reflect);
+		//::AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
+		//												"Reverb reflect time",
+		//												&reverb_reflect);
 
-		::AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
-														"Reverb decay time",
-														&reverb_decay);
+		//::AIL_set_filter_sample_preference (m_SoundHandle->Get_HSAMPLE (),
+		//												"Reverb decay time",
+		//												&reverb_decay);
 	}
 	
 	Update_Volume ();

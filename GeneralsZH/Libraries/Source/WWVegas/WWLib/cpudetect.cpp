@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1068,7 +1067,7 @@ void CPUDetectClass::Init_Processor_Log()
 	}
 
 	if (CPUDetectClass::Get_L1_Instruction_Trace_Cache_Size()) {
-		SYSLOG(("L1 Instruction Trace Cache: %d way set associative, %dk µOPs\r\n",
+		SYSLOG(("L1 Instruction Trace Cache: %d way set associative, %dk ï¿½OPs\r\n",
 			CPUDetectClass::Get_L1_Instruction_Cache_Set_Associative(),
 			CPUDetectClass::Get_L1_Instruction_Cache_Size()/1024));
 	}
@@ -1126,7 +1125,7 @@ void CPUDetectClass::Init_Compact_Log()
 	COMPACTLOG(("%x\t%x\t",Get_Feature_Bits(),Get_Extended_Feature_Bits()));
 }
 
-static class CPUDetectInitClass
+/*static class CPUDetectInitClass
 {
 public:
 	CPUDetectInitClass::CPUDetectInitClass()
@@ -1148,7 +1147,7 @@ public:
 		CPUDetectClass::Init_Processor_Log();
 		CPUDetectClass::Init_Compact_Log();
 	}
-} _CPU_Detect_Init;
+} _CPU_Detect_Init;*/
 
 
 OSInfoStruct Windows9xVersionTable[]={

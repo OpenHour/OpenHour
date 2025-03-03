@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -273,15 +272,15 @@ Bool BattlePlanUpdate::initiateIntentToDoSpecialPower(const SpecialPowerTemplate
 	}
 
 	//Set the desired status based on the command button option!
-	if( BitTest( commandOptions, OPTION_ONE ) )
+	if( OHBitTest( commandOptions, OPTION_ONE ) )
 	{
 		m_desiredPlan = PLANSTATUS_BOMBARDMENT;
 	}
-	else if( BitTest( commandOptions, OPTION_TWO ) )
+	else if( OHBitTest( commandOptions, OPTION_TWO ) )
 	{
 		m_desiredPlan = PLANSTATUS_HOLDTHELINE;
 	}
-	else if( BitTest( commandOptions, OPTION_THREE ) )
+	else if( OHBitTest( commandOptions, OPTION_THREE ) )
 	{
 		m_desiredPlan = PLANSTATUS_SEARCHANDDESTROY;
 	}

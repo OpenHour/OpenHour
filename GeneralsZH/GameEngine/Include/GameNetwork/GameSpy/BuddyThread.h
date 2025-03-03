@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -31,8 +30,6 @@
 #ifndef __BUDDYTHREAD_H__
 #define __BUDDYTHREAD_H__
 
-#include "GameSpy/GP/GP.h"
-
 #define MAX_BUDDY_CHAT_LEN 128
 
 // this class encapsulates a request for the buddy thread
@@ -60,34 +57,34 @@ public:
 	{
 		struct
 		{
-			GPProfile recipient;
-			WideChar text[MAX_BUDDY_CHAT_LEN];
+			//GPProfile recipient;
+			//WideChar text[MAX_BUDDY_CHAT_LEN];
 		} message;
 
 		struct
 		{
-			char nick[GP_NICK_LEN];
-			char email[GP_EMAIL_LEN];
-			char password[GP_PASSWORD_LEN];
-			Bool hasFirewall;
+			//char nick[GP_NICK_LEN];
+			//char email[GP_EMAIL_LEN];
+			//char password[GP_PASSWORD_LEN];
+			bool hasFirewall;
 		} login;
 
 		struct
 		{
-			GPProfile id;
-			WideChar text[MAX_BUDDY_CHAT_LEN];
+			//GPProfile id;
+			//WideChar text[MAX_BUDDY_CHAT_LEN];
 		} addbuddy;
 
 		struct
 		{
-			GPProfile id;
+			//GPProfile id;
 		} profile;
 
 		struct
 		{
-			GPEnum status;
-			char statusString[GP_STATUS_STRING_LEN];
-			char locationString[GP_LOCATION_STRING_LEN];
+			//GPEnum status;
+			//char statusString[GP_STATUS_STRING_LEN];
+			//char locationString[GP_LOCATION_STRING_LEN];
 		} status;
 
 	} arg;
@@ -109,42 +106,42 @@ public:
 		BUDDYRESPONSE_MAX
 	} buddyResponseType;
 
-	GPProfile profile;
-	GPResult result;
+	//GPProfile profile;
+	//GPResult result;
 
 	union
 	{
 		struct
 		{
-			UnsignedInt date;
-			char nick[GP_NICK_LEN];
-			WideChar text[MAX_BUDDY_CHAT_LEN];
+			//UnsignedInt date;
+			//char nick[GP_NICK_LEN];
+			//WideChar text[MAX_BUDDY_CHAT_LEN];
 		} message;
 
 		struct
 		{
-			char nick[GP_NICK_LEN];
-			char email[GP_EMAIL_LEN];
-			char countrycode[GP_COUNTRYCODE_LEN];
-			WideChar text[GP_REASON_LEN];
+			//char nick[GP_NICK_LEN];
+			//char email[GP_EMAIL_LEN];
+			//char countrycode[GP_COUNTRYCODE_LEN];
+			//WideChar text[GP_REASON_LEN];
 		} request;
 
 		struct
 		{
 			//GPResult result;
-			GPErrorCode errorCode;
+			//GPErrorCode errorCode;
 			char errorString[MAX_BUDDY_CHAT_LEN];
-			GPEnum fatal;
+			//GPEnum fatal;
 		} error;
 
 		struct
 		{
-			char nick[GP_NICK_LEN];
-			char email[GP_EMAIL_LEN];
-			char countrycode[GP_COUNTRYCODE_LEN];
-			char location[GP_LOCATION_STRING_LEN];
-			GPEnum status;
-			char statusString[GP_STATUS_STRING_LEN];
+			//char nick[GP_NICK_LEN];
+			//char email[GP_EMAIL_LEN];
+			//char countrycode[GP_COUNTRYCODE_LEN];
+			//char location[GP_LOCATION_STRING_LEN];
+			//GPEnum status;
+			//char statusString[GP_STATUS_STRING_LEN];
 		} status;
 	} arg;
 };
@@ -158,17 +155,17 @@ public:
 	virtual ~GameSpyBuddyMessageQueueInterface() {}
 	virtual void startThread( void ) = 0;
 	virtual void endThread( void ) = 0;
-	virtual Bool isThreadRunning( void ) = 0;
-	virtual Bool isConnected( void ) = 0;
-	virtual Bool isConnecting( void ) = 0;
+	virtual bool isThreadRunning( void ) = 0;
+	virtual bool isConnected( void ) = 0;
+	virtual bool isConnecting( void ) = 0;
 
 	virtual void addRequest( const BuddyRequest& req ) = 0;
-	virtual Bool getRequest( BuddyRequest& req ) = 0;
+	virtual bool getRequest( BuddyRequest& req ) = 0;
 
 	virtual void addResponse( const BuddyResponse& resp ) = 0;
-	virtual Bool getResponse( BuddyResponse& resp ) = 0;
+	virtual bool getResponse( BuddyResponse& resp ) = 0;
 
-	virtual GPProfile getLocalProfileID( void ) = 0;
+	//virtual GPProfile getLocalProfileID( void ) = 0;
 
 	static GameSpyBuddyMessageQueueInterface* createNewMessageQueue( void );
 };

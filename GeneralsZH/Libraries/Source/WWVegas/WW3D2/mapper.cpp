@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -37,7 +36,7 @@
 
 #include "mapper.h"
 #include "ww3d.h"
-#include "ini.h"
+#include "../WWLib/ini.h"
 #include "chunkio.h"
 #include "w3derr.h"
 #include "meshmatdesc.h"

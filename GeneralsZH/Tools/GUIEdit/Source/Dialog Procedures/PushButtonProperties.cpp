@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -255,7 +254,7 @@ HWND InitPushButtonPropertiesDialog( GameWindow *window )
 	// initialize the dialog with values from the window
 	//
 
-	if( BitTest( window->winGetStatus(), WIN_STATUS_RIGHT_CLICK ) )
+	if( OHBitTest( window->winGetStatus(), WIN_STATUS_RIGHT_CLICK ) )
 		CheckDlgButton( dialog, CHECK_RIGHT_CLICK, BST_CHECKED );
 
 	return dialog;

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -149,7 +148,7 @@ WindowMsgHandledType GadgetTextEntryInput( GameWindow *window, UnsignedInt msg,
 		}
 		// ------------------------------------------------------------------------
 		case GWM_CHAR:
-			if ( BitTest( mData2, KEY_STATE_DOWN ) && BitTest( mData2, KEY_STATE_ALT | KEY_STATE_CONTROL ) )
+			if ( OHBitTest( mData2, KEY_STATE_DOWN ) && OHBitTest( mData2, KEY_STATE_ALT | KEY_STATE_CONTROL ) )
 			{
 				return MSG_IGNORED; // text extries shouldn't care about CTRL+* or ALT+*
 			}
@@ -161,7 +160,7 @@ WindowMsgHandledType GadgetTextEntryInput( GameWindow *window, UnsignedInt msg,
 				case KEY_KPENTER:
 				case KEY_ENTER:
 					// Done with this edit
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OHBitTest( mData2, KEY_STATE_DOWN ) )
 					{
 						if( e->receivedUnichar == FALSE )
 						{
@@ -202,11 +201,11 @@ WindowMsgHandledType GadgetTextEntryInput( GameWindow *window, UnsignedInt msg,
 				case KEY_RIGHT:
 				case KEY_TAB:
 
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OHBitTest( mData2, KEY_STATE_DOWN ) )
 					{
 						GameWindow *parent;
 						parent = window->winGetParent();
-						if(parent && !BitTest(parent->winGetStyle(), GWS_COMBO_BOX))
+						if(parent && !OHBitTest(parent->winGetStyle(), GWS_COMBO_BOX))
 							parent = NULL;
 						if(parent)
 							TheWindowManager->winNextTab(parent);
@@ -220,11 +219,11 @@ WindowMsgHandledType GadgetTextEntryInput( GameWindow *window, UnsignedInt msg,
 				case KEY_UP:
 				case KEY_LEFT:
 
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OHBitTest( mData2, KEY_STATE_DOWN ) )
 					{
 						GameWindow *parent;
 						parent = window->winGetParent();
-						if(parent && !BitTest(parent->winGetStyle(), GWS_COMBO_BOX))
+						if(parent && !OHBitTest(parent->winGetStyle(), GWS_COMBO_BOX))
 							parent = NULL;
 						if(parent)
 							TheWindowManager->winPrevTab(parent);
@@ -236,7 +235,7 @@ WindowMsgHandledType GadgetTextEntryInput( GameWindow *window, UnsignedInt msg,
 				// --------------------------------------------------------------------
 				case KEY_BACKSPACE:
 
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
+					if( OHBitTest( mData2, KEY_STATE_DOWN ) )
 					{
 						// if conCharPos != 0 this will fall through to next case.
 						// it should be noted that conCharPos can only != 0 in Jap & Kor
@@ -270,7 +269,7 @@ WindowMsgHandledType GadgetTextEntryInput( GameWindow *window, UnsignedInt msg,
 		// ------------------------------------------------------------------------
 		case GWM_MOUSE_ENTERING:
 
-			if (BitTest( instData->getStyle(), GWS_MOUSE_TRACK ) )
+			if (OHBitTest( instData->getStyle(), GWS_MOUSE_TRACK ) )
 			{
 
 				BitSet( instData->m_state, WIN_STATE_HILITED );
@@ -285,7 +284,7 @@ WindowMsgHandledType GadgetTextEntryInput( GameWindow *window, UnsignedInt msg,
 		// ------------------------------------------------------------------------
 		case GWM_MOUSE_LEAVING:
 
-			if( BitTest( instData->getStyle(), GWS_MOUSE_TRACK ) )
+			if( OHBitTest( instData->getStyle(), GWS_MOUSE_TRACK ) )
 			{
 
 				BitClear( instData->m_state, WIN_STATE_HILITED );
@@ -298,7 +297,7 @@ WindowMsgHandledType GadgetTextEntryInput( GameWindow *window, UnsignedInt msg,
 		// ------------------------------------------------------------------------
 		case GWM_LEFT_DRAG:
 
-			if( BitTest( instData->getStyle(), GWS_MOUSE_TRACK ) )
+			if( OHBitTest( instData->getStyle(), GWS_MOUSE_TRACK ) )
 				TheWindowManager->winSendSystemMsg( window->winGetOwner(), 
 																						GGM_LEFT_DRAG,
 																						(WindowMsgData)window, 0 );
@@ -577,7 +576,7 @@ UnicodeString GadgetTextEntryGetText( GameWindow *textentry )
 		return UnicodeString::TheEmptyString;
 
 	// verify that this is a list box
-	if( BitTest( textentry->winGetStyle(), GWS_ENTRY_FIELD ) == FALSE )
+	if( OHBitTest( textentry->winGetStyle(), GWS_ENTRY_FIELD ) == FALSE )
 		return UnicodeString::TheEmptyString;
 
 	UnicodeString result;

@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -315,7 +314,7 @@ void GadgetTabControlCreateSubPanes( GameWindow *tabControl )///< Create User Wi
 			sprintf( buffer, "Pane %d", paneIndex );
 			instData->m_decoratedNameString = buffer;
 			//set enabled status to that of Parent
-			tabData->subPanes[paneIndex]->winEnable( BitTest(tabControl->winGetStatus(), WIN_STATUS_ENABLED) );
+			tabData->subPanes[paneIndex]->winEnable( OHBitTest(tabControl->winGetStatus(), WIN_STATUS_ENABLED) );
 		}
 		else//this one exists, tabCount will control keeping extra panes perma-hidden
 		{

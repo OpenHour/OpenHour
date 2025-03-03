@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -77,7 +76,7 @@ void ControlBar::parseCommandButtonDefinition( INI *ini )
 
 	//Make sure buttons with special power templates also have the appropriate option set.
 	const SpecialPowerTemplate *spTemplate = button->getSpecialPowerTemplate();
-	Bool needsTemplate = BitTest( button->getOptions(), NEED_SPECIAL_POWER_SCIENCE );
+	Bool needsTemplate = OHBitTest( button->getOptions(), NEED_SPECIAL_POWER_SCIENCE );
 	if( spTemplate && !needsTemplate )
 	{
 		DEBUG_CRASH( ("[LINE: %d in '%s'] CommandButton %s has SpecialPower = %s but the button also requires Options = NEED_SPECIAL_POWER_SCIENCE. Failure to do so will cause bugs such as invisible side shortcut buttons",

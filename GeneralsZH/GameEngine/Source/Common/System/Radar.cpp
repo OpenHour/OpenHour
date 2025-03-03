@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -1023,9 +1022,10 @@ void Radar::createEvent( const Coord3D *world, RadarEventType type, Real seconds
 	if( world == NULL )
 		return;
 
-	// lookup the colors we are to used based on the event 
+	// lookup the colors we are to used based on the event
+	Int i = 0;
 	RGBAColorInt color[ 2 ];
-	for( Int i = 0; radarColorLookupTable[ i ].event != RADAR_EVENT_INVALID; ++i )
+	for(i = 0; radarColorLookupTable[ i ].event != RADAR_EVENT_INVALID; ++i )
 	{
 
 		if( radarColorLookupTable[ i ].event == type )

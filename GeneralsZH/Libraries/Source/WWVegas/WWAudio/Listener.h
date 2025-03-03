@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -118,16 +117,16 @@ class Listener3DClass : public Sound3DClass
 		virtual void			Stop_Sample (void)							{ }
 		virtual void			Resume_Sample (void)							{ }
 		virtual void			End_Sample (void)								{ }
-		virtual void			Set_Sample_Volume (S32 volume)			{ }
-		virtual S32				Get_Sample_Volume (void)					{ return 0; }
-		virtual void			Set_Sample_Pan (S32 pan)					{ }
-		virtual S32				Get_Sample_Pan (void)						{ return 64; }
-		virtual void			Set_Sample_Loop_Count (U32 count)		{ }
-		virtual U32				Get_Sample_Loop_Count (void)				{ return 0; }
-		virtual void			Set_Sample_MS_Position (U32 ms)			{ }
-		virtual void			Get_Sample_MS_Position (S32 *len, S32 *pos) { }
-		virtual S32				Get_Sample_Playback_Rate (void)			{ return 0; }
-		virtual void			Set_Sample_Playback_Rate (S32 rate)		{ }
+		virtual void			Set_Sample_Volume (int volume)			{ }
+		virtual int				Get_Sample_Volume (void)					{ return 0; }
+		virtual void			Set_Sample_Pan (int pan)					{ }
+		virtual int				Get_Sample_Pan (void)						{ return 64; }
+		virtual void			Set_Sample_Loop_Count (unsigned int count)		{ }
+		virtual unsigned int				Get_Sample_Loop_Count (void)				{ return 0; }
+		virtual void			Set_Sample_MS_Position (unsigned int ms)			{ }
+		virtual void			Get_Sample_MS_Position (int *len, int *pos) { }
+		virtual int				Get_Sample_Playback_Rate (void)			{ return 0; }
+		virtual void			Set_Sample_Playback_Rate (int rate)		{ }
 
 		//////////////////////////////////////////////////////////////////////
 		//	Handle information

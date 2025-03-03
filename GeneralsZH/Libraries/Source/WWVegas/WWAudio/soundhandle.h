@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -83,9 +82,9 @@ public:
 	//
 	//	Handle access
 	//
-	virtual H3DSAMPLE		Get_H3DSAMPLE (void)		{ return NULL; }
-	virtual HSAMPLE		Get_HSAMPLE (void)		{ return NULL; }
-	virtual HSTREAM		Get_HSTREAM (void)		{ return NULL; }
+	virtual void*		Get_H3DSAMPLE (void)		{ return NULL; }
+	virtual void*		Get_HSAMPLE (void)		{ return NULL; }
+	virtual void*		Get_HSTREAM (void)		{ return NULL; }
 
 	//
 	//	Initialization
@@ -100,18 +99,18 @@ public:
 	virtual void	Stop_Sample (void) = 0;
 	virtual void	Resume_Sample (void) = 0;
 	virtual void	End_Sample (void) = 0;
-	virtual void	Set_Sample_Pan (S32 pan) = 0;
-	virtual S32		Get_Sample_Pan (void) = 0;
-	virtual void	Set_Sample_Volume (S32 volume) = 0;
-	virtual S32		Get_Sample_Volume (void) = 0;
-	virtual void	Set_Sample_Loop_Count (U32 count) = 0;
-	virtual U32		Get_Sample_Loop_Count (void) = 0;
-	virtual void	Set_Sample_MS_Position (U32 ms) = 0;
-	virtual void	Get_Sample_MS_Position (S32 *len, S32 *pos) = 0;
-	virtual void	Set_Sample_User_Data (S32 i, U32 val) = 0;
-	virtual U32		Get_Sample_User_Data (S32 i) = 0;
-	virtual S32		Get_Sample_Playback_Rate (void) = 0;
-	virtual void	Set_Sample_Playback_Rate (S32 rate) = 0;
+	virtual void	Set_Sample_Pan (int pan) = 0;
+	virtual int		Get_Sample_Pan (void) = 0;
+	virtual void	Set_Sample_Volume (int volume) = 0;
+	virtual int		Get_Sample_Volume (void) = 0;
+	virtual void	Set_Sample_Loop_Count (unsigned int count) = 0;
+	virtual unsigned int		Get_Sample_Loop_Count (void) = 0;
+	virtual void	Set_Sample_MS_Position (unsigned int ms) = 0;
+	virtual void	Get_Sample_MS_Position (int *len, int *pos) = 0;
+	virtual void	Set_Sample_User_Data (int i, unsigned int val) = 0;
+	virtual unsigned int		Get_Sample_User_Data (int i) = 0;
+	virtual int 	Get_Sample_Playback_Rate (void) = 0;
+	virtual void	Set_Sample_Playback_Rate (int rate) = 0;
 	
 protected:
 	

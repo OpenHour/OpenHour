@@ -1,6 +1,5 @@
 /*
-**	Command & Conquer Generals Zero Hour(tm)
-**	Copyright 2025 Electronic Arts Inc.
+**	Copyright 2025 OpenHour Contributors & Electronic Arts Inc.
 **
 **	This program is free software: you can redistribute it and/or modify
 **	it under the terms of the GNU General Public License as published by
@@ -48,7 +47,7 @@
 #include "assetmgr.h"
 #include "vector3i.h"
 #include "quat.h"
-#include "ini.h"
+#include "../WWLib/ini.h"
 #include "point.h"
 #include "rinfo.h"
 #include "vertmaterial.h"
@@ -682,9 +681,10 @@ void DazzleRenderObjClass::Init_Type(const DazzleInitClass& i)
 	Init_Shaders();
 
 	if (i.type>=type_count) {
+		unsigned a = 0;
 		unsigned new_count=i.type+1;
 		DazzleTypeClass** new_types=W3DNEWARRAY DazzleTypeClass*[new_count];
-		for (unsigned a=0;a<type_count;++a) {
+		for (a=0;a<type_count;++a) {
 			new_types[a]=types[a];
 		}
 		for (;a<new_count;++a) {
@@ -705,9 +705,10 @@ void DazzleRenderObjClass::Init_Lensflare(const LensflareInitClass& i)
 	Init_Shaders();
 
 	if (i.type>=lensflare_count) {
+		unsigned a = 0;
 		unsigned new_count=i.type+1;
 		LensflareTypeClass** new_lensflares=W3DNEWARRAY LensflareTypeClass*[new_count];
-		for (unsigned a=0;a<lensflare_count;++a) {
+		for (a=0;a<lensflare_count;++a) {
 			new_lensflares[a]=lensflares[a];
 		}
 		for (;a<new_count;++a) {
