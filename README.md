@@ -29,7 +29,7 @@ You need to patch your `winnt.h` file. Just replace `typedef void * POINTER_64 P
 
 
 - Q: I don't want C&C General Zero Hour!
-- A: Use commit 4bb4ccb67ef404e1db23ab7fe2768f082dcef4ac. It's the last commit before it was removed.
+- A: Use commit 4bb4ccb67ef404e1db23ab7fe2768f082dcef4ac. It's the last commit before base game was removed.
 
 ## What works
 - Game
