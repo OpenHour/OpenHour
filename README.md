@@ -36,7 +36,7 @@ You need to patch your `winnt.h` file. Just replace `typedef void * POINTER_64 P
 
 ## What doesn't
 - Audio
-- Video
+- Bink videos
 
 ## Changes
 - Removed STLport dependency
