@@ -15,6 +15,5 @@
 cmake_minimum_required(VERSION 3.30)
 project(OpenHour)
 
-add_subdirectory(Generals)
 add_subdirectory(GeneralsZH)
 add_subdirectory(ThirdParty)
